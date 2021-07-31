@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import SocialMediaProfile
 from .forms import SocialForm
 
@@ -20,7 +19,7 @@ def add_social_account(request):
             form.save()
             return redirect(reverse('social'))
         else:
-            return HttpResponseRedirect('/failed/')
+            print('form is invalid')
     else:
         form = SocialForm()
 

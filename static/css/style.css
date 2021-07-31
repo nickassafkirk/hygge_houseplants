@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@1,700&family=Source+Sans+Pro:wght@300;400;900&family=Staatliches&display=swap');
+
+:root {
+    --hygge:  'Karla', sans-serif;
+    --main: 'Source Sans Pro', sans-serif;
+    --head: 'Staatliches', cursive;
+
+}
+
+p{
+    font-family: var(--head);
+    color: red;
+}
+
+h1{
+    font-family: var(--hygge);
+    color: blue;
+}

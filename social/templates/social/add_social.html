@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'add_social_account' %}" method="POST" id="add-social-account">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn.dark">Add Account</button>
+</form>
+{% endblock %}

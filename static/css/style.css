@@ -21,6 +21,11 @@ body {
     font-weight: 300;
 }
 
+a {
+    text-decoration: none;
+}
+
+
 /* Header */
 
 .header-custom {
@@ -84,6 +89,19 @@ body {
     display: inline-block;
     margin: 0 .5rem;
     font-size: 0.75rem;
+}
+
+/* Footer */
+
+footer {
+    background: var(--grn);
+    color: #fff;
+    font-family: var(--head);
+    text-align: center;
+}
+
+footer a{
+    color: #fff;
 }
 
 

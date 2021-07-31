@@ -5,14 +5,98 @@
     --main: 'Source Sans Pro', sans-serif;
     --head: 'Staatliches', cursive;
 
+    --grn: #33775d;
+    --grn-dark: #004b33;
+    --grn-light: #62a68a;
+
+    --terra: #c67859;
+    --terra-dark: #924b2f;
+    --terra-light: #fca886;
+
 }
 
-p{
-    font-family: var(--head);
-    color: red;
+body {
+    font-family: var(--main);
+    color: #121212;
+    font-weight: 300;
 }
 
-h1{
+/* Header */
+
+.header-custom {
+    background:var(--grn);
+    color: #fff;
+}
+
+.header-custom a {
+    color: #fff;
+}
+
+.navbar-brand {
     font-family: var(--hygge);
-    color: blue;
+    font-size: 1.4rem;
+}
+
+.hygge {
+    font-family: var(--hygge) !important;
+    color: #fff;
+}
+
+.nav-link{
+    font-family: var(--head);
+    font-size: 1.2rem;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+    color: var(--terra);
+}
+
+.navbar-toggler{
+    color: #fff;
+}
+
+/* Search area */
+
+.site-search{
+    background: var(--grn-light);
+    border: none;
+}
+
+.site-search::placeholder {
+    color:var(--grn-dark);
+    font-style: italic;
+}
+
+.btn-dark {
+    background: var(--grn-dark);
+    color: #fff;
+}
+
+/* Account & Cart Area */
+
+.user-area {
+     text-align: center;
+}
+
+.user-area-link {
+    display: inline-block;
+    margin: 0 .5rem;
+    font-size: 0.75rem;
+}
+
+
+@media screen and (min-width: 992px) {
+    .user-area-link {
+        font-size: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 2rem;
+    }
+
+    .nav-link {
+        font-size: 1.4rem;
+    }
 }

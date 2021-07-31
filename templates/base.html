@@ -31,18 +31,76 @@
     <title>Hello, world! {% block title_add_on %}{% endblock %}</title>
   </head>
   <body>
-      <header class="container-fluid">
-          <!-- Nav Collapse -->
-          <!-- Logo -->
+      <header class="container-fluid py-2 header-custom">
+          
+          
           <!-- Basket/Login Area -->
+          <div class="top-menu d-flex flex-row-reverse flex-md-row justify-content-between">
+            <form class="d-none d-md-flex">
+                <input class="form-control me-2 site-search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+              </form>
+              <div class="user-area">
+                <div class="user-area-link">
+                  <i class="fas fa-shopping-cart"></i>
+                  <br>
+                  <a href="">Cart</a>
+                </div>
+                <div class="user-area-link">
+                  <i class="fas fa-user"></i>
+                  <br>
+                  <a href="">Account</a>
+                </div>
+              </div>
+          </div>
+
+          <!-- Logo Large Screens -->
+          <div class="d-none d-md-block w-md-100 mx-auto text-center">
+            <a class="navbar-brand" href=""><span class="hygge">Hygge</span> Houseplants</a>
+          </div>
+
+          <!-- Nav Collapse -->
+          <nav class="navbar navbar-expand-md">
+            <div class="container-fluid">
+              
+              
+
+              <!-- Logo Small Screens -->
+              <a class="navbar-brand d-md-none" href=""><span class="hygge">Hygge</span> Houseplants</a>
+            
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Plants</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Succulents</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Cacti</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Accessories</a>
+                  </li>
+                </ul>
+              </div>
+
+              
+
+            </div>
+          </nav>
       </header>
 
       {% if messages %}
       <div class="message-container"></div>
       {% endif %}
-
-      <h1>Test Styles</h1>
-      <p>Test stles 2</p>
 
       {% block page_heading %}
       {% endblock %}

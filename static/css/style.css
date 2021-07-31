@@ -104,6 +104,10 @@ footer a{
     color: #fff;
 }
 
+.social-icon a i{
+    font-size: 2rem;
+}
+
 
 @media screen and (min-width: 992px) {
     .user-area-link {

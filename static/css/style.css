@@ -131,6 +131,30 @@ footer a{
     padding: 0.5rem;
 }
 
+/* Hygge Info Box */
+
+.info-container {
+    width: 50%;
+    margin: 0 auto;
+    background: #cebfa8;
+    color: #000;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+#hygge-what {
+    font-family: var(--hygge);
+    text-shadow: 2px 2px #ddd;
+    text-decoration: underline;
+}
+
+#hygge-is {
+    display: none;
+    margin-top: 0.25rem;
+    font-family: var(--head);
+    font-size: 1.2rem;
+}
+
 .hero-image-text span {
     font-family: var(--hygge);
 }

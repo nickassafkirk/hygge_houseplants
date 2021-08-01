@@ -6,4 +6,17 @@
 
 {% block content %}
 {% include 'index/includes/hero_image.html' %}
+
+{% include 'index/includes/hygge.html' %}
+{% endblock %}
+
+{% block footerjs %}
+<script type="text/javascript">
+    
+    $('#hygge-what:parent').click(function(){   
+        $('#hygge-is').toggle()
+    })
+
+
+</script>
 {% endblock %}

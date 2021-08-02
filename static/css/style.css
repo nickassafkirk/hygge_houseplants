@@ -171,12 +171,14 @@ footer a{
 #hygge-what {
     font-family: var(--hygge);
     text-shadow: 2px 2px #ddd;
-    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration: underline double;
+    text-decoration-color: rgb(192, 56, 197);
 }
 
 #hygge-is {
     display: none;
-    margin-top: 0.25rem;
+    margin: 2.5rem auto;
     font-family: var(--head);
     font-size: 1rem;
 }

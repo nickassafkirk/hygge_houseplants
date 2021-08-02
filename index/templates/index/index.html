@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block additional_headjs %}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+{% endblock %}
+
 {% block page_heading %}
 {% endblock %}
 
@@ -18,7 +22,7 @@
 <script type="text/javascript">
     
     $('#hygge-what:parent').click(function(){   
-        $('#hygge-is').toggle()
+        $('#hygge-is').slideToggle(700, 'easeOutBounce' )
     })
 
 

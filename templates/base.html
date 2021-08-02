@@ -57,7 +57,7 @@
 
           <!-- Logo Large Screens -->
           <div class="d-none d-md-block w-md-100 mx-auto text-center">
-            <a class="navbar-brand" href=""><span class="hygge">Hygge</span> Houseplants <i class="fab fa-pagelines"></i></a>
+            <a class="navbar-brand" href="{% url 'index' %}"><span class="hygge">Hygge</span> Houseplants <i class="fab fa-pagelines"></i></a>
           </div>
 
           <!-- Nav Collapse -->
@@ -67,7 +67,7 @@
               
 
               <!-- Logo Small Screens -->
-              <a class="navbar-brand d-md-none" href=""><span class="hygge">Hygge</span> Houseplants <i class="fab fa-pagelines"></i></a>
+              <a class="navbar-brand d-md-none" href="{% url 'index' %}"><span class="hygge">Hygge</span> Houseplants <i class="fab fa-pagelines"></i></a>
             
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -76,7 +76,7 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Plants</a>
@@ -115,10 +115,10 @@
             <!-- Info Links -->
             <div class="col-12 col-md-6">
               <ul class="list-unstyled">
-                <li><a href="">Home</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Blog</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
               </ul>
             </div>
 

@@ -11,7 +11,7 @@
 
 #### Libraries & Frameworks 
 * Bootstrap
-* Django - Used for authentication, routing and interacting with the database
+* Django - Used for authentication, routing, serving dynamic html templates and interacting with the database.
 
 #### Other 
 * Fontawesome - Used to add icons throughout the project.

@@ -253,6 +253,14 @@ footer a{
     border-radius: .3rem;
 }
 
+/* single Product Page */
+
+.single-product-img {
+    max-width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
 /* Add Product Form */ 
 
 #add-product-form label {

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="single-product-img">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
+            <h3 class="px-3 px-lg-5">{{ product.name }}</h3>
+            <hr>
+            <form action="" class="px-3 px-lg-5">
+                <input type="number" value="1">
+                <button class="btn btn-dark">Add to Cart</button>
+            </form>
+        </div>
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <hr>
+            <p class="px-3 px-lg-5">{{ product.description }}</p>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
+

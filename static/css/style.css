@@ -257,8 +257,16 @@ footer a{
         font-size: 1.4rem;
     }
 
+    .hero-image-container {
+        max-width: 80%;
+        max-height: 70vh;
+        margin: 0 auto;
+        overflow: hidden;
+        object-fit: scale-down;
+    }
+
     .hero-image-text {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .hero-image-btn {

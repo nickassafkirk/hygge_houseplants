@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Product
 from .forms import ProductForm
 
@@ -32,3 +32,15 @@ def add_product(request):
         }
 
         return render(request, template, context)
+
+
+def single_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    template = 'products/single_product.html'
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, template, context)

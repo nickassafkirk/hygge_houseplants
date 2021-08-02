@@ -16,4 +16,7 @@ class Category(models.Model):
             return self.formatted_name
 
 
-
+class Product(models.Model):
+    name = models.Charfield(max_length=254)
+    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    sku = models.CharField(max_length=50, null=True, blank=True)

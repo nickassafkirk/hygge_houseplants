@@ -46,3 +46,34 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
 
 * Contact form Tutorial - To add a contact form functionality to the project, I used a guide from this
 [learndjango.com tutorial](https://learndjango.com/tutorials/django-email-contact-form)
+
+* Custom image upload button and styles were utilised as shown in the Code institutue boutique ado code along project   
+[Widgets.py](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/products/widgets.py)   
+[Template used](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/products/templates/products/custom_widget_templates/custom_clearable_file_input.html)   
+[The CSS below was sourced from this link](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/static/css/base.css)  
+
+    .btn-file {  
+    position: relative; 
+    overflow: hidden;   
+    }
+
+    .btn-file input[type="file"] {
+        position: absolute; 
+        top: 0; 
+        right: 0;   
+        min-width: 100%;    
+        min-height: 100%;   
+        opacity: 0; 
+        cursor: pointer;    
+    }   
+
+    .custom-checkbox .custom-control-label::before {    
+        border-radius: 0;   
+        border-color: #dc3545;  
+    }   
+
+    .custom-checkbox .custom-control-input:checked~.custom-control-label::before {  
+        background-color: #dc3545;  
+        border-color: #dc3545;  
+        border-radius: 0;   
+    }

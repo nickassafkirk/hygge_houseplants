@@ -236,6 +236,23 @@ footer a{
     width: 100%;
 }
 
+/* Products */
+
+.product-tile > div {
+    margin: 0 auto;
+    width: 300px;
+    padding: 5%;
+}
+
+.product-tile-img {
+    width: 100%;
+}
+
+.product-tile-img img {
+    width: 300px;
+    border-radius: .3rem;
+}
+
 /* Add Product Form */ 
 
 #add-product-form label {

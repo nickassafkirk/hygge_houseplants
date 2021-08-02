@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 
 
 from .models import Product
@@ -9,6 +10,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = ('created_date',)
+
+    image = forms.ImageField(label="Image", required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,7 +27,7 @@ class ProductForm(forms.ModelForm):
 
         self.fields['name'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'image' or field != 'has_variants' or field != 'available':
+            if field != 'image' and field != 'has_variants' and field != 'available':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
                 else:

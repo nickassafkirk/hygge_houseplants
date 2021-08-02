@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'index',
     'social',
     'products',
+    'contact',
 
     'allauth',
     'allauth.account',
@@ -103,6 +104,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # logs authentication message to console
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True

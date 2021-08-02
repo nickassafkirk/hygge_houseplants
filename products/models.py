@@ -6,16 +6,15 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-        name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254)
 
-        formatted_name = models.CharField(
-            max_length=254, null=True, blank=True)
+    display_name = models.CharField(max_length=254, null=True, blank=True)
 
-        def __str__(self):
-            return self.name
+    def __str__(self):
+        return self.name
 
-        def get_formatted_name(self):
-            return self.formatted_name
+    def get_display_name(self):
+        return self.display_name
 
 
 class Product(models.Model):
@@ -32,7 +31,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    quantity = models.IntegerField(max_length=6)
+    quantity = models.IntegerField(null=False, default=0)
     image_url = models.URLField(max_length=1500, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     has_variants = models.BooleanField(default=False, null=True, blank=True)
@@ -47,6 +46,8 @@ class Variant(models.Model):
     parent_product = models.ForeignKey(
         Product,
         related_name='variants',
+        null=True,
+        blank=True,
         on_delete=models.SET_NULL
         )
 
@@ -63,10 +64,9 @@ class Variant(models.Model):
 
     color = models.CharField(max_length=25, null=True, blank=True)
     size = models.CharField(max_length=5, null=True, blank=True)
-    quantity = models.IntegerField(max_length=6, default=0)
+    quantity = models.IntegerField(null=False, default=0)
     image_url = models.URLField(max_length=1500, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
-

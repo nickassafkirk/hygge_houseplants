@@ -146,9 +146,13 @@ footer a{
     color: #fff;
     text-shadow: 2px 2px rgba(0,0,0,0.75);
     font-size: 1rem;
-    text-transform: uppercase;
     z-index: 3;
     padding: 1rem;
+}
+
+.hero-image-btn {
+    display: block;
+    max-width: 50%;
 }
 
 /* Hygge Info Box */
@@ -228,6 +232,18 @@ footer a{
     width: 100%;
 }
 
+@media screen and (min-width: 568px) {
+    .hero-image-text {
+        font-size: 1.4rem;
+    }
+
+    .hero-image-btn {
+        max-width: 25%;
+        padding: 0.75rem 0;
+        Font-size: 1.2rem;
+    }
+}
+
 @media screen and (min-width: 992px) {
     .user-area-link {
         font-size: 1rem;
@@ -242,7 +258,13 @@ footer a{
     }
 
     .hero-image-text {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .hero-image-btn {
+        max-width: 25vw;
+        padding: 1rem 0;
+        Font-size: 1.4rem;
     }
 
     #hygge-is {
@@ -256,4 +278,6 @@ footer a{
     .tile-title {
         font-size: 2.2rem;
     }
+
+
 }

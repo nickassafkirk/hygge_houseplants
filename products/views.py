@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Product
 from .forms import ProductForm
 
@@ -16,10 +16,19 @@ def products(request):
 
 
 def add_product(request):
-    form = ProductForm()
-    template = 'products/add_product.html'
-    context = {
-        'form': form,
-    }
 
-    return render(request, template, context)
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('products'))
+        else:
+            print('invalid form')
+    else:
+        form = ProductForm()
+        template = 'products/add_product.html'
+        context = {
+            'form': form,
+        }
+
+        return render(request, template, context)

@@ -9,14 +9,24 @@
     <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
-            {% if field.name != 'image' %}
+            {% if field.name == "has_variants" %}
+            <hr>
+            <label for="{{ field.auto_id }}" class="me-2">{{ field.label }}</label>
+               {{ field }}
+            {% elif field.name == "available" %}
+            <label for="{{ field.auto_id }}" class="ms-5 me-2">{{ field.label }}</label>
+               {{ field }}   
+            {% else %}   
                 {{ field | as_crispy_field }}
-            {% else %} 
-                {{ field }}
             {% endif %}
         {% endfor %}
         <div class="my-2">
-            <button type="submit" class="btn btn-dark"><i class="fas fa-plus-circle"></i> Create Product</button>
+            <hr>
+            <button type="submit" class="btn btn-dark" id="add-product-btn">
+                <i class="fas fa-plus-circle"></i>
+                <br>
+                Create Product
+            </button>
         </div>
     </form>
 </div>

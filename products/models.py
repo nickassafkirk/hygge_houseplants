@@ -31,7 +31,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    quantity = models.IntegerField(null=False, default=0)
+    quantity = models.IntegerField(null=False, default=1)
     image_url = models.URLField(max_length=1500, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     has_variants = models.BooleanField(default=False, null=True, blank=True)

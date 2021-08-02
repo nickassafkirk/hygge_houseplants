@@ -13,6 +13,8 @@
     --terra-dark: #924b2f;
     --terra-light: #fca886;
 
+    --orange: #ee9b00;
+
 }
 
 body {
@@ -56,7 +58,7 @@ a {
 .nav-link:hover,
 .nav-link:focus,
 .nav-link:active {
-    color: var(--terra);
+    color: var(--orange);
 }
 
 .navbar-toggler{
@@ -236,9 +238,18 @@ footer a{
 
 /* Add Product Form */ 
 
+#add-product-form label {
+    font-family: var(--hygge);
+    color: var(--orange);
+    text-shadow: 0.5px 0.5px #eee;
+    margin: 0.5rem 0 0.25rem 0.25rem
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
+    background: var(--orange);
+    color: #eee;
 }
 
 .btn-file i {
@@ -264,6 +275,14 @@ footer a{
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0;
+}
+
+#add-product-btn {
+    padding: 1rem;
+}
+
+#add-product-btn i {
+    font-size: 2rem;
 }
 
 

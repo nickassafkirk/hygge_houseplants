@@ -6,11 +6,17 @@
 <div class="container my-5">
     <h2>Add Product</h2>
     <hr>
-    <form action="{% url 'add_product' %}" method="POST" id="add-product-form">
+    <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form | crispy }}
+        {% for field in form %}
+            {% if field.name != 'image' %}
+                {{ field | as_crispy_field }}
+            {% else %} 
+                {{ field }}
+            {% endif %}
+        {% endfor %}
         <div class="my-2">
-            <button type="submit" class="btn btn-dark"><i class="fas fa-plus-circle"></i> Add Product</button>
+            <button type="submit" class="btn btn-dark"><i class="fas fa-plus-circle"></i> Create Product</button>
         </div>
     </form>
 </div>

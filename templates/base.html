@@ -49,12 +49,21 @@
                     Cart
                   </a>
                 </div>
-                <div class="user-area-link">
-                  <a href="">
+                <div class="user-area-link dropdown">
+                  <a href="#" id="account-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
                     <br>
                     Account
                   </a>
+                  <ul class="dropdown-menu" aria-labelledby="account-options">
+                    {% if request.user %}
+                        <li><a href="" class="dropdown-item">My Account</a></li>
+                        <li><a href="{% url 'account_logout' %}" class="dropdown-item">Sign Out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_signup' %}" class="dropdown-item">Sign Up</a></li>
+                        <li><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
+                    {% endif %}
+                  </ul>
                 </div>
               </div>
           </div>

@@ -107,6 +107,15 @@ header a:active,
     font-family: var(--hygge);
 }
 
+.dropdown-menu li a.dropdown-item {
+    color: #000;
+    text-align: center;
+}
+
+.dropdown-menu li:first-child {
+    border-bottom: 1px solid #000;
+}
+
 /* Footer */
 
 footer {

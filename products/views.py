@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category
-from .forms import ProductForm
+from .models import Product, Category, Variant
+from .forms import ProductForm, VariantForm
 
 
 # All products view
@@ -83,9 +83,11 @@ def add_product(request):
             print('invalid form')
     else:
         form = ProductForm()
+        form2 = VariantForm()
         template = 'products/add_product.html'
         context = {
             'form': form,
+            'form2': form2,
         }
 
         return render(request, template, context)

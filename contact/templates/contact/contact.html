@@ -6,7 +6,7 @@
 <div class="container my-5">
     <h2>Contact Us</h2>
     <hr>
-    <form action="{% url 'add_social_account' %}" method="POST" id="contact-form">
+    <form action="{% url 'contact_view' %}" method="POST" id="contact-form">
         {% csrf_token %}
         {{ form | crispy }}
         <div class="my-2">

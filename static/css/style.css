@@ -190,8 +190,12 @@ footer a{
 #hygge-is {
     display: none;
     margin: 2.5rem auto;
-    font-family: var(--head);
     font-size: 1rem;
+    font-weight: 500;
+}
+
+#hygge-is span {
+    font-family: var(--head);
 }
 
 /* Popular Categories Grid */

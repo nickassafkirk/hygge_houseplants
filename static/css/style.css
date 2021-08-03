@@ -241,21 +241,25 @@ footer a{
 .product-tile > div {
     margin: 0 auto;
     width: 300px;
-    padding: 5%;
 }
 
 .product-tile-img {
     width: 100%;
+    background: #fff;
+    border-radius: .3rem;
 }
 
 .product-tile-img img {
     width: 300px;
-    border-radius: .3rem;
+    
+    height: 350px;
+    object-fit: scale-down;
 }
 
 /* single Product Page */
 
-.product-path a{
+.product-path a,
+a.product-path{
     color: #222;
     font-size: 1.1rem;
     font-weight: 500;
@@ -263,7 +267,10 @@ footer a{
 
 .product-path a:hover,
 .product-path a:active,
-.product-path a:focus {
+.product-path a:focus,
+a.product-path:hover,
+a.product-path:active,
+a.product-path:focus {
     color: var(--grn);
 }
 

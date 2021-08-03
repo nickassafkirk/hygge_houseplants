@@ -10,6 +10,13 @@
         <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
             <h3 class="px-3 px-lg-5">{{ product.name }}</h3>
             <hr>
+            <p class="px-3 px-lg-5"><strong>Availability: </strong>
+                {% if product.quantity > 0 %}
+                <span class="text-success">{{ product.quantity }} In Stock</span>
+                {% else %}
+                <span class="text-danger">Sold Out</span>
+                {% endif %}
+            </p>
             <form action="" class="px-3 px-lg-5">
                 <input type="number" value="1">
                 <button class="btn btn-dark">Add to Cart</button>

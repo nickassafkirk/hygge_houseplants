@@ -407,7 +407,7 @@ a.product-path:focus {
 }
 
 
-@media screen and (min-width: 568px) {
+@media screen and (min-width: 576px) {
     .hero-image-text {
         font-size: 1.4rem;
     }
@@ -416,6 +416,12 @@ a.product-path:focus {
         max-width: 25%;
         padding: 0.75rem 0;
         Font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .tile {
+        height: 20vw;
     }
 }
 
@@ -452,10 +458,6 @@ a.product-path:focus {
 
     #hygge-is {
         font-size: 1.2rem;
-    }
-
-    .tile {
-        height: 20vw;
     }
 
     .tile-title {

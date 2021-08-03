@@ -79,16 +79,16 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Plants</a>
+                    <a class="nav-link" href="{% url 'products' %}?category=plants">Plants</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Succulents</a>
+                    <a class="nav-link" href="{% url 'products' %}?category=succulents">Succulents</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Cacti</a>
+                    <a class="nav-link" href="{% url 'products' %}?category=cacti">Cacti</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Accessories</a>
+                    <a class="nav-link" href="{% url 'products' %}?category=accessories">Accessories</a>
                   </li>
                 </ul>
               </div>
@@ -125,10 +125,10 @@
             <!-- Product Links -->
             <div class="col-12 col-md-6">
               <ul class="list-unstyled">
-                <li><a href="">Plants</a></li>
-                <li><a href="">Succulents</a></li>
-                <li><a href="">Cacti</a></li>
-                <li><a href="">Accessories</a></li>
+                <li><a href="{% url 'products' %}?category=plants">Plants</a></li>
+                <li><a href="{% url 'products' %}?category=succulents">Succulents</a></li>
+                <li><a href="{% url 'products' %}?category=cacti">Cacti</a></li>
+                <li><a href="{% url 'products' %}?category=accessories">Accessories</a></li>
               </ul>
             </div>
           </div>

@@ -19,19 +19,20 @@
             {% else %}   
                 {{ field | as_crispy_field }}
             {% endif %}
-        {% endfor %}  
+        {% endfor %} 
+        <div class="my-2">
+            <hr>
+            <button type="submit" class="btn btn-dark" id="add-product-btn">
+                <i class="fas fa-plus-circle"></i>
+                <br>
+                Create Product
+            </button>
+        </div> 
     </form>
+
     <!-- Variants Form -->
     {% include 'products/includes/add_variants.html' %}
 
-    <div class="my-2">
-        <hr>
-        <button type="submit" class="btn btn-dark" id="add-product-btn">
-            <i class="fas fa-plus-circle"></i>
-            <br>
-            Create Product
-        </button>
-    </div>
 </div>
 
 {% endblock %}

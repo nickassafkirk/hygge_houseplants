@@ -36,5 +36,5 @@ class VariantForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        fields = '__all__'
+        exclude = ('parent_product', 'name',)
 

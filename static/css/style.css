@@ -341,9 +341,9 @@ a.product-path:focus {
 
 /* Add Product Form */ 
 
-#add-product-form label {
+#contact-form label, #add-product-form label {
     font-family: var(--hygge);
-    color: var(--orange);
+    color: #232323;
     text-shadow: 0.5px 0.5px #eee;
     margin: 0.5rem 0 0.25rem 0.25rem
 }

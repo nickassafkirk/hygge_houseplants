@@ -10,7 +10,7 @@
     --grn-light: #62a68a;
 
     --terra: #c67859;
-    --terra-dark: #924b2f;
+    --terra-dark: rgb(146, 75, 47);
     --terra-light: #fca886;
 
     --orange: #ee9b00;
@@ -27,7 +27,6 @@ body {
 a {
     text-decoration: none;
 }
-
 
 /* Header */
 
@@ -75,6 +74,10 @@ a {
 .site-search::placeholder {
     color:var(--grn-dark);
     font-style: italic;
+}
+
+.btn {
+    border: none;
 }
 
 .btn-dark {
@@ -143,18 +146,24 @@ footer a{
     left: 50%;
     width: 80%;
     height: auto;
-    background: rgba(0,0,0,0.5);
+    background: rgba(13, 13, 13, 0.75);
     transform: translate(-50%, -50%);
     color: #fff;
-    text-shadow: 2px 2px rgba(0,0,0,0.75);
+    text-shadow: 2px 2px rgba(33, 33, 33, 0.5);
     font-size: 1rem;
     z-index: 3;
     padding: 1rem;
 }
 
+.hero-image-text span {
+    font-family: var(--hygge);
+}
+
 .hero-image-btn {
     display: block;
     max-width: 50%;
+    background: rgba(0, 140, 45, 0.75);
+    font-family: var(--hygge);
 }
 
 /* Hygge Info Box */
@@ -183,10 +192,6 @@ footer a{
     margin: 2.5rem auto;
     font-family: var(--head);
     font-size: 1rem;
-}
-
-.hero-image-text span {
-    font-family: var(--hygge);
 }
 
 /* Popular Categories Grid */
@@ -384,6 +389,10 @@ a.product-path:focus {
 
     .tile-title {
         font-size: 2.2rem;
+    }
+
+    .incentives-container {
+        font-size: 1rem;
     }
 
 

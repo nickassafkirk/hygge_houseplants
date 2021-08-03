@@ -37,8 +37,8 @@
           
           <!-- Basket/Login Area -->
           <div class="top-menu d-flex flex-row-reverse flex-md-row justify-content-between">
-            <form class="d-none d-md-flex">
-                <input class="form-control me-2 site-search" type="search" placeholder="Search" aria-label="Search">
+            <form action="{% url 'products' %}" method="GET" class="d-none d-md-flex">
+                <input class="form-control me-2 site-search" type="search" placeholder="Search" aria-label="Search" name="q">
                 <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
               </form>
               <div class="user-area">

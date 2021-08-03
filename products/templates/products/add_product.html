@@ -36,3 +36,14 @@
 
 {% endblock %}
 
+{% block footerjs %}
+
+<script type="text/javascript">
+console.log('js works')
+    $('#has_variants').change( function() {
+        console.log('js loaded')
+        $('#add-variants-form').toggleClass("d-none")
+    })
+</script>
+
+{% endblock %}

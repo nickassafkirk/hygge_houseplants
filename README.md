@@ -52,6 +52,7 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
 [Template used](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/products/templates/products/custom_widget_templates/custom_clearable_file_input.html)   
 [The CSS below was sourced from this link](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/static/css/base.css)  
 
+    ```
     .btn-file {  
     position: relative; 
     overflow: hidden;   
@@ -77,6 +78,7 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
         border-color: #dc3545;  
         border-radius: 0;   
     }
+    ```
 
 * jQuery UI slideToggle easing easeOutBounce - to create a more engaging user experience for the index page Hygge section, jQuery's .slideToggle() method was used.
   I was made aware of the additional slideToggle easing effects at [this stackOverflow post](https://stackoverflow.com/questions/6121255/toggle-div-with-easing) from contributor Sylvain.

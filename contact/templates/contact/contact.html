@@ -13,6 +13,17 @@
             <button type="submit" class="btn btn-dark">Send Message  <i class="fas fa-paper-plane"></i></button>
         </div>
     </form>
+    
+    <h3 class="mt-5 text-center">Find Us On Social Media</h3>
+    <hr>
+    <div class="row" id="social-icons">
+        <div class="col-12 social-icons-container">
+          {% block social %}
+              {% include 'social/includes/social_icons.html' %}
+          {% endblock %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
+

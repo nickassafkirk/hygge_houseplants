@@ -125,16 +125,6 @@ footer {
     text-align: center;
 }
 
-footer a{
-    color: #fff;
-}
-
-footer a:hover,
-footer a:focus,
-footer a:active {
-    color: var(--orange);
-}
-
 .social-icons-container {
     display: flex;
     justify-content: center;
@@ -143,6 +133,28 @@ footer a:active {
 .social-icon a i{
     padding: 1rem;
     font-size: 2rem;
+    color: #222;
+}
+
+.social-icon a i:hover {
+    color: var(--grn-dark);
+}
+
+footer a{
+    color: #fff;
+}
+
+footer a:hover,
+footer a:focus,
+footer a:active,
+footer .social-icon a i:hover,
+footer .social-icon a i:focus,
+footer .social-icon a i:active {
+    color: var(--orange);
+}
+
+footer .social-icon a i {
+    color: #fff;
 }
 
 /* Incentives Bar */

@@ -36,28 +36,32 @@
           
           
           <!-- Basket/Login Area -->
-          <div class="top-menu d-flex flex-row-reverse flex-md-row justify-content-between">
+          <div class="top-menu d-flex flex-row-reverse flex-md-row justify-content-between mt-2">
             <form action="{% url 'products' %}" method="GET" class="d-none d-md-flex">
                 <input class="form-control me-2 site-search" type="search" placeholder="Search" aria-label="Search" name="q">
                 <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
               </form>
               <div class="user-area">
                 <div class="user-area-link">
-                  <i class="fas fa-shopping-cart"></i>
-                  <br>
-                  <a href="">Cart</a>
+                  <a href="">
+                    <i class="fas fa-shopping-cart"></i>
+                    <br>
+                    Cart
+                  </a>
                 </div>
                 <div class="user-area-link">
-                  <i class="fas fa-user"></i>
-                  <br>
-                  <a href="">Account</a>
+                  <a href="">
+                    <i class="fas fa-user"></i>
+                    <br>
+                    Account
+                  </a>
                 </div>
               </div>
           </div>
 
           <!-- Logo Large Screens -->
           <div class="d-none d-md-block w-md-100 mx-auto text-center">
-            <a class="navbar-brand" href="{% url 'index' %}"><span class="hygge">Hygge</span> Houseplants <i class="fab fa-pagelines"></i></a>
+            <a class="navbar-brand" href="{% url 'index' %}">Hygge Houseplants <i class="fab fa-pagelines"></i></a>
           </div>
 
           <!-- Nav Collapse -->

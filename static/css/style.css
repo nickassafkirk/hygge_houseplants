@@ -45,7 +45,7 @@ a {
 }
 
 .hygge {
-    font-family: var(--hygge) !important;
+    font-family: var(--hygge);
     color: #fff;
 }
 
@@ -54,10 +54,14 @@ a {
     font-size: 1.2rem;
 }
 
+a.navbar-brand:hover,
+header a:hover,
+header a:focus,
+header a:active,
 .nav-link:hover,
 .nav-link:focus,
 .nav-link:active {
-    color: var(--orange);
+    color: var(--orange) !important;
 }
 
 .navbar-toggler{
@@ -95,6 +99,7 @@ a {
     display: inline-block;
     margin: 0 .5rem;
     font-size: 0.75rem;
+    font-family: var(--hygge);
 }
 
 /* Footer */
@@ -108,6 +113,12 @@ footer {
 
 footer a{
     color: #fff;
+}
+
+footer a:hover,
+footer a:focus,
+footer a:active {
+    color: var(--orange);
 }
 
 .social-icon a i{
@@ -234,6 +245,12 @@ footer a{
     text-shadow: 2px 2px #000;
 }
 
+.tile-title:hover,
+.tile-title:active,
+.tile-title:focus {
+    color: var(--orange);
+}
+
 .tile:before {
     content: "";
     position: absolute;
@@ -244,6 +261,7 @@ footer a{
     height: 100%;
     width: 100%;
 }
+
 
 /* Products */
 

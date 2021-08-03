@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.social, name="social"),
+    path('', views.add_social_account, name="add_social_account"),
     path('add_social_account/', views.add_social_account, name="add_social_account")
 ]

@@ -1,16 +1,13 @@
-{% extends 'base.html' %}
 
-{% block content %}
-<div class="row">
+
+{% block social %}
 
     {%  for account in social_accounts %}
-    <div class="social-icon col-4 mx-auto text-center">
+    <div class="social-icon">
         <a href="{{ account.link }}" target="_blank">
             <i class="fab {{ account.icon }}"></i>
         </a>  
     </div>
     {% endfor %}
-
-</div>
 
 {% endblock %}

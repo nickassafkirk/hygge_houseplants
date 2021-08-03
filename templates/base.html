@@ -129,7 +129,7 @@
           
           <div class="row">
             <!-- Info Links -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-sm-6">
               <ul class="list-unstyled">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="">About</a></li>
@@ -139,7 +139,7 @@
             </div>
 
             <!-- Product Links -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-sm-6">
               <ul class="list-unstyled">
                 <li><a href="{% url 'products' %}?category=plants">Plants</a></li>
                 <li><a href="{% url 'products' %}?category=succulents">Succulents</a></li>
@@ -148,9 +148,14 @@
               </ul>
             </div>
           </div>
-        
+
           <!-- Social Links -->
-          <div class="row">
+          <div class="row" id="social-icons">
+              <div class="col-12 social-icons-container">
+                {% block social %}
+                    {% include 'social/includes/social_icons.html' %}
+                {% endblock %}
+              </div>
           </div>
       </footer>
 

@@ -135,7 +135,13 @@ footer a:active {
     color: var(--orange);
 }
 
+.social-icons-container {
+    display: flex;
+    justify-content: center;
+}
+
 .social-icon a i{
+    padding: 1rem;
     font-size: 2rem;
 }
 

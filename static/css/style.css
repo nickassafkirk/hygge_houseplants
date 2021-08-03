@@ -255,6 +255,19 @@ footer a{
 
 /* single Product Page */
 
+.product-path a{
+    color: #222;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.product-path a:hover,
+.product-path a:active,
+.product-path a:focus {
+    color: var(--grn);
+}
+
+
 .single-product-img {
     max-width: 90%;
     display: block;

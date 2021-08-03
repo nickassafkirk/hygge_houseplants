@@ -4,6 +4,12 @@
 {% block content %}
 <div class="container-fluid my-5">
     <div class="row">
+        <div class="col-12 product-path ms-2 mb-5">
+            <a href="{% url 'index' %}">Home</a> /
+            <a href="{% url 'products' %}">Products</a> /
+            <a href="{% url 'products' %}?category={{ product.category }}">{{ product.category | title }}</a> /
+            <a href="{% url 'single_product' product.id %}">Product/{{product.id}}</a>
+        </div>
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="single-product-img">
         </div>

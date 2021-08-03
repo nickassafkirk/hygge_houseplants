@@ -89,6 +89,11 @@ header a:active,
     color: #fff;
 }
 
+.btn-bright {
+    background: var(--orange);
+    color: #fff;
+}
+
 /* Account & Cart Area */
 
 .user-area {
@@ -281,6 +286,23 @@ footer a:active {
     
     height: 350px;
     object-fit: scale-down;
+}
+
+.product-tile-name {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 3rem;
+}
+
+.product-tile-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-tile-buttons a {
+    font-size: .75rem;
+    width: 45%;
 }
 
 /* single Product Page */

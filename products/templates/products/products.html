@@ -12,13 +12,20 @@
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                     </div>
                 </a>
-                <h5 class="ms-2 mt-3">{{ product.name }}</h5>
+                <div class="product-tile-name mt-3">
+                    <h5 class="ms-2">{{ product.name }}</h5>
+                </div>
                 <h4 class="ms-2 d-block">€{{ product.price }}</h4>
+                <div class="product-tile-buttons my-4">
+                    <a href="{% url 'single_product' product.id %}" class="btn btn-dark"><i class="far fa-eye"></i><br>View Product</a>
+                    <a href="" class="btn btn-bright"><i class="fas fa-cart-plus"></i><br>Add to Cart</a>
+                </div>
                 <a href="{% url 'products' %}?category={{ product.category }}" class="product-path">
                     <small class="ms-2 ">
                         <i class="fas fa-folder"></i> {{ product.category | title }}
                     </small>
                 </a>
+                <hr>
             </div>
         </div>
         {% endfor %}

@@ -1,6 +1,6 @@
 from django import forms
 from .widgets import CustomClearableFileInput
-
+from django.utils.translation import ugettext_lazy as _
 
 from .models import Product, Category, Variant
 
@@ -36,5 +36,27 @@ class VariantForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        exclude = ('parent_product', 'name',)
+        fields = '__all__'
+        labels = {
+            'parent_product': _(''),
+            'name': _(''),
+            'sku': _('Variant Sku'),
+            'price': _('Variant Price'),
+            'quantity': _('Variant Quantity'),
+            'image_url': _('Variant Image Url'),
+            'image': _('Variant Image'),
+        }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        labels = []
+        form_fields = self.fields.items()
+        for key, val in form_fields:
+            label = "Variant " + key.capitalize()
+            labels.append(label)
+
+        parent_product = self.fields['parent_product']
+        parent_product.widget.attrs['class'] = "d-none"
+        variant_name = self.fields['name']
+        variant_name.widget.attrs['class'] = "d-none"

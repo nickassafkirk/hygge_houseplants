@@ -59,6 +59,7 @@ def products(request):
 
     return render(request, template, context)
 
+
 # Single product view
 def single_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
@@ -71,33 +72,50 @@ def single_product(request, product_id):
 
     return render(request, template, context)
 
+
 # Add new product view
 def add_product(request):
 
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            has_variants = form['has_variants'].value()
-
+        product_form = ProductForm(request.POST, request.FILES, prefix="product_form")
+        if product_form.is_valid():
+            new_product = product_form.save()
+            has_variants = product_form['has_variants'].value()
             if has_variants:
-                # value is true if checkbox is selected and False if not
-                print(has_variants)
-
+                post_data = request.POST
+                post_files = request.FILES
+                print(post_files)
+                print(new_product.id)
+                variant_data = {
+                    'parent_product': int(new_product.id),
+                    'name': f'{new_product.name} {post_data["variant_form-color"]} {post_data["variant_form-size"]}',
+                    'sku': post_data['variant_form-sku'],
+                    'price':  post_data['variant_form-price'],
+                    'color': post_data['variant_form-color'],
+                    'size': post_data['variant_form-size'],
+                    'quantity': post_data['variant_form-quantity'],
+                    'image_url': post_data['variant_form-image_url'],
+                }
+                variant_form = VariantForm(variant_data, request.FILES)
+                if variant_form.is_valid():
+                    variant_form.save()
+                    return redirect('single_product', product_id=new_product.id)
+                else:
+                    print('Form not valid', variant_form)
             else:
                 # value is False if checkbox is not selected
-                print(has_variants)
-                new_product = form.save()
+                new_product = product_form.save()
                 print(new_product.id)
                 return redirect('single_product', product_id=new_product.id)
         else:
-            print('invalid form')
+            print('invalid product form')
     else:
-        form = ProductForm()
-        form2 = VariantForm()
+        product_form = ProductForm(prefix="product_form")
+        variant_form = VariantForm(prefix="variant_form")
         template = 'products/add_product.html'
         context = {
-            'form': form,
-            'form2': form2,
+            'product_form': product_form,
+            'variant_form': variant_form,
         }
 
         return render(request, template, context)

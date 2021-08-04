@@ -425,6 +425,12 @@ a.product-path:focus {
     padding: 0.5rem;
 }
 
+#image-preview {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+
 
 @media screen and (min-width: 576px) {
     .hero-image-text {

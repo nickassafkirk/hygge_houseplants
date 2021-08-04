@@ -55,6 +55,26 @@
             $('#add-variants-form').addClass('d-none')
         }
     })
+    
+    $('#new-image').change(previewImage);
+
+    function previewImage() {
+    
+        let file = document.querySelector('#new-image').files[0];
+        console.log(file)
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            let image = document.createElement('img');
+            image.id = 'image-preview'
+            image.src = e.target.result;
+            $('#div_id_product_form-image').append(image); 
+        }
+        reader.readAsDataURL(file);
+    }
+
+    
+
 </script>
 
 {% endblock %}

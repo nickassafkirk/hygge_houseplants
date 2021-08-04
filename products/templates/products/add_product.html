@@ -46,10 +46,14 @@
 {% block footerjs %}
 
 <script type="text/javascript">
-console.log('js works')
+
     $('#has_variants').change( function() {
-        console.log('js loaded')
-        $('#add-variants-form').toggleClass("d-none")
+        console.log(this.checked)
+        if (this.checked === true) {
+            $('#add-variants-form').removeClass('d-none')
+        } else {
+            $('#add-variants-form').addClass('d-none')
+        }
     })
 </script>
 

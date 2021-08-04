@@ -57,13 +57,16 @@
     })
     
     $('#new-image').change(previewImage);
-
+    
+    /** 
+     * Adds Preview of uploaded image below the form input upon file upload.
+    */
     function previewImage() {
-
+        
         clearExistingImagePreview();
-
+        
+        /* Credit: https://stackoverflow.com/questions/22245100/how-to-display-an-image-from-a-file-input */
         let file = document.querySelector('#new-image').files[0];
-        console.log(file)
         let reader = new FileReader();
 
         reader.onload = function(e) {
@@ -73,7 +76,7 @@
             imageContainer.id = "image-preview-container";
 
             let image = document.createElement('img');
-            image.id = 'image-preview'
+            image.id = 'image-preview';
             image.src = e.target.result;
 
             let deleteIcon = document.createElement('div');
@@ -83,7 +86,8 @@
             formImageSection.appendChild(imageContainer);
             imageContainer.appendChild(image);
             imageContainer.appendChild(deleteIcon);
-
+            
+            /* Remove image completely to allow form submission without image */
             deleteIcon.addEventListener('click', function() {
                 
                 document.querySelector('#new-image').value = '';
@@ -94,6 +98,10 @@
         reader.readAsDataURL(file);
     }
 
+    /**
+     * If user reselects image, delete existing preview before rendering
+     * the new image preview. 
+    */
     function clearExistingImagePreview() {
         existingImage = document.getElementById('image-preview-container')
         if (existingImage != null) {

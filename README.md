@@ -82,3 +82,21 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
 
 * jQuery UI slideToggle easing easeOutBounce - to create a more engaging user experience for the index page Hygge section, jQuery's .slideToggle() method was used.
   I was made aware of the additional slideToggle easing effects at [this stackOverflow post](https://stackoverflow.com/questions/6121255/toggle-div-with-easing) from contributor Sylvain.
+
+* Add image preview when image is added to add product form - to provide user feedback when an image is uploaded, I used a custom javascript script to render a small thumbnail image preview of the uploaded image. The core functionality of this script was inspired from [this stack overflow post](https://stackoverflow.com/questions/22245100/how-to-display-an-image-from-a-file-input) from Nephelococcygia.
+
+    ```
+    function myFunction() {
+        var file = document.getElementById('file').files[0];
+        var reader  = new FileReader();
+        // it's onload event and you forgot (parameters)
+        reader.onload = function(e)  {
+            var image = document.createElement("img");
+            // the result image data
+            image.src = e.target.result;
+            document.body.appendChild(image);
+        }
+        // you have to declare the file loading
+        reader.readAsDataURL(file);
+    }
+    ```

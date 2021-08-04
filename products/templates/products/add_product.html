@@ -60,7 +60,7 @@
 
     function previewImage() {
 
-        existingImage = document.getElementById('image-preview')
+        existingImage = document.getElementById('image-preview-container')
         if (existingImage != null) {
             existingImage.remove();
         }
@@ -70,12 +70,28 @@
         let reader = new FileReader();
 
         reader.onload = function(e) {
+            let formImageSection = document.getElementById('div_id_product_form-image');
+
+            let imageContainer = document.createElement('div');
+            imageContainer.id = "image-preview-container";
+
             let image = document.createElement('img');
             image.id = 'image-preview'
             image.src = e.target.result;
-            $('#div_id_product_form-image').append(image); 
+
+            let deleteIcon = document.createElement('div');
+            deleteIcon.id = "delete-icon";
+            deleteIcon.innerHTML = `<i class="fas fa-times-circle"></i>`;
+
+            formImageSection.appendChild(imageContainer);
+            imageContainer.appendChild(image);
+            imageContainer.appendChild(deleteIcon);  
         }
         reader.readAsDataURL(file);
+    }
+
+    function clearExistingImage() {
+
     }
 
     

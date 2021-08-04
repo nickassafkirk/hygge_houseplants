@@ -425,11 +425,33 @@ a.product-path:focus {
     padding: 0.5rem;
 }
 
+#image-preview-container {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    background: #fff;
+}
+
 #image-preview {
     height: 150px;
     width: 150px;
     object-fit: contain;
 }
+
+#delete-icon {
+    position: absolute;
+    top: 0;
+    left: 125px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#delete-icon:hover,
+#delete-icon:active,
+#delete-icon:focus {
+    color: #ff0000;
+}
+
 
 
 @media screen and (min-width: 576px) {

@@ -36,7 +36,7 @@ class VariantForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        fields = '__all__'
+        exclude = ('name',)
         labels = {
             'parent_product': _(''),
             'name': _(''),
@@ -58,5 +58,3 @@ class VariantForm(forms.ModelForm):
 
         parent_product = self.fields['parent_product']
         parent_product.widget.attrs['class'] = "d-none"
-        variant_name = self.fields['name']
-        variant_name.widget.attrs['class'] = "d-none"

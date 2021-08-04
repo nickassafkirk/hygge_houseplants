@@ -410,6 +410,21 @@ a.product-path:focus {
     font-size: 2rem;
 }
 
+.hidden {
+    visibility: hidden !important;
+}
+
+.visible {
+    visibility: visible;
+}
+
+#add-variants-form h5{
+    background: var(--grn-dark);
+    color: #fff;
+    font-family: var(--hygge);
+    padding: 0.5rem;
+}
+
 
 @media screen and (min-width: 576px) {
     .hero-image-text {

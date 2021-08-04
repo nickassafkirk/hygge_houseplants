@@ -9,7 +9,7 @@
             <div>
                 <a href="{% url 'single_product' product.id %}">
                     <div class="product-tile-img text-center">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}">
                     </div>
                 </a>
                 <div class="product-tile-name mt-3">

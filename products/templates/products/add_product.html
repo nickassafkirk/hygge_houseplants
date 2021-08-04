@@ -59,7 +59,12 @@
     $('#new-image').change(previewImage);
 
     function previewImage() {
-    
+
+        existingImage = document.getElementById('image-preview')
+        if (existingImage != null) {
+            existingImage.remove();
+        }
+
         let file = document.querySelector('#new-image').files[0];
         console.log(file)
         let reader = new FileReader();

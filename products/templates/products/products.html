@@ -20,6 +20,11 @@
                     <a href="{% url 'single_product' product.id %}" class="btn btn-dark"><i class="far fa-eye"></i><br>View Product</a>
                     <a href="" class="btn btn-bright"><i class="fas fa-cart-plus"></i><br>Add to Cart</a>
                 </div>
+                {% if request.user.is_superuser %}
+                    <div class="text-center mb-2">
+                        <a href="" class="text-info">Edit Product</a> | <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete Product</a>
+                    </div>
+                {% endif %}
                 <a href="{% url 'products' %}?category={{ product.category }}" class="product-path">
                     <small class="ms-2 ">
                         <i class="fas fa-folder"></i> {{ product.category | title }}

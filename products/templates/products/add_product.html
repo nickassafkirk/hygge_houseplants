@@ -23,7 +23,26 @@
         
         <div id="add-variants-form" class="d-none mt-3">
             <h5>Add Variants</h5>
-            {{ variant_formset | crispy }}
+            {% for form in variant_formset %}
+            <div class="add-variant-area row my-3">
+                {% for field in form %}
+                  {% if field.name == 'parent_product' %}
+                    {{ field }}
+                  {% elif field.name == 'color' or field.name == 'size' %}
+                    <div class="col-6 mt-2">
+                        {{ field.label }}
+                        {{ field }}
+                    </div>
+                  {% else %}
+                    <div class="col-4 mt-2">
+                        {{ field.label }}
+                        {{ field }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+            </div> 
+            
+            {% endfor %}
         </div>
         
         <div class="my-2">

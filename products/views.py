@@ -136,7 +136,6 @@ def add_product(request):
 # Edit Product View
 
 # Delete Product View
-
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()

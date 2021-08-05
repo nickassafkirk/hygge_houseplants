@@ -452,6 +452,12 @@ a.product-path:focus {
     color: #ff0000;
 }
 
+.add-variant-area {
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 2%;
+}
+
 
 
 @media screen and (min-width: 576px) {

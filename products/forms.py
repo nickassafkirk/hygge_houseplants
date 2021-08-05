@@ -36,7 +36,7 @@ class VariantForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        exclude = ('name',)
+        fields = ('parent_product', 'color', 'size', 'price', 'quantity', 'image_url', 'image', )
         labels = {
             'parent_product': _(''),
             'name': _(''),
@@ -55,6 +55,9 @@ class VariantForm(forms.ModelForm):
         for key, val in form_fields:
             label = "Variant " + key.capitalize()
             labels.append(label)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = "form-control"
 
         parent_product = self.fields['parent_product']
         parent_product.widget.attrs['class'] = "d-none"

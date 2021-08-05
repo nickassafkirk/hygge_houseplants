@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q
+from django.forms import formset_factory
 from django.db.models.functions import Lower
 from .models import Product, Category, Variant
 from .forms import ProductForm, VariantForm
@@ -117,12 +118,17 @@ def add_product(request):
         else:
             print('invalid product form')
     else:
+
         product_form = ProductForm(prefix="product_form")
         variant_form = VariantForm(prefix="variant_form")
+        variant_formset = formset_factory(VariantForm, extra=3)
+
         template = 'products/add_product.html'
         context = {
             'product_form': product_form,
             'variant_form': variant_form,
+            'variant_formset': variant_formset,
+
         }
 
         return render(request, template, context)

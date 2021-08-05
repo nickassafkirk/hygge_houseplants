@@ -64,11 +64,18 @@ def products(request):
 def single_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
-    template = 'products/single_product.html'
+    context = {}
 
-    context = {
-        'product': product,
-    }
+    if product.has_variants:
+        variants = Variant.objects.filter(parent_product=product_id)
+        context = {
+            'product': product,
+            'variants': variants,
+        }
+    else:
+        context = {'product': product, }
+
+    template = 'products/single_product.html'
 
     return render(request, template, context)
 

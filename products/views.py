@@ -83,6 +83,7 @@ def single_product(request, product_id):
 
 # Add new product view
 def add_product(request):
+    VariantFormSet = formset_factory(VariantForm)
 
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES, prefix="product_form")
@@ -90,26 +91,16 @@ def add_product(request):
             new_product = product_form.save()
             has_variants = product_form['has_variants'].value()
             if has_variants:
-                post_data = request.POST
-                post_files = request.FILES
-                print(post_files)
-                print(new_product.id)
-                variant_data = {
-                    'parent_product': int(new_product.id),
-                    'name': f'{new_product.name} {post_data["variant_form-color"]} {post_data["variant_form-size"]}',
-                    'sku': post_data['variant_form-sku'],
-                    'price':  post_data['variant_form-price'],
-                    'color': post_data['variant_form-color'],
-                    'size': post_data['variant_form-size'],
-                    'quantity': post_data['variant_form-quantity'],
-                    'image_url': post_data['variant_form-image_url'],
-                }
-                variant_form = VariantForm(variant_data, request.FILES)
-                if variant_form.is_valid():
-                    variant_form.save()
+                variant_formset = VariantFormSet(request.POST, request.FILES, prefix="form-0")
+                if variant_formset.is_valid():
+                    variant_formset.save(commit=False)
+                    for form in variant_formset:
+                        form.parent_product = new_product.id
+                        form.save()
                     return redirect('single_product', product_id=new_product.id)
                 else:
-                    print('Form not valid', variant_form)
+                    print('Form not valid', variant_formset)
+                    return redirect('add_product')
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()
@@ -120,15 +111,13 @@ def add_product(request):
     else:
 
         product_form = ProductForm(prefix="product_form")
-        variant_form = VariantForm(prefix="variant_form")
-        variant_formset = formset_factory(VariantForm, extra=3)
+
+        variant_formset = VariantFormSet()
 
         template = 'products/add_product.html'
         context = {
             'product_form': product_form,
-            'variant_form': variant_form,
             'variant_formset': variant_formset,
-
         }
 
         return render(request, template, context)

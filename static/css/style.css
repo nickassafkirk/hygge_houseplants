@@ -458,7 +458,23 @@ a.product-path:focus {
     padding: 2%;
 }
 
+.edit-delete-container {
+    position: relative;
+}
 
+.are-you-sure {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #e4e3db;
+    padding: 5%;
+}
+
+.are-you-sure a, .are-you-sure span {
+    width: 45%;
+}
 
 @media screen and (min-width: 576px) {
     .hero-image-text {

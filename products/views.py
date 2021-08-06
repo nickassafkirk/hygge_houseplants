@@ -90,7 +90,7 @@ def add_product(request):
             new_product = product_form.save()
             has_variants = product_form['has_variants'].value()
             if has_variants:
-                print('has_variants')
+                return redirect('add_variants', product_id=new_product.id)
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()

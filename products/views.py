@@ -83,24 +83,14 @@ def single_product(request, product_id):
 
 # Add new product view
 def add_product(request):
-    VariantFormSet = formset_factory(VariantForm)
 
     if request.method == "POST":
-        product_form = ProductForm(request.POST, request.FILES, prefix="product_form")
+        product_form = ProductForm(request.POST, request.FILES)
         if product_form.is_valid():
             new_product = product_form.save()
             has_variants = product_form['has_variants'].value()
             if has_variants:
-                variant_formset = VariantFormSet(request.POST, request.FILES, prefix="form-0")
-                if variant_formset.is_valid():
-                    variant_formset.save(commit=False)
-                    for form in variant_formset:
-                        form.parent_product = new_product.id
-                        form.save()
-                    return redirect('single_product', product_id=new_product.id)
-                else:
-                    print('Form not valid', variant_formset)
-                    return redirect('add_product')
+                print('has_variants')
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()
@@ -109,21 +99,59 @@ def add_product(request):
         else:
             print('invalid product form')
     else:
-
-        product_form = ProductForm(prefix="product_form")
-
-        variant_formset = VariantFormSet()
-
+        product_form = ProductForm()
         template = 'products/add_product.html'
         context = {
             'product_form': product_form,
-            'variant_formset': variant_formset,
         }
-
         return render(request, template, context)
 
-# Edit Product View
 
+# Add variants
+def add_variants(request, product_id):
+    VariantFormSet = formset_factory(VariantForm, extra=1)
+    product = get_object_or_404(Product, pk=product_id)
+
+    data = {
+        'id': product.id,
+        'name': product.name,
+        'category': product.category,
+        'sku': product.sku,
+        'description': product.description,
+        'price': product.price,
+        'quantity': product.quantity,
+        'image_url': product.image_url,
+        'image': product.image,
+        'has_variants': True,
+        'available': product.available, 
+    }
+
+    form = ProductForm(initial=data)
+
+    if request.method == "POST":
+        variant_formset = VariantFormSet(request.POST, request.FILES)
+
+        if variant_formset.is_valid():
+            variant_formset.save()
+            # for form in variant_formset:
+                # form.parent_product = product_id
+                # form.save()
+            # return redirect('single_product', product_id=product_id)
+            return redirect('products')
+        else:
+            print('Form not valid', variant_formset)
+            return redirect('add_product')
+    else:
+        variant_formset = VariantFormSet()
+        context = {
+            'product_form': form,
+            'variant_formset': variant_formset,
+        }
+        template = 'products/add_variants.html'
+        return render(request, template, context)
+
+
+# Edit Product View
 # Delete Product View
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

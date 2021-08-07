@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 from django.db.models import Q
 from django.forms import formset_factory
 from django.db.models.functions import Lower
@@ -87,17 +88,19 @@ def add_product(request):
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES)
         if product_form.is_valid():
-            new_product = product_form.save()
             has_variants = product_form['has_variants'].value()
+            print(has_variants)
             if has_variants:
+                new_product = product_form.save()
+                print(new_product.id)
                 return redirect('add_variants', product_id=new_product.id)
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()
-                print(new_product.id)
                 return redirect('single_product', product_id=new_product.id)
         else:
             print('invalid product form')
+            return redirect('add_product')
     else:
         product_form = ProductForm()
         template = 'products/add_product.html'
@@ -123,7 +126,7 @@ def add_variants(request, product_id):
         'image_url': product.image_url,
         'image': product.image,
         'has_variants': True,
-        'available': product.available, 
+        'available': product.available,
     }
 
     form = ProductForm(initial=data)
@@ -132,18 +135,19 @@ def add_variants(request, product_id):
         variant_formset = VariantFormSet(request.POST, request.FILES)
 
         if variant_formset.is_valid():
-            variant_formset.save()
-            # for form in variant_formset:
-                # form.parent_product = product_id
-                # form.save()
-            # return redirect('single_product', product_id=product_id)
-            return redirect('products')
+            for form in variant_formset:
+                temp_form = form.save(commit=False)
+                temp_form.name = f'{product.name}/{temp_form.color}{temp_form.size}'
+                temp_form.parent_product = product
+                temp_form.save()
+            return redirect('single_product', product_id=product_id)
         else:
             print('Form not valid', variant_formset)
             return redirect('add_product')
     else:
         variant_formset = VariantFormSet()
         context = {
+            'product': product,
             'product_form': form,
             'variant_formset': variant_formset,
         }

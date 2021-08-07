@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+{% csrf_token %}
+{% for field in product_form %}
+    {% if field.name == "has_variants" %}
+    <hr>
+    <label for="{{ field.auto_id }}" class="me-2">{{ field.label }}</label>
+        {{ field }}
+    {% elif field.name == "available" %}
+    <label for="{{ field.auto_id }}" class="ms-5 me-2">{{ field.label }}</label>
+        {{ field }}   
+    {% else %}   
+        {{ field | as_crispy_field }}
+    {% endif %}
+{% endfor %}
+

@@ -6,21 +6,9 @@
 <div class="container my-5">
     <h2>Add Product</h2>
     <hr>
-    <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for field in product_form %}
-            {% if field.name == "has_variants" %}
-            <hr>
-            <label for="{{ field.auto_id }}" class="me-2">{{ field.label }}</label>
-               {{ field }}
-            {% elif field.name == "available" %}
-            <label for="{{ field.auto_id }}" class="ms-5 me-2">{{ field.label }}</label>
-               {{ field }}   
-            {% else %}   
-                {{ field | as_crispy_field }}
-            {% endif %}
-        {% endfor %}
 
+    <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
+        {% include 'products/includes/product_form.html' %}
         <div class="my-2">
             <hr>
             <button type="submit" class="btn btn-dark" id="add-product-btn">
@@ -28,6 +16,7 @@
             </button>
         </div> 
     </form>
+
     <!-- Variants Form -->
     {% block variants_block %}
     {% endblock %}

@@ -7,8 +7,10 @@
   <h2>Add Product</h2>
   <hr>
 
-  <form action="" method="POST" enctype="multipart/form-data" disabled="disabled">
+  <form action="" method="POST" enctype="multipart/form-data">
+    <fieldset disabled="disabled">
       {% include 'products/includes/product_form.html' %}
+    </fieldset>
   </form>
 
 {% block variants_block %}
@@ -43,10 +45,13 @@
                 </div>
               {% endif %}
             {% endfor %}
+                <div class="col-4 mt-2 d-flex align-items-end">
+                  <button type="submit" class="btn btn-success w-100">Add Variant</button>
+                </div>
         </div> 
         
         {% endfor %}
-        <button type="submit" class="btn btn-success">Save Variant</button>
+        
 </form>
     
 {% endblock %}

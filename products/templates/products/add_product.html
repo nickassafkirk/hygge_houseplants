@@ -37,17 +37,26 @@
 {% block footerjs %}
 
 <script type="text/javascript">
-
+    
     submitButton = $('#add-product-btn');
     btnText = submitButton.html();
 
     $('#has_variants').change( function() {
         if (this.checked === true) {
             $('#add-variants-form').removeClass('d-none');
+            /* Change submit button text when has_variants is checked */
             submitButton.html('Save & Add Variants <i class="fas fa-arrow-circle-right"></i>')
+            /* Disable sku and qty fields if product has variants */
+            $('#id_sku').attr('disabled', true);
+            $('#id_quantity').attr('disabled', true);
+            $('#id_quantity').val('');
+            $('#id_quantity').attr('required', false);
         } else {
-            $('#add-variants-form').addClass('d-none')
+            $('#add-variants-form').addClass('d-none');
             submitButton.html(btnText)
+            $('#id_sku').attr('disabled', false);
+            $('#id_quantity').attr('disabled', false);
+            $('#id_quantity').attr('required', true);
         }
     })
     
@@ -57,7 +66,6 @@
      * Adds Preview of uploaded image below the form input upon file upload.
     */
     function previewImage() {
-        
         clearExistingImagePreview();
         
         /* Credit: https://stackoverflow.com/questions/22245100/how-to-display-an-image-from-a-file-input */

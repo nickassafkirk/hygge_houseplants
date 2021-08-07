@@ -47,10 +47,7 @@
             /* Change submit button text when has_variants is checked */
             submitButton.html('Save & Add Variants <i class="fas fa-arrow-circle-right"></i>')
             /* Disable sku and qty fields if product has variants */
-            $('#id_sku').attr('disabled', true);
-            $('#id_quantity').attr('disabled', true);
-            $('#id_quantity').val('');
-            $('#id_quantity').attr('required', false);
+            
         } else {
             $('#add-variants-form').addClass('d-none');
             submitButton.html(btnText)

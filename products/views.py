@@ -177,6 +177,34 @@ def add_variants(request, product_id):
 
 
 # Edit Product View
+def edit_product(request, product_id):
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
+        product_form = ProductForm(request.POST, request.FILES, instance=product)
+        if product_form.is_valid():
+            has_variants = product_form['has_variants'].value()
+            if has_variants:
+                new_product = product_form.save()
+                return redirect('single_product', product_id=new_product.id)
+            else:
+                # value is False if checkbox is not selected
+                new_product = product_form.save()
+                return redirect('single_product', product_id=new_product.id)
+        else:
+            print('invalid product form')
+            return redirect('add_product')
+    else:
+        product_form = ProductForm(instance=product)
+        template = 'products/edit_product.html'
+        context = {
+            'product': product,
+            'product_form': product_form,
+        }
+        return render(request, template, context)
+
+
 # Delete Product View
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

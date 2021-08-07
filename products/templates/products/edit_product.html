@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+    <h2>Edit Product</h2>
+    <hr>
+
+    <form action="{% url 'edit_product' product.id %}" method="POST" id="edit-product-form" enctype="multipart/form-data">
+        {% include 'products/includes/product_form.html' %}
+        <div class="my-2">
+            <hr>
+            <button type="submit" class="btn btn-dark" id="add-product-btn">
+                Update Product <i class="fas fa-plus-circle"></i>
+            </button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

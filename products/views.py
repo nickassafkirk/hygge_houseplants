@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from django.forms import formset_factory
+from django.forms import modelformset_factory
 from django.db.models.functions import Lower
 from .models import Product, Category, Variant
 from .forms import ProductForm, VariantForm
@@ -112,8 +112,13 @@ def add_product(request):
 
 # Add variants
 def add_variants(request, product_id):
-    VariantFormSet = formset_factory(VariantForm, extra=1)
+
     product = get_object_or_404(Product, pk=product_id)
+    VariantFormSet = modelformset_factory(
+        Variant,
+        form=VariantForm,
+        extra=1,
+        )
 
     data = {
         'id': product.id,
@@ -166,7 +171,7 @@ def add_variants(request, product_id):
             print('Form not valid', variant_formset)
             return redirect('add_product')
     else:
-        variant_formset = VariantFormSet()
+        variant_formset = VariantFormSet(queryset=Variant.objects.filter(parent_product=product.id))
         context = {
             'product': product,
             'product_form': form,

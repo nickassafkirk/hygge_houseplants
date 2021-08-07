@@ -141,31 +141,31 @@ def add_variants(request, product_id):
 
         if variant_formset.is_valid():
             for form in variant_formset:
+                if form.has_changed():
+                    temp_form = form.save(commit=False)
 
-                temp_form = form.save(commit=False)
+                    if temp_form.color:
+                        color = temp_form.color
+                    else:
+                        color = ""
 
-                if temp_form.color:
-                    color = temp_form.color
-                else:
-                    color = ""
+                    if temp_form.size:
+                        size = temp_form.size
+                    else:
+                        size = ""
 
-                if temp_form.size:
-                    size = temp_form.size
-                else:
-                    size = ""
+                    if not color and not size:
+                        messages.error(request, "You must add a color or size")
+                    elif color and size:
+                        name = f'{color} - {size}'.lower()
+                    elif color:
+                        name = color.lower()
+                    elif size:
+                        name = size.lower()
 
-                if not color and not size:
-                    messages.error(request, "You must add a color or size")
-                elif color and size:
-                    name = f'{color} - {size}'.lower()
-                elif color:
-                    name = color.lower()
-                elif size:
-                    name = size.lower()
-
-                temp_form.name = name
-                temp_form.parent_product = product
-                temp_form.save()
+                    temp_form.name = name
+                    temp_form.parent_product = product
+                    temp_form.save()
             return redirect('single_product', product_id=product_id)
         else:
             print('Form not valid', variant_formset)
@@ -192,7 +192,7 @@ def edit_product(request, product_id):
             has_variants = product_form['has_variants'].value()
             if has_variants:
                 new_product = product_form.save()
-                return redirect('single_product', product_id=new_product.id)
+                return redirect('add_variants', product_id=new_product.id)
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()

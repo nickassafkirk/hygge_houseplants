@@ -22,7 +22,7 @@
                 </div>
                 {% if request.user.is_superuser %}
                     <div class="text-center mb-2 edit-delete-container">
-                        <a href="" class="text-info">Edit Product</a> | <a class="text-danger delete-product">Delete Product</a>
+                        <a href="{% url 'edit_product' product.id %}" class="text-info">Edit Product</a> | <a class="text-danger delete-product">Delete Product</a>
                         <div class="are-you-sure">
                             <a href="{% url 'delete_product' product.id %}" class="btn btn-success"><i class="fas fa-trash-alt"></i>  Delete</a> | <span class="cancel btn btn-danger"><i class="fas fa-times-circle"></i>  Cancel</span>
                         </div>

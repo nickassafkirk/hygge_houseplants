@@ -406,9 +406,9 @@ a.product-path:focus {
     padding: 1rem;
 }
 
-#add-product-btn i {
+/*#add-product-btn i {
     font-size: 2rem;
-}
+}*/
 
 .hidden {
     visibility: hidden !important;

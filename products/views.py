@@ -136,8 +136,29 @@ def add_variants(request, product_id):
 
         if variant_formset.is_valid():
             for form in variant_formset:
+
                 temp_form = form.save(commit=False)
-                temp_form.name = f'{product.name}/{temp_form.color}{temp_form.size}'
+
+                if temp_form.color:
+                    color = temp_form.color
+                else:
+                    color = ""
+
+                if temp_form.size:
+                    size = temp_form.size
+                else:
+                    size = ""
+
+                if not color and not size:
+                    messages.error(request, "You must add a color or size")
+                elif color and size:
+                    name = f'{color} - {size}'.lower()
+                elif color:
+                    name = color.lower()
+                elif size:
+                    name = size.lower()
+
+                temp_form.name = name
                 temp_form.parent_product = product
                 temp_form.save()
             return redirect('single_product', product_id=product_id)

@@ -63,7 +63,7 @@ class Variant(models.Model):
         )
 
     color = models.CharField(max_length=25, null=True, blank=True)
-    size = models.CharField(max_length=5, null=True, blank=True)
+    size = models.CharField(max_length=4, null=True, blank=True)
     quantity = models.IntegerField(null=False, default=0)
     image_url = models.URLField(max_length=1500, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)

@@ -48,7 +48,7 @@ class Variant(models.Model):
         related_name='variants',
         null=True,
         blank=True,
-        on_delete=models.SET_NULL
+        on_delete=models.CASCADE
         )
 
     name = models.CharField(max_length=254)

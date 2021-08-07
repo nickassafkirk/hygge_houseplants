@@ -110,88 +110,6 @@ def add_product(request):
         return render(request, template, context)
 
 
-# Add variants
-def add_variants(request, product_id):
-
-    product = get_object_or_404(Product, pk=product_id)
-    VariantFormSet = modelformset_factory(
-        Variant,
-        form=VariantForm,
-        extra=1,
-        can_delete=True,
-        )
-
-    data = {
-        'id': product.id,
-        'name': product.name,
-        'category': product.category,
-        'sku': product.sku,
-        'description': product.description,
-        'price': product.price,
-        'quantity': product.quantity,
-        'image_url': product.image_url,
-        'image': product.image,
-        'has_variants': True,
-        'available': product.available,
-    }
-
-    form = ProductForm(initial=data)
-
-    if request.method == "POST":
-        variant_formset = VariantFormSet(request.POST, request.FILES)
-
-        deleted_formset = VariantFormSet(request.POST, request.FILES).deleted_forms
-        for entry in deleted_formset:
-            id = entry['id'].value()
-            get_object_or_404(Variant, id=id).delete()
-
-        if variant_formset.is_valid():
-            for form in variant_formset:
-                if form.has_changed():
-
-                    temp_form = form.save(commit=False)
-
-                    if temp_form.color:
-                        color = temp_form.color
-                    else:
-                        color = ""
-
-                    if temp_form.size:
-                        size = temp_form.size
-                    else:
-                        size = ""
-
-                    if not color and not size:
-                        messages.error(request, "You must add a color or size")
-                    elif color and size:
-                        name = f'{color} - {size}'.lower()
-                    elif color:
-                        name = color.lower()
-                    elif size:
-                        name = size.lower()
-
-                    temp_form.name = name
-                    temp_form.parent_product = product
-                    temp_form.save()
-
-            return redirect('single_product', product_id=product_id)
-        else:
-            print('Form not valid', variant_formset)
-            return redirect('add_product')
-    else:
-        variant_formset = VariantFormSet(
-            queryset=Variant.objects.filter(
-                parent_product=product.id)
-                )
-        context = {
-            'product': product,
-            'product_form': form,
-            'variant_formset': variant_formset,
-        }
-        template = 'products/add_variants.html'
-        return render(request, template, context)
-
-
 # Edit Product View
 def edit_product(request, product_id):
 
@@ -225,5 +143,93 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-
     return redirect(reverse('products'))
+
+
+# Add variants
+def add_variants(request, product_id):
+
+    product = get_object_or_404(Product, pk=product_id)
+    VariantFormSet = modelformset_factory(
+        Variant,
+        form=VariantForm,
+        extra=1,
+        can_delete=True,
+        )
+
+    data = {
+        'id': product.id,
+        'name': product.name,
+        'category': product.category,
+        'sku': product.sku,
+        'description': product.description,
+        'price': product.price,
+        'quantity': product.quantity,
+        'image_url': product.image_url,
+        'image': product.image,
+        'has_variants': True,
+        'available': product.available,
+    }
+
+    form = ProductForm(initial=data)
+
+    if request.method == "POST":
+        variant_formset = VariantFormSet(request.POST, request.FILES)
+
+        if variant_formset.is_valid():
+            for form in variant_formset:
+                if form.has_changed():
+
+                    temp_form = form.save(commit=False)
+
+                    if temp_form.color:
+                        color = temp_form.color
+                    else:
+                        color = ""
+
+                    if temp_form.size:
+                        size = temp_form.size
+                    else:
+                        size = ""
+
+                    if not color and not size:
+                        messages.error(request, "You must add a color or size")
+                    elif color and size:
+                        name = f'{color} - {size}'.lower()
+                    elif color:
+                        name = color.lower()
+                    elif size:
+                        name = size.lower()
+
+                    temp_form.name = name
+                    temp_form.parent_product = product
+                    temp_form.save()
+               
+            if variant_formset.deleted_forms:
+                for variant_to_delete in variant_formset.deleted_forms:
+                    id = int(variant_to_delete['id'].value())
+                    delete_variant(id)
+
+            return redirect('single_product', product_id=product_id)
+        else:
+            print('Form not valid', variant_formset)
+            return redirect('add_product')
+    else:
+        variant_formset = VariantFormSet(
+            queryset=Variant.objects.filter(
+                parent_product=product.id)
+                )
+        context = {
+            'product': product,
+            'product_form': form,
+            'variant_formset': variant_formset,
+        }
+        template = 'products/add_variants.html'
+        return render(request, template, context)
+
+
+def delete_variant(pk):
+    variant = get_object_or_404(Variant, pk=pk)
+    print('delete called', variant)
+    variant.delete()
+    

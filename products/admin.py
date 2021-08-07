@@ -18,6 +18,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class VariantAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'parent_product',
         'name',
         'sku',

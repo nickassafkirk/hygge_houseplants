@@ -118,6 +118,7 @@ def add_variants(request, product_id):
         Variant,
         form=VariantForm,
         extra=1,
+        can_delete=True,
         )
 
     data = {
@@ -139,9 +140,15 @@ def add_variants(request, product_id):
     if request.method == "POST":
         variant_formset = VariantFormSet(request.POST, request.FILES)
 
+        deleted_formset = VariantFormSet(request.POST, request.FILES).deleted_forms
+        for entry in deleted_formset:
+            id = entry['id'].value()
+            get_object_or_404(Variant, id=id).delete()
+
         if variant_formset.is_valid():
             for form in variant_formset:
                 if form.has_changed():
+
                     temp_form = form.save(commit=False)
 
                     if temp_form.color:
@@ -166,12 +173,16 @@ def add_variants(request, product_id):
                     temp_form.name = name
                     temp_form.parent_product = product
                     temp_form.save()
+
             return redirect('single_product', product_id=product_id)
         else:
             print('Form not valid', variant_formset)
             return redirect('add_product')
     else:
-        variant_formset = VariantFormSet(queryset=Variant.objects.filter(parent_product=product.id))
+        variant_formset = VariantFormSet(
+            queryset=Variant.objects.filter(
+                parent_product=product.id)
+                )
         context = {
             'product': product,
             'product_form': form,

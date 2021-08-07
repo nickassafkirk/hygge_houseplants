@@ -47,7 +47,7 @@
 
             {% if request.user.is_superuser %}
             <div class="px-3 px-lg-5 mt-5">
-                <a href="" class="text-info">Edit Product</a> | <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete Product</a>
+                <a href="{% url 'edit_product' product.id %}" class="text-info">Edit Product</a> | <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete Product</a>
             </div>
             {% endif %}
         </div>

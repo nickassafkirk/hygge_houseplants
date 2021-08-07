@@ -3,9 +3,10 @@
 
 {% block variants_block %}
 
-<form method="POST" action="" id="add-variants-form" class="mt-3">
+<form method="POST" action="{% url 'add_variants' product.id %}" id="add-variants-form" class="mt-3">
 
         <h5>Add Variants</h5>
+        {% csrf_token %}
         {{ variant_formset.management_form }}
         {% for form in variant_formset %}
             
@@ -17,7 +18,7 @@
                     {% endfor %}
               {% endif %}
               {% if field.name == 'parent_product' %}
-                {{ field }}
+              {{ field }} 
               {% elif field.name == 'color' or field.name == 'size' %}
                 <div class="col-6 mt-2">
                     {{ field.label }}
@@ -35,6 +36,7 @@
         </div> 
         
         {% endfor %}
+        <button type="submit" class="btn btn-success">Save Variant</button>
 </form>
     
 {% endblock %}

@@ -6,13 +6,14 @@ class SocialAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'link',
+        'active',
     )
 
 
 class IconAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'icon',
+        'logo',
     )
 
 

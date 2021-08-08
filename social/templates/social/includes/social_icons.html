@@ -2,13 +2,14 @@
 
 {% block social %}
   
-   {%  for account in social_accounts %}
-   
-    <div class="social-icon">
-        <a href="{{ account.link }}" target="_blank">
-            <i class="{{ account.icon.logo }}"></i>
-        </a>  
-    </div>
+    {%  for account in social_accounts %}
+        {% if account.active %}
+            <div class="social-icon">
+                <a href="{{ account.link }}" target="_blank">
+                    <i class="{{ account.icon.logo }}"></i>
+                </a>  
+            </div>
+        {% endif %}
     {% endfor %}
     
 

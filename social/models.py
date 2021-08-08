@@ -16,7 +16,7 @@ class SocialMediaProfile(models.Model):
         blank=True,
         on_delete=models.CASCADE
         )
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(initial=True)
 
     def __str__(self):
         return self.name

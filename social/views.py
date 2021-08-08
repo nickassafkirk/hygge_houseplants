@@ -9,22 +9,37 @@ def edit_social_account(request):
     FormSet = modelformset_factory(
         SocialMediaProfile,
         form=SocialForm,
-        extra=0,
+        extra=1,
         can_delete=True,
+        can_delete_extra=False,
         )
 
     if request.method == "POST":
         formset = FormSet(request.POST)
         print('formset check valid')
-        if formset.is_valid():
-            formset = formset.save()
-            print('formset saved')
-            messages.success(request, 'Social accounts updated successfully!')   
-        else:
-            print(formset.non_form_errors())
-            print(formset.errors)
-            messages.error(request, 'invalid formset')
+
+        for form in formset:
+            print(form.has_changed())
+            if form.is_valid():
+                form.save()
+            else:
+                print(formset.non_form_errors())
+                print(form.errors)
+                print(form.cleaned_data)
+                messages.error(request, 'invalid formset')
+
+        deleted_forms = formset.deleted_forms
+        print(deleted_forms)
+        if deleted_forms:
+
+            for account_to_delete in deleted_forms:
+                id = int(account_to_delete['id'].value())
+                print(id)
+                delete_account(id)
+
+        messages.success(request, 'Social accounts updated successfully!')
         return redirect(reverse('edit_social_account'))
+
     else:
         formset = FormSet()
 
@@ -33,6 +48,12 @@ def edit_social_account(request):
             'formset': formset,
         }
         return render(request, template, context)
+
+
+def delete_account(pk):
+    account = get_object_or_404(SocialMediaProfile, pk=pk)
+    print('delete called', account)
+    account.delete()
 
 
 def add_icon(request):

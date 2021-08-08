@@ -5,6 +5,26 @@ from .forms import SocialForm, IconForm
 from .models import SocialMediaProfile
 
 
+def add_social_account(request):
+    if request.method == "POST":
+
+        form2 = SocialForm(request.POST)
+        if form2.is_valid():
+            form2.save()
+            messages.success(request, 'Social accounts updated successfully!')
+            return redirect(reverse('edit_social_account'))
+        else:
+            messages.error(request, "Invalid form. Check values and retry")
+    else:
+        form2 = SocialForm()
+    template = 'social/add_social.html'
+    context = {
+        'form2':form2,
+    }
+
+    return render(request, template, context)
+
+
 def edit_social_account(request):
     FormSet = modelformset_factory(
         SocialMediaProfile,
@@ -39,7 +59,6 @@ def edit_social_account(request):
         return redirect(reverse('edit_social_account'))
 
     else:
-
         formset = FormSet()
 
         template = 'social/edit_social.html'

@@ -16,7 +16,7 @@ class SocialForm(forms.ModelForm):
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(SocialForm, self).__init__(*args, **kwargs)
         icons = SocialMediaIcon.objects.all()
         display_names = [(i.id, i.name) for i in icons]
 

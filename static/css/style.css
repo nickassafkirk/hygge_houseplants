@@ -305,6 +305,10 @@ footer .social-icon a i {
 
 /* Products */
 
+.product-container {
+    width: 90vw;
+}
+
 .product-tile > div {
     margin: 0 auto;
     width: 300px;
@@ -496,6 +500,10 @@ a.product-path:focus {
     .tile {
         height: 20vw;
     }
+
+    .product-container {
+        width: 75vw;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -539,6 +547,10 @@ a.product-path:focus {
 
     .incentives-container {
         font-size: 1rem;
+    }
+
+    .product-container {
+        width: 40vw;
     }
 
 

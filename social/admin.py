@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SocialMediaProfile
+from .models import SocialMediaProfile, SocialMediaIcon
 
 
 class SocialAdmin(admin.ModelAdmin):
@@ -9,4 +9,12 @@ class SocialAdmin(admin.ModelAdmin):
     )
 
 
+class IconAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'icon',
+    )
+
+
 admin.site.register(SocialMediaProfile, SocialAdmin)
+admin.site.register(SocialMediaIcon, IconAdmin)

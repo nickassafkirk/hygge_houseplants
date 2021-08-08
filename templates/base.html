@@ -156,6 +156,17 @@
                     {% include 'social/includes/social_icons.html' %}
                 {% endblock %}
               </div>
+              {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <div class="text-center col-12">
+                        <a href="{% url 'add_social_account' %}" class="d-block">
+                            <i class="fas fa-pencil-alt"></i>
+                            <br>
+                            Edit Social Links
+                        </a>
+                    </div>
+                {% endif %}
+              {% endif %}
           </div>
       </footer>
 

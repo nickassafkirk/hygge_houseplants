@@ -8,7 +8,7 @@ def add_social_account(request):
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('social'))
+            return redirect('index')
         else:
             print('form is invalid')
     else:

@@ -17,46 +17,10 @@
 
 <form method="POST" action="{% url 'add_variants' product.id %}" id="add-variants-form" class="mt-3">
 
-        <h5>Add Variants</h5>
-        {% csrf_token %}
-        {{ variant_formset.management_form }}
-        {% for form in variant_formset %}
-            
-        <div class="add-variant-area row my-3">
-            {% for field in form.visible_fields %}
-              {% if forloop.first %}
-                    {% for hidden in form.hidden_fields %}
-                        {{ hidden }}
-                    {% endfor %}
-              {% endif %}
-              {% if field.name == 'parent_product' %}
-              {{ field }} 
-              {% elif field.name == 'color' or field.name == 'size' %}
-                <div class="col-6 mt-2">
-                    {{ field.label }}
-                    {{ field.errors.as_ul }}
-                    {{ field }}
-                </div>
-              {% else %}
-                <div class="col-3 mt-2">
-                    {{ field.label }}
-                    {{ field.errors.as_ul }}
-                    {{ field }}
-                </div>
-              {% endif %}
-            {% endfor %}
-                <div class="col-12"><hr></div>
-                <div class="col-6 d-flex align-items-end">
-                  <button type="submit" class="btn btn-success w-100">Add Variant  <i class="fas fa-plus-circle"></i></button>
-                </div>
-                <div class="col-6 d-flex align-items-end">
-                  <button type="submit" class="btn btn-danger w-100">Delete Variant  <i class="fas fa-trash-alt"></i></button>
-                </div>
-        </div> 
-        
-        {% endfor %}
+        {% include 'products/includes/variant_form.html' %}
         
 </form>
+</div>
     
 {% endblock %}
 

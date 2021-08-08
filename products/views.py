@@ -204,7 +204,7 @@ def add_variants(request, product_id):
                     temp_form.name = name
                     temp_form.parent_product = product
                     temp_form.save()
-               
+
             if variant_formset.deleted_forms:
                 for variant_to_delete in variant_formset.deleted_forms:
                     id = int(variant_to_delete['id'].value())

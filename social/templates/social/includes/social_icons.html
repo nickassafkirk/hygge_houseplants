@@ -1,14 +1,16 @@
 
 
 {% block social %}
-
-    {%  for account in social_accounts %}
+  
+   {%  for account in social_accounts %}
+   
     <div class="social-icon">
         <a href="{{ account.link }}" target="_blank">
-            <i class="{{ account.icon }}"></i>
+            <i class="{{ account.icon.logo }}"></i>
         </a>  
     </div>
     {% endfor %}
+    
 
 {% endblock %}
 

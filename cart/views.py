@@ -4,5 +4,5 @@ from django.contrib import messages
 from products.models import Product, Variant
 
 
-def view_car(request):
-    return render(request, 'cart/car.html')
+def view_cart(request):
+    return render(request, 'cart/cart.html')

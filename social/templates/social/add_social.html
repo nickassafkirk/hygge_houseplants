@@ -5,11 +5,23 @@
 
 {% block content %}
 <div class="container my-5">
-    <form action="{% url 'add_social_account' %}" method="POST" id="add-social-account">
+    <form action="{% url 'add_social_account' %}" method="POST" id="add-social-account" class="row">
         {% csrf_token %}
-        {{ form | crispy }}
-        <div class="my-2">
-            <button type="submit" class="btn btn-dark"><i class="fas fa-plus-circle"></i> Add Account</button>
+        
+            {% for form in formset %}
+                <div class="col-6 col-md-3 mt-3 mt-md-0">
+                    <div class="add-variant-area p-3">
+                   {% if form.active.value == True %}
+                   {{ form | crispy }}
+                   
+                   {% endif %} 
+                   </div>
+                </div>
+            {% endfor %}
+        
+        
+        <div class="my-2 my-md-4 text-center">
+            <button type="submit" class="btn btn-dark p-3"><i class="fas fa-plus-circle"></i> Update Social Links</button>
         </div>
     </form>
     <div class="text-center my-3">

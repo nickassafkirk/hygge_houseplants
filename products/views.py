@@ -89,10 +89,8 @@ def add_product(request):
         product_form = ProductForm(request.POST, request.FILES)
         if product_form.is_valid():
             has_variants = product_form['has_variants'].value()
-            print(has_variants)
             if has_variants:
                 new_product = product_form.save()
-                print(new_product.id)
                 return redirect('add_variants', product_id=new_product.id)
             else:
                 # value is False if checkbox is not selected

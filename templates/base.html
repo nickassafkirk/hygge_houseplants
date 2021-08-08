@@ -116,7 +116,11 @@
       </header>
 
       {% if messages %}
-      <div class="message-container"></div>
+      <div class="message-container text-center my-2">
+        {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+      </div>
       {% endif %}
 
       {% block page_heading %}
@@ -161,7 +165,7 @@
               {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                     <div class="text-center col-12">
-                        <a href="{% url 'add_social_account' %}" class="d-block">
+                        <a href="{% url 'edit_social_account' %}" class="d-block">
                             <i class="fas fa-pencil-alt"></i>
                             <br>
                             Edit Social Links

@@ -26,7 +26,8 @@
                 {% endif %}
             </p>
             
-            <form action="" class="row px-3 px-lg-5">
+            <form action="{% url 'add_to_cart' product.id %}" method="POST" class="row px-3 px-lg-5">
+                {% csrf_token %}
                 
                 <div class="col-8">
                     {% if variants %}
@@ -38,10 +39,10 @@
                     {% endif %}
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="number" value="1">
+                    <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1">
                 </div>
                 <div class="col-12 mt-2">
-                    <button class="btn btn-bright w-100 p-2">Add to Cart <i class="fas fa-cart-plus"></i></button>
+                    <button type="submit" class="btn btn-bright w-100 p-2">Add to Cart <i class="fas fa-cart-plus"></i></button>
                 </div>
             </form>
 

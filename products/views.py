@@ -17,6 +17,7 @@ def products(request):
     order = None
 
     if request.GET:
+        print(request.GET)
 
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -26,9 +27,9 @@ def products(request):
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
             if sortkey == 'category':
-                sortkey = 'category_name'
-            if 'order' in request.GET:
-                order = request.GET['order']
+                sortkey = 'category__name'
+            if 'direction' in request.GET:
+                order = request.GET['direction']
                 if order == 'desc':
                     # if sort direction is ascending add - to sortkey to reverse sort order.
                     sortkey = f'-{sortkey}'

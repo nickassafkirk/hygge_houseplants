@@ -29,21 +29,35 @@ def add_to_cart(request, product_id):
             if variant in cart[product_id]['product_variants'].keys():
                 # if variant exists increase it's quantity
                 cart[product_id]['product_variants'][variant_id] += quantity
-                print(cart[product_id]['product_variants'][variant_id])
+                messages.success(
+                    request, f'Updated {product.name} - {variant.name} quantity to {cart[product_id]["product_variants"][variant_id]}!'
+                    )
             else:
                 # if not add prodcut variant to cart
                 cart[product_id]['product_variants'][variant_id] = quantity
+                messages.success(
+                    request, f'{product.name} - {variant.name} x {quantity} added to cart successfully!'
+                    )
         else:
             # create product and assign it's variants keys and values
             cart[product_id] = {'product_variants': {variant_id: quantity}}
+            messages.success(
+                    request, f'{product.name} - {variant.name} x {quantity} added to cart successfully!'
+                    )
     else:
         # Handle product without variants
         if product_id in list(cart.keys()):
             # if product in cart, increase it's quantity value
             cart[product_id] += quantity
+            messages.success(
+                    request, f'Updated {product.name} quantity to {cart[product_id]}!'
+                    )
         else:
             # else add it to cart dict and assign it's quantity value
             cart[product_id] = quantity
+            messages.success(
+                    request, f'{product.name} x {quantity} added to cart successfully!'
+                    )
 
     # save the cart session cookie with updated values
     print(cart)

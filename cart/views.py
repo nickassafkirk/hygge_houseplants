@@ -28,14 +28,14 @@ def add_to_cart(request, product_id):
             # check if a specific variant is in the cart
             if variant in cart[product_id]['product_variants'].keys():
                 # if variant exists increase it's quantity
-                cart[product_id]['product_variants'][variant] += quantity
-                print(cart[product_id]['product_variants'][variant])
+                cart[product_id]['product_variants'][variant_id] += quantity
+                print(cart[product_id]['product_variants'][variant_id])
             else:
                 # if not add prodcut variant to cart
-                cart[product_id]['product_variants'][variant] = quantity
+                cart[product_id]['product_variants'][variant_id] = quantity
         else:
             # create product and assign it's variants keys and values
-            cart[product_id] = {'product_variants': {variant: quantity}}
+            cart[product_id] = {'product_variants': {variant_id: quantity}}
     else:
         # Handle product without variants
         if product_id in list(cart.keys()):

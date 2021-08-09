@@ -17,7 +17,6 @@ def products(request):
     order = None
 
     if request.GET:
-        print(request.GET)
 
         if 'sort' in request.GET:
             sortkey = request.GET['sort']

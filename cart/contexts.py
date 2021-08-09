@@ -24,6 +24,15 @@ def shopping_cart(request):
         else:
             product = get_object_or_404(Product, pk=product_id)
             # iterate through product_data to extract variant_id & Qty
+            for key, value in product_data['product_variants'].items():
+                total += value * product.price
+                product_count = value
+                cart_contents.append({
+                    'product_id': product_id,
+                    'quantity': value,
+                    'product': product,
+                    'variant': key,
+                })
 
     # calculate total cart value
     # calculate shipping

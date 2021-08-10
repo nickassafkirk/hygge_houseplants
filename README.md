@@ -106,6 +106,17 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
 * To disable the product form when editing product variants I used the technique of wrapping the form fields in a fieldset and assigning that fieldset with the ```disabled="disabled"```
 attribute. This techniques was found in [this stackoverflow post](https://stackoverflow.com/questions/3507958/how-can-i-make-an-entire-html-form-readonly)
 
+* Center text in ```<input type="number">``` I used information found in [stackoverflow post](https://stackoverflow.com/questions/23715881/center-text-in-html-number-input) to control the appearance of
+the default number input adjust buttons and to center the text.
+
+    ```
+    input[type='number']::-webkit-inner-spin-button, 
+    input[type='number']::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        margin: 0;
+    }
+```
+
 ---
 ### Code
 ---

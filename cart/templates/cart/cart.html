@@ -14,21 +14,21 @@
                 <tr>
                     <th>Product</th>
                     <th class="text-center">Price</th>
-                    <th class="text-center">Qty</th>
-                    <th class="text-center">Sub-total</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Sub<br class="d-inline d-sm-none">total</th>
                 </tr>
                 
                 
                     {% for item in cart_contents %}
                         {% if item.variant %}
                            <tr>
-                                <td>
+                                <td class="pe-0">
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
-                                <td class="text-center">
+                                <td class="text-center p-0">
                                     <form action="" class="update-cart-item-qty">
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
@@ -57,7 +57,7 @@
                                     <strong class="overflow-wrap">{{ item.product.name }}</strong>
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
-                                <td class="text-center">
+                                <td class="text-center p-0">
                                     <form action="" class="update-cart-item-qty">
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">

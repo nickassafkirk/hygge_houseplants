@@ -503,6 +503,7 @@ a.product-path:focus {
     font-size: 0.9rem;
     border-bottom: 2px solid #ddd;
     width: 25%;
+    vertical-align: baseline;
 }
 
 .cart-items-table td {
@@ -521,8 +522,8 @@ a.product-path:focus {
 }
 
 .image-preview-container, .image-preview {
-    height: 50px;
-    width: 50px;
+    height: 90px;
+    width: 90px;
 }
 
 .overflow-wrap {
@@ -547,11 +548,17 @@ input[type='number']::-webkit-outer-spin-button {
 
 .adj-quantity-group {
     width: 100%;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 .adj-quantity-group form {
     margin: 0;
     padding: 0;
+}
+
+.adj-quantity {
+    max-width: 30%;
 }
 
 .input-group-append, .input-group-prepend {
@@ -576,7 +583,7 @@ input[type='number']::-webkit-outer-spin-button {
  }
 
 .input-group-append i, .input-group-prepend i {
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     color: #fff;
     vertical-align: baseline;
     margin: 0;
@@ -628,6 +635,7 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 1.1rem;
         font-weight: 600;
     }
+
 }
 
 @media screen and (min-width: 992px) {

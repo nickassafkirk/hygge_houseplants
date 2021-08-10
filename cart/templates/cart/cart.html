@@ -9,8 +9,24 @@
             <hr>
         </div>
         <div class="col-12 line-items-container">
-            <h1>Products go here</h1>
-
+            <table class="w-75 bg-light p-3">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                
+                
+                    {% for item in cart_contents %}
+                    <tr>
+                        <td><strong>{{ item.product.name }}</strong></td>
+                        <td>€{{ item.product.price }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>€{{ item.product.price }} * {{ item.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
             <hr>
         </div>
         

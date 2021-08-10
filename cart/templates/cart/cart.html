@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cart_filters %}
 
 {% block content %}
 <div class="container-fluid my-5 w-75">
@@ -24,18 +25,24 @@
                                 <td><strong>{{ item.product.name }} - [ {{ item.variant.color | title }} - {{ item.variant.size | upper }} ]</strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
-                                <td class="text-center">€{{ item.product.price }} * {{ item.quantity }}</td>
+                                <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% else %} 
                             <tr>
                                 <td><strong>{{ item.product.name }}</strong></td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
-                                <td class="text-center">€{{ item.product.price }} * {{ item.quantity }}</td>
+                                <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% endif %}
                     
                     {% endfor %}
+                    <tr>
+                        <td class="column-total"></td>
+                        <td class="column-total"></td>
+                        <td class="text-center column-total"><h5>{{ product_count }}<h5></td>
+                        <td class="text-center column-total"><h5>€{{ total }}</h5></td>
+                    </tr>
             </table>
             <hr>
         </div>
@@ -49,8 +56,15 @@
         <div class="col-12 col-md-6 pt-2">
             <div class="w-75 ms-3">
                 <h5>Order Total:</h5>
-                <h4>€{{ cart_total }}</h4>
-                <p class="text-capitalize">Tax Included. Shipping calculated at checkout</p>
+                <h4 class="d-inline-block">€{{ cart_total }}</h4> <small class="text-capitalize d-inline-block ms-1">  Incl VAT.</small>
+                {% if shipping == 0 %}
+                <p><em>You qualify for free shipping! - <i class="fas fa-shipping-fast"></i></em></p>
+                {% endif %}
+                <hr>
+                <h5 class="d-inline-block">{{ total | calc_tax }}</h5><small class="text-capitalize d-inline-block ms-1">  Excl VAT.</small>
+                
+
+                </p>
                 <button class="btn btn-bright">Checkout <i class="fas fa-shopping-cart"></i></button>
             </div>
             

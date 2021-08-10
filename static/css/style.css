@@ -499,6 +499,10 @@ a.product-path:focus {
     border-bottom: 2px solid #ddd;
 }
 
+.column-total {
+    border-top: 2px solid #ddd;
+}
+
 @media screen and (min-width: 576px) {
     .hero-image-text {
         font-size: 1.4rem;

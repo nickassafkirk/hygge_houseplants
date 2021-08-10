@@ -12,7 +12,7 @@
         <div class="col-12 p-0 line-items-container">
             <table class="table table-hover table-responsive bg-light cart-items-table">
                 <tr>
-                    <th>Product</th>
+                    <th class="ps-sm-3 pe-0">Product</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Sub<br class="d-inline d-sm-none">total</th>
@@ -22,7 +22,7 @@
                     {% for item in cart_contents %}
                         {% if item.variant %}
                            <tr>
-                                <td class="pe-0">
+                                <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
@@ -50,7 +50,7 @@
                             </tr>
                         {% else %} 
                             <tr>
-                                <td>
+                                <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
                                     </div>

@@ -532,6 +532,7 @@ a.product-path:focus {
 .cart-items-table td input[type='number'] {
     text-align: center;
     font-size: 0.75rem;
+    min-width: 40%;
 }
 
 .update-cart-item-qty button.btn{
@@ -544,10 +545,13 @@ input[type='number']::-webkit-outer-spin-button {
     
 }
 
+.adj-quantity-group {
+    max-width: 80%;
+}
+
 .input-group-append, .input-group-prepend {
     background: var(--orange);
-    margin: 0 0 0 0;
-    padding: 0;
+    min-width: 20%;
 }
 
 .input-group-append {
@@ -563,7 +567,7 @@ input[type='number']::-webkit-outer-spin-button {
 .input-group-append i, .input-group-prepend i {
     font-size: 0.75rem;
     color: #fff;
-    vertical-align: center;
+    vertical-align: baseline;
 }
 
 @media screen and (min-width: 576px) {
@@ -664,5 +668,9 @@ input[type='number']::-webkit-outer-spin-button {
         font-size: 1rem;
     }
 
+    .adj-quantity-group {
+        max-width: 60%;
+    }
 
+    
 }

@@ -484,6 +484,21 @@ a.product-path:focus {
     width: 45%;
 }
 
+/* Shopping Cart */
+
+.cart-items-table {
+    border-radius: 5px;
+}
+
+.cart-items-table th, .cart-items-table td {
+    padding: .5rem;
+    padding-left: .75rem;
+}
+
+.cart-items-table th{
+    border-bottom: 2px solid #ddd;
+}
+
 @media screen and (min-width: 576px) {
     .hero-image-text {
         font-size: 1.4rem;

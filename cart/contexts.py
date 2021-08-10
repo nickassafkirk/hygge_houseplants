@@ -48,7 +48,7 @@ def shopping_cart(request):
         spend_for_free_shipping = 0
 
     # calculate total cart value
-    cart_total = total + shipping
+    cart_total = round(float(total) + float(shipping),2)
 
     # return context to be made available across site.
     context = {

@@ -2,28 +2,28 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid my-5">
+<div class="container-fluid my-5 w-75">
     <div class="row">
         <div class="col-12">
             <h3>Shopping Cart</h3>
             <hr>
         </div>
         <div class="col-12 line-items-container">
-            <table class="w-75 bg-light p-3">
+            <table class="w-100 bg-light p-3 cart-items-table">
                 <tr>
                     <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Subtotal</th>
                 </tr>
                 
                 
                     {% for item in cart_contents %}
                     <tr>
                         <td><strong>{{ item.product.name }}</strong></td>
-                        <td>€{{ item.product.price }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>€{{ item.product.price }} * {{ item.quantity }}</td>
+                        <td class="text-center">€{{ item.product.price }}</td>
+                        <td class="text-center">{{ item.quantity }}</td>
+                        <td class="text-center">€{{ item.product.price }} * {{ item.quantity }}</td>
                     </tr>
                     {% endfor %}
             </table>
@@ -36,9 +36,14 @@
                 <textarea name="special-instructions" id="special-instructions" class="form-control" cols="50" rows="5"></textarea>
             </div>
         </div>
-        <div class="col-12 col-md-6 ps-5">
-            <p class="text-capitalize">Tax Included. Shipping calculated at checkout</p>
-            <button class="btn btn-bright">Checkout <i class="fas fa-shopping-cart"></i></button>
+        <div class="col-12 col-md-6 pt-2">
+            <div class="w-75 ms-3">
+                <h5>Order Total:</h5>
+                <h4>€{{ cart_total }}</h4>
+                <p class="text-capitalize">Tax Included. Shipping calculated at checkout</p>
+                <button class="btn btn-bright">Checkout <i class="fas fa-shopping-cart"></i></button>
+            </div>
+            
         </div>
     </div>
 </div>

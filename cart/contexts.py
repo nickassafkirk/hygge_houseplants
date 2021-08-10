@@ -34,8 +34,19 @@ def shopping_cart(request):
                     'variant': key,
                 })
 
-    # calculate total cart value
     # calculate shipping
+    standard_shipping = 6.99
+    free_shipping_over = 50
+
+    if total < free_shipping_over:
+        shipping = standard_shipping
+        spend_for_free_shipping = free_shipping_over - total
+    else:
+        shipping = 0
+        spend_for_free_shipping = 0
+
+    # calculate total cart value
+    cart_total = total + shipping
 
     # return context to be made available across site.
 

@@ -5,6 +5,8 @@
     --main: 'Source Sans Pro', sans-serif;
     --head: 'Staatliches', cursive;
 
+    --light: #f8f9fa;
+
     --grn: #33775d;
     --grn-dark: #004b33;
     --grn-light: #62a68a;
@@ -414,10 +416,6 @@ a.product-path:focus {
     padding: 1rem;
 }
 
-/*#add-product-btn i {
-    font-size: 2rem;
-}*/
-
 .hidden {
     visibility: hidden !important;
 }
@@ -487,7 +485,7 @@ a.product-path:focus {
 /* Shopping Cart */
 
 .cart-container {
-    width: 95vw;
+    width: 90vw;
 }
 
 .cart-items-table {
@@ -506,6 +504,7 @@ a.product-path:focus {
 
 .cart-items-table td {
     font-size: 0.75rem;
+    vertical-align: bottom;
 }
 
 .column-total {
@@ -515,7 +514,6 @@ a.product-path:focus {
 .image-preview-container, .image-preview {
     height: 50px;
     width: 50px;
-
 }
 
 @media screen and (min-width: 576px) {
@@ -528,6 +526,11 @@ a.product-path:focus {
         padding: 0.75rem 0;
         Font-size: 1.2rem;
     }
+
+    .image-preview-container, .image-preview {
+        height: 75px;
+        width: 75px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -537,6 +540,13 @@ a.product-path:focus {
 
     .product-container, .cart-container {
         width: 75vw;
+    }
+
+    .image-preview-container, .image-preview {
+        height: 100px;
+        width: 100px;
+        display: inline-block;
+        margin-right: 2%;
     }
 }
 

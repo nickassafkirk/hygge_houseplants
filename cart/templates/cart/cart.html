@@ -12,7 +12,7 @@
         <div class="col-12 px-0 line-items-container">
             <table class="table table-hover table-responsive bg-light cart-items-table">
                 <tr>
-                    <th colspan="2">Product</th>
+                    <th>Product</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Subtotal</th>
@@ -26,8 +26,7 @@
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
-                                </td>
-                                <td><strong>{{ item.product.name }} - [ {{ item.variant.color | title }} - {{ item.variant.size | upper }} ]</strong></td>
+                                    <strong>{{ item.product.name }} - [ {{ item.variant.color | title }} - {{ item.variant.size | upper }} ]</strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
@@ -38,8 +37,7 @@
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
                                     </div>
-                                </td>
-                                <td><strong>{{ item.product.name }}</strong></td>
+                                    <strong>{{ item.product.name }}</strong></td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
                                 <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
@@ -48,9 +46,9 @@
                     
                     {% endfor %}
                     <tr>
-                        <td class="column-total" colspan="3"></td>
-                        <td class="text-center column-total"><h5>{{ product_count }}<h5></td>
-                        <td class="text-center column-total"><h5>€{{ total }}</h5></td>
+                        <td class="adjust-colspan column-total" colspan="2"></td>
+                        <td class="text-center column-total"><h6>{{ product_count }}<h6></td>
+                        <td class="text-center column-total"><h6>€{{ total }}</h6></td>
                     </tr>
             </table>
             <hr>

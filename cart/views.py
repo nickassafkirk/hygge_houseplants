@@ -11,11 +11,13 @@ def view_cart(request):
 def add_to_cart(request, product_id):
     print(request.POST)
     product = get_object_or_404(Product, pk=product_id)
-    quantity = request.POST.get('add-to-cart-quantity')
+    quantity = int(request.POST.get('add-to-cart-quantity'))
+    print(quantity)
     variant = None
 
     # get cart session variable or create empty dict if it doesn't exist
     cart = request.session.get('cart', {})
+    print(cart)
 
     # check if: product has variants
     if 'variant-select' in request.POST:

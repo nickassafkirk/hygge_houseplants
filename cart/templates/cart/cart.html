@@ -118,12 +118,9 @@
     <script type="text/javascript">
         // Prevent out of bounds
         function preventOutOfBounds(itemId) {
-            console.log('Prevent out of bounds', itemId);
             let targetInput = $(`#id_qty_${itemId}`)[0];
             let maxValue = parseInt(targetInput['max']);
-            console.log(maxValue)
             let currentValue = parseInt(targetInput['value']);
-            console.log(currentValue)
             let disableDecreaseBtn = currentValue < 2;
             let disableIncreaseBtn = currentValue >= maxValue;
             $(`#decrease-btn_${itemId}`).prop('disabled', disableDecreaseBtn);
@@ -131,18 +128,21 @@
         }
 
         // Handle change events (If someone manual input)
-
-
-        // Handle out of bounds on page load.
-        $('.adj-quantity').each(function() {
+        $('.adj-quantity').change(function(){
             itemId = $(this).data('item_id');
             console.log(itemId)
             preventOutOfBounds(itemId)
         })
 
+
+        // Handle out of bounds on page load.
+        $('.adj-quantity').each(function() {
+            itemId = $(this).data('item_id');
+            preventOutOfBounds(itemId)
+        });
+
         // Increase Qty
         $('.increase-qty').click(function(e) {
-            console.log('increase event triggered')
             e.preventDefault();
             let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
             let currentQty = parseInt($(closestInput).val());
@@ -153,7 +153,6 @@
 
         // Decrease Qty
         $('.decrease-qty').click(function(e) {
-            console.log('decrease event triggered')
             e.preventDefault();
             let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
             let currentQty = parseInt($(closestInput).val());

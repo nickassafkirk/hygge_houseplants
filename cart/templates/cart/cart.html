@@ -28,7 +28,12 @@
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
-                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-center">
+                                    <form action="">
+                                        <input class ="form-control w-50 mx-auto" type="number" value="{{ item.quantity }}">
+                                        <div class="text-bright" type="submit">Update</div>
+                                    </form>
+                                </td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% else %} 
@@ -40,7 +45,12 @@
                                     <strong class="overflow-wrap">{{ item.product.name }}</strong>
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
-                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-center">
+                                    <form action="">
+                                        <input class ="form-control w-50 mx-auto" type="number" value="{{ item.quantity }}">
+                                        <div class="text-bright" type="submit">Update</div>
+                                    </form>
+                                </td>
                                 <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% endif %}

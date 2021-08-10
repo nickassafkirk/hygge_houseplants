@@ -38,7 +38,7 @@
                                                     </span>
                                                 </button>
                                             </div>
-                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}">
+                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}" max="{{ item.variant.quantity }}">
                                             <div class="input-group-append">
                                                 <button class="increase-qty btn">
                                                     <span>
@@ -71,7 +71,7 @@
                                                     </span>
                                                 </button>
                                             </div>
-                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}">
+                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}" max="{{ item.product.quantity }}">
                                             <div class="input-group-append">
                                                 <button class="increase-qty btn">
                                                     <span>

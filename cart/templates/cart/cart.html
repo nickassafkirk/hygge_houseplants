@@ -19,12 +19,22 @@
                 
                 
                     {% for item in cart_contents %}
-                    <tr>
-                        <td><strong>{{ item.product.name }}</strong></td>
-                        <td class="text-center">€{{ item.product.price }}</td>
-                        <td class="text-center">{{ item.quantity }}</td>
-                        <td class="text-center">€{{ item.product.price }} * {{ item.quantity }}</td>
-                    </tr>
+                        {% if item.variant %}
+                           <tr>
+                                <td><strong>{{ item.product.name }} - [ {{ item.variant.color | title }} - {{ item.variant.size | upper }} ]</strong></td>
+                                <td class="text-center">€{{ item.variant.price }}</td>
+                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-center">€{{ item.product.price }} * {{ item.quantity }}</td>
+                            </tr>
+                        {% else %} 
+                            <tr>
+                                <td><strong>{{ item.product.name }}</strong></td>
+                                <td class="text-center">€{{ item.product.price }}</td>
+                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-center">€{{ item.product.price }} * {{ item.quantity }}</td>
+                            </tr>
+                        {% endif %}
+                    
                     {% endfor %}
             </table>
             <hr>

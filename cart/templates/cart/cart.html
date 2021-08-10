@@ -38,7 +38,7 @@
                                                     </span>
                                                 </button>
                                             </div>
-                                            <input class ="form-control" type="number" value="{{ item.quantity }}">
+                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}">
                                             <div class="input-group-append">
                                                 <button class="increase-qty btn">
                                                     <span>
@@ -71,7 +71,7 @@
                                                     </span>
                                                 </button>
                                             </div>
-                                            <input class ="form-control" type="number" value="{{ item.quantity }}">
+                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}">
                                             <div class="input-group-append">
                                                 <button class="increase-qty btn">
                                                     <span>
@@ -113,9 +113,6 @@
                 <p><strong>Shipping:</strong> {{ shipping }}</p>
                 {% endif %}
                 <hr>
-                
-                
-
                 </p>
                 <button class="btn btn-bright">Checkout <i class="fas fa-shopping-cart"></i></button>
             </div>
@@ -123,4 +120,18 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block footerjs %}
+    <script type="text/javascript">
+        // Increase Qty
+
+        $('.increase-qty').click(function(e) {
+            console.log('event triggered')
+            e.preventDefault();
+            let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
+            console.log($(closestInput).val())
+        });
+
+    </script>
 {% endblock %}

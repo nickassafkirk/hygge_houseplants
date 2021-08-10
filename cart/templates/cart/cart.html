@@ -130,6 +130,16 @@
             $(`#increase-btn_${itemId}`).prop('disabled', disableIncreaseBtn);
         }
 
+        // Handle change events (If someone manual input)
+
+
+        // Handle out of bounds on page load.
+        $('.adj-quantity').each(function() {
+            itemId = $(this).data('item_id');
+            console.log(itemId)
+            preventOutOfBounds(itemId)
+        })
+
         // Increase Qty
         $('.increase-qty').click(function(e) {
             console.log('increase event triggered')

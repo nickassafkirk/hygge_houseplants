@@ -125,13 +125,21 @@
 {% block footerjs %}
     <script type="text/javascript">
         // Increase Qty
-
         $('.increase-qty').click(function(e) {
             console.log('event triggered')
             e.preventDefault();
             let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
             let currentQty = parseInt($(closestInput).val())
             $(closestInput).val(currentQty + 1)
+        });
+
+        // Decrease Qty
+        $('.decrease-qty').click(function(e) {
+            console.log('event triggered')
+            e.preventDefault();
+            let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
+            let currentQty = parseInt($(closestInput).val())
+            $(closestInput).val(currentQty - 1)
         });
 
     </script>

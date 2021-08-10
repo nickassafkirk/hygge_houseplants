@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 
-from products.models import Product
+from products.models import Product, Variant
 
 
 def shopping_cart(request):
@@ -29,11 +29,12 @@ def shopping_cart(request):
             for variant_id, quantity in product_data["product_variants"].items():     
                 total += int(quantity) * float(product.price)
                 product_count += int(quantity)
+                variant = get_object_or_404(Variant, pk=variant_id)
                 cart_contents.append({
                     'product_id': product_id,
                     'quantity': quantity,
                     'product': product,
-                    'variant': variant_id,
+                    'variant': variant,
                 })
 
     # calculate shipping

@@ -489,26 +489,26 @@ a.product-path:focus {
 /* Shopping Cart */
 
 .cart-container {
-    width: 90vw;
+    max-width: 95vw;
 }
 
 .cart-items-table {
     border-radius: 5px;
-}
-
-.cart-items-table th, .cart-items-table td {
-    padding: .5rem;
-    padding-left: .75rem;
+    padding: 0;
+    margin: 0;
 }
 
 .cart-items-table th{
+    padding: .5rem;
     font-size: 0.9rem;
     border-bottom: 2px solid #ddd;
+    width: 25%;
 }
 
 .cart-items-table td {
-    font-size: 0.75rem;
+    font-size: 1rem;
     vertical-align: baseline;
+    width: 25%;
 }
 
 .cart-items-table td h6 {
@@ -531,12 +531,9 @@ a.product-path:focus {
 
 .cart-items-table td input[type='number'] {
     text-align: center;
-    font-size: 0.75rem;
-    width: 40%;
-}
-
-.update-cart-item-qty button.btn{
     font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
 }
 
 input[type='number']::-webkit-inner-spin-button, 
@@ -544,13 +541,28 @@ input[type='number']::-webkit-outer-spin-button {
     display: none;
 }
 
+.update-cart-item-qty button.btn{
+    font-size: 0.9rem;
+}
+
 .adj-quantity-group {
     width: 100%;
 }
 
+.adj-quantity-group form {
+    margin: 0;
+    padding: 0;
+}
+
 .input-group-append, .input-group-prepend {
     background: var(--orange);
-    width: 30%;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+.increase-qty.btn, .decrease-qty.btn {
+    padding: 0;
+    margin: 0;
 }
 
 .input-group-append {
@@ -564,9 +576,11 @@ input[type='number']::-webkit-outer-spin-button {
  }
 
 .input-group-append i, .input-group-prepend i {
-    font-size: 0.75rem;
+    font-size: 0.5rem;
     color: #fff;
     vertical-align: baseline;
+    margin: 0;
+    padding: 0;
 }
 
 @media screen and (min-width: 576px) {

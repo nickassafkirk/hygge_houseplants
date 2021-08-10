@@ -130,7 +130,8 @@
             console.log('event triggered')
             e.preventDefault();
             let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
-            console.log($(closestInput).val())
+            let currentQty = parseInt($(closestInput).val())
+            $(closestInput).val(currentQty + 1)
         });
 
     </script>

@@ -4,17 +4,18 @@ from products.models import Product
 
 
 def shopping_cart(request):
+
     cart_contents = []
     total = 0
     product_count = 0
-    bag = request.session.get('cart', {})
+    cart = request.session.get('cart', {})
 
-    for product_id, product_data in bag.items():
+    for product_id, product_data in cart.items():
         # handle product without variant
         if isinstance(product_data, int):
             product = get_object_or_404(Product, pk=product_id)
-            total += product_data * product.price
-            product_count += product_data
+            total += int(product_data) * float(product.price)
+            product_count += int(product_data)
             cart_contents.append({
                 'product_id': product_id,
                 'quantity': product_data,
@@ -24,14 +25,15 @@ def shopping_cart(request):
         else:
             product = get_object_or_404(Product, pk=product_id)
             # iterate through product_data to extract variant_id & Qty
-            for key, value in product_data['product_variants'].items():
-                total += value * product.price
-                product_count = value
+
+            for variant_id, quantity in product_data["product_variants"].items():     
+                total += int(quantity) * float(product.price)
+                product_count += int(quantity)
                 cart_contents.append({
                     'product_id': product_id,
-                    'quantity': value,
+                    'quantity': quantity,
                     'product': product,
-                    'variant': key,
+                    'variant': variant_id,
                 })
 
     # calculate shipping

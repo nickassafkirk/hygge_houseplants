@@ -531,11 +531,39 @@ a.product-path:focus {
 
 .cart-items-table td input[type='number'] {
     text-align: center;
+    font-size: 0.75rem;
+}
+
+.update-cart-item-qty button.btn{
+    font-size: 0.9rem;
 }
 
 input[type='number']::-webkit-inner-spin-button, 
 input[type='number']::-webkit-outer-spin-button { 
     display: none;
+    
+}
+
+.input-group-append, .input-group-prepend {
+    background: var(--orange);
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.input-group-append {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+ }
+
+ .input-group-prepend {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+ }
+
+.input-group-append i, .input-group-prepend i {
+    font-size: 0.75rem;
+    color: #fff;
+    vertical-align: center;
 }
 
 @media screen and (min-width: 576px) {

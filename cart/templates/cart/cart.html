@@ -29,9 +29,25 @@
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center">
-                                    <form action="">
-                                        <input class ="form-control w-50 mx-auto" type="number" value="{{ item.quantity }}">
-                                        <div class="text-bright" type="submit">Update</div>
+                                    <form action="" class="update-cart-item-qty">
+                                        <div class="input-group w-75 mx-auto">
+                                            <div class="input-group-prepend">
+                                                <button class="decrease-qty btn">
+                                                    <span>
+                                                        <i class="fas fa-minus fa-sm"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <input class ="form-control" type="number" value="{{ item.quantity }}">
+                                            <div class="input-group-append">
+                                                <button class="increase-qty btn">
+                                                    <span>
+                                                        <i class="fas fa-plus fa-sm"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <button class="btn text-bright" type="submit">Update</button>
                                     </form>
                                 </td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
@@ -46,9 +62,25 @@
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center">
-                                    <form action="">
-                                        <input class ="form-control w-50 mx-auto" type="number" value="{{ item.quantity }}">
-                                        <div class="text-bright" type="submit">Update</div>
+                                    <form action="" class="update-cart-item-qty">
+                                        <div class="input-group w-75 mx-auto">
+                                            <div class="input-group-prepend">
+                                                <button class="decrease-qty btn">
+                                                    <span>
+                                                        <i class="fas fa-minus fa-sm"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <input class ="form-control" type="number" value="{{ item.quantity }}">
+                                            <div class="input-group-append">
+                                                <button class="increase-qty btn">
+                                                    <span>
+                                                        <i class="fas fa-plus fa-sm"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <button class="btn text-bright" type="submit">Update</button>
                                     </form>
                                 </td>
                                 <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>

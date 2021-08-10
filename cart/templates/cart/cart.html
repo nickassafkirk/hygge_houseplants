@@ -32,18 +32,14 @@
                                     <form action="" class="update-cart-item-qty">
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
-                                                <button class="decrease-qty btn">
-                                                    <span>
-                                                        <i class="fas fa-minus fa-sm"></i>
-                                                    </span>
+                                                <button class="decrease-qty btn" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="decrease-btn_{{ item.product.id }}-{{ item.variant.id }}">
+                                                    <i class="fas fa-minus fa-sm"></i>
                                                 </button>
                                             </div>
-                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}" max="{{ item.variant.quantity }}">
+                                            <input type="number" class="form-control adj-quantity" value="{{ item.quantity }}" min="1" max="{{ item.variant.quantity }}" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="id_qty_{{ item.product.id }}-{{ item.variant.id }}">
                                             <div class="input-group-append">
-                                                <button class="increase-qty btn">
-                                                    <span>
-                                                        <i class="fas fa-plus fa-sm"></i>
-                                                    </span>
+                                                <button class="increase-qty btn" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="increase-btn_{{ item.product.id }}-{{ item.variant.id }}">
+                                                    <i class="fas fa-plus fa-sm"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -65,18 +61,14 @@
                                     <form action="" class="update-cart-item-qty">
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
-                                                <button class="decrease-qty btn">
-                                                    <span>
-                                                        <i class="fas fa-minus fa-sm"></i>
-                                                    </span>
+                                                <button class="decrease-qty btn" data-item_id="{{ item.product.id }}" id="decrease-btn_{{ item.product.id }}">
+                                                    <i class="fas fa-minus fa-sm"></i>
                                                 </button>
                                             </div>
-                                            <input class ="form-control adj-quantity" type="number" value="{{ item.quantity }}" max="{{ item.product.quantity }}">
+                                            <input class="form-control adj-quantity" type="number" value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}" data-item_id="{{ item.product.id }}" id="id_qty_{{ item.product.id }}">
                                             <div class="input-group-append">
-                                                <button class="increase-qty btn">
-                                                    <span>
+                                                <button class="increase-qty btn" data-item_id="{{ item.product.id }}" id="increase-btn_{{ item.product.id }}">
                                                         <i class="fas fa-plus fa-sm"></i>
-                                                    </span>
                                                 </button>
                                             </div>
                                         </div>
@@ -124,22 +116,40 @@
 
 {% block footerjs %}
     <script type="text/javascript">
+        // Prevent out of bounds
+        function preventOutOfBounds(itemId) {
+            console.log('Prevent out of bounds', itemId);
+            let targetInput = $(`#id_qty_${itemId}`)[0];
+            let maxValue = parseInt(targetInput['max']);
+            console.log(maxValue)
+            let currentValue = parseInt(targetInput['value']);
+            console.log(currentValue)
+            let disableDecreaseBtn = currentValue < 2;
+            let disableIncreaseBtn = currentValue >= maxValue;
+            $(`#decrease-btn_${itemId}`).prop('disabled', disableDecreaseBtn);
+            $(`#increase-btn_${itemId}`).prop('disabled', disableIncreaseBtn);
+        }
+
         // Increase Qty
         $('.increase-qty').click(function(e) {
-            console.log('event triggered')
+            console.log('increase event triggered')
             e.preventDefault();
             let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
-            let currentQty = parseInt($(closestInput).val())
-            $(closestInput).val(currentQty + 1)
+            let currentQty = parseInt($(closestInput).val());
+            $(closestInput).val(currentQty + 1);
+            itemId = $(this).data('item_id');
+            preventOutOfBounds(itemId)
         });
 
         // Decrease Qty
         $('.decrease-qty').click(function(e) {
-            console.log('event triggered')
+            console.log('decrease event triggered')
             e.preventDefault();
             let closestInput = $(this).closest('.adj-quantity-group').find('.adj-quantity')[0];
-            let currentQty = parseInt($(closestInput).val())
-            $(closestInput).val(currentQty - 1)
+            let currentQty = parseInt($(closestInput).val());
+            $(closestInput).val(currentQty - 1);
+            itemId = $(this).data('item_id');
+            preventOutOfBounds(itemId)
         });
 
     </script>

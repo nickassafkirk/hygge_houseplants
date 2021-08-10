@@ -49,4 +49,13 @@ def shopping_cart(request):
     cart_total = total + shipping
 
     # return context to be made available across site.
+    context = {
+        'cart_contents': cart_contents,
+        'total': total,
+        'product_count': product_count,
+        'cart_total': cart_total,
+        'shipping': shipping,
+        'spend_for_free_shipping': spend_for_free_shipping,
+    }
 
+    return context

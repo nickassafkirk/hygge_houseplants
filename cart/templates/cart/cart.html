@@ -3,16 +3,16 @@
 {% load cart_filters %}
 
 {% block content %}
-<div class="container-fluid my-5 w-75">
+<div class="container-fluid my-5 cart-container">
     <div class="row">
         <div class="col-12">
             <h3>Shopping Cart</h3>
             <hr>
         </div>
-        <div class="col-12 line-items-container">
-            <table class="w-100 bg-light p-3 cart-items-table">
+        <div class="col-12 px-0 line-items-container">
+            <table class="table table-hover table-responsive bg-light cart-items-table">
                 <tr>
-                    <th>Product</th>
+                    <th colspan="2">Product</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">Quantity</th>
                     <th class="text-center">Subtotal</th>
@@ -22,6 +22,11 @@
                     {% for item in cart_contents %}
                         {% if item.variant %}
                            <tr>
+                                <td>
+                                    <div class="image-preview-container">
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
+                                    </div>
+                                </td>
                                 <td><strong>{{ item.product.name }} - [ {{ item.variant.color | title }} - {{ item.variant.size | upper }} ]</strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
@@ -29,6 +34,11 @@
                             </tr>
                         {% else %} 
                             <tr>
+                                <td>
+                                    <div class="image-preview-container">
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
+                                    </div>
+                                </td>
                                 <td><strong>{{ item.product.name }}</strong></td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
@@ -38,8 +48,7 @@
                     
                     {% endfor %}
                     <tr>
-                        <td class="column-total"></td>
-                        <td class="column-total"></td>
+                        <td class="column-total" colspan="3"></td>
                         <td class="text-center column-total"><h5>{{ product_count }}<h5></td>
                         <td class="text-center column-total"><h5>€{{ total }}</h5></td>
                     </tr>
@@ -56,12 +65,14 @@
         <div class="col-12 col-md-6 pt-2">
             <div class="w-75 ms-3">
                 <h5>Order Total:</h5>
-                <h4 class="d-inline-block">€{{ cart_total }}</h4> <small class="text-capitalize d-inline-block ms-1">  Incl VAT.</small>
+                <h4 class="d-inline-block">€{{ cart_total }}</h4> <small class="text-capitalize d-inline-block ms-1"> Incl VAT.</small> / <h5 class="d-inline-block ms-1">€{{ total | calc_tax }}</h5><small class="text-capitalize d-inline-block ms-1">  Excl VAT.</small> 
                 {% if shipping == 0 %}
                 <p><em>You qualify for free shipping! - <i class="fas fa-shipping-fast"></i></em></p>
+                {% else %} 
+                <p><strong>Shipping:</strong> {{ shipping }}</p>
                 {% endif %}
                 <hr>
-                <h5 class="d-inline-block">{{ total | calc_tax }}</h5><small class="text-capitalize d-inline-block ms-1">  Excl VAT.</small>
+                
                 
 
                 </p>

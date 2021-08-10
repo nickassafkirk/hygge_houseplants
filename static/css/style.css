@@ -34,6 +34,10 @@ h3, h4, h5 {
     font-family: var(--head);
 }
 
+.text-bright {
+    color: var(--orange);
+}
+
 /* Header */
 
 .header-custom {
@@ -507,6 +511,11 @@ a.product-path:focus {
     vertical-align: bottom;
 }
 
+.cart-items-table td h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .column-total {
     border-top: 2px solid #ddd;
 }
@@ -514,6 +523,10 @@ a.product-path:focus {
 .image-preview-container, .image-preview {
     height: 50px;
     width: 50px;
+}
+
+.overflow-wrap {
+    overflow-wrap: break-word;
 }
 
 @media screen and (min-width: 576px) {
@@ -531,6 +544,10 @@ a.product-path:focus {
         height: 75px;
         width: 75px;
     }
+
+    .cart-items-table td {
+        font-size: 0.9rem;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -547,6 +564,15 @@ a.product-path:focus {
         width: 100px;
         display: inline-block;
         margin-right: 2%;
+    }
+
+    .cart-items-table th {
+        font-size: 1.1rem;
+    }
+
+    .cart-items-table td h6 {
+        font-size: 1.1rem;
+        font-weight: 600;
     }
 }
 
@@ -595,6 +621,10 @@ a.product-path:focus {
 
     .product-container {
         width: 40vw;
+    }
+
+    .cart-items-table td {
+        font-size: 1rem;
     }
 
 

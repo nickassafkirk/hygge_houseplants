@@ -26,7 +26,7 @@
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
-                                    <strong>{{ item.product.name }} - [ {{ item.variant.color | title }} - {{ item.variant.size | upper }} ]</strong></td>
+                                    <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
@@ -37,7 +37,8 @@
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
                                     </div>
-                                    <strong>{{ item.product.name }}</strong></td>
+                                    <strong class="overflow-wrap">{{ item.product.name }}</strong>
+                                </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center">{{ item.quantity }}</td>
                                 <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>

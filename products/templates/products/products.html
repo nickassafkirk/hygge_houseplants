@@ -49,6 +49,13 @@
                 <hr>
             </div>
         </div>
+        {% empty %}
+            <div class="text-center py-5">
+                <h3>We couldn't find anything matching your search!</h3>
+                <hr class="w-75 mx-auto">
+                <h4>Try another search</h4>
+                <a href="{% url 'products' %}" class="btn btn-bright p-3 mt-2">See all products here!</a>
+            </div>
         {% endfor %}
     </div>
 </div>

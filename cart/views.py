@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib import messages
 
 from products.models import Product, Variant
@@ -28,7 +28,7 @@ def add_to_cart(request, product_id):
         # check if product is in the cart already
         if product_id in list(cart.keys()):
             # check if a specific variant is in the cart
-            if variant in cart[product_id]['product_variants'].keys():
+            if variant_id in list(cart[product_id]['product_variants'].keys()):
                 # if variant exists increase it's quantity
                 cart[product_id]['product_variants'][variant_id] += quantity
                 messages.success(
@@ -77,7 +77,7 @@ def remove_from_cart(request, item_id):
 
         if "-" in item_id:
             product_id = item_id.split('-')[0]
-            variant_id = item_id.split('-')[1]
+            variant_id = request.POST.get('variant')
 
             print(isinstance(product_id, str))
             print(isinstance(variant_id, str))
@@ -88,12 +88,7 @@ def remove_from_cart(request, item_id):
         print(1, cart)
 
         if variant_id:
-            print(cart[product_id]['product_variants'][variant_id])
-            cart_item = cart[product_id]['product_variants'][variant_id]
-            print(isinstance(cart_item, object))
-            print(cart[product_id]['product_variants'][variant_id])
-            if not cart[product_id]['product_variants'][variant_id]:
-                cart.pop(product_id)
+            cart.pop(product_id)
             messages.success(request, 'Item removed from cart!')
         else:
             cart.pop(product_id)

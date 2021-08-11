@@ -174,14 +174,22 @@
         $('.remove-item').click(function(e) {
             let csrfToken = "{{ csrf_token }}";
             let itemId = $(this).attr('id').split('remove_')[1];
-            console.log(itemId)
+            
             let variant;
             if (itemId.includes('-')) {
                 variant = itemId.split('-')[1];
             } else {
                 variant = null;
             }
-            console.log(variant) 
+
+            let url = `/cart/remove/${itemId}/`;
+            let data = {'csrfmiddlewaretoken': csrfToken, 'variant': variant};
+
+            $.post(url, data)
+            .done(function(){
+                location.reload();
+            })
+            
         })
     </script>
 {% endblock %}

@@ -81,18 +81,26 @@ def update_cart_qty(request, item_id):
 
     cart = request.session.get('cart', {})
 
-    quantity = request.POST.get('quantity')
-    print('cart', cart)
-    print('qty', quantity)
+    quantity = int(request.POST.get('quantity'))
 
     if variant_id:
-        print('w/var before', cart[product_id]['product_variants'][str(variant_id)])
-        cart[product_id]['product_variants'][str(variant_id)] = int(quantity)
-        print('w/var after', cart[product_id]['product_variants'][str(variant_id)])
+        if quantity > 0:
+            cart[product_id]['product_variants'][str(variant_id)] = int(quantity)
+            messages.success(request, 'Quantity updated successfully')
+        else:
+            del cart[product_id]['product_variants'][str(variant_id)]
+            if not cart[product_id]['product_variants']:
+                cart.pop(product_id)
+            messages.success(
+                request, 'Item removed from cart!')
     else:
-        print('before', cart[product_id])
-        cart[product_id] = int(quantity)
-        print('after', cart[product_id])
+        if quantity > 0:
+            cart[product_id] = int(quantity)
+            messages.success(request, 'Quantity updated successfully')
+        else:
+            cart.pop(product_id)
+            messages.success(
+                request, 'Item removed from cart!')
 
     request.session['cart'] = cart
 

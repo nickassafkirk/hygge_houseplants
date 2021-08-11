@@ -70,32 +70,34 @@ def add_to_cart(request, product_id):
 
 
 def remove_from_cart(request, item_id):
-
+    
     try:
         product_id = None
         variant_id = None
+        product = None
+        variant = None
 
         if "-" in item_id:
             product_id = item_id.split('-')[0]
             variant_id = request.POST.get('variant')
 
-            print(isinstance(product_id, str))
-            print(isinstance(variant_id, str))
         else:
             product_id = item_id
+
+        product = get_object_or_404(Product, pk=product_id)
 
         cart = request.session.get('cart', {})
 
         if variant_id:
-            print(variant_id)
-            print(type(variant_id))
+            variant = get_object_or_404(Variant, pk=variant_id)
             del cart[product_id]['product_variants'][str(variant_id)]
             if not cart[product_id]['product_variants']:
                 cart.pop(product_id)
-            messages.success(request, f'Item {item_id} removed from cart!')
+            messages.success(
+                request, f'Item {product.name} - {variant.name} removed from cart!')
         else:
             cart.pop(product_id)
-            messages.success(request, 'Item removed from cart!')
+            messages.success(request, f'Item {product.name} removed from cart!')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)

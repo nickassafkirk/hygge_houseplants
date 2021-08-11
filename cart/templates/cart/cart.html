@@ -81,6 +81,13 @@
                                 <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% endif %}
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <h6>No products In Cart!</h6>
+                            <a href="{% url 'products' %}" class="btn btn-bright mt-2">Go to Products</a>
+                        </td>
+                    </tr>
                     {% endfor %}
                     <tr>
                         <td class="adjust-colspan column-total" colspan="2"></td>

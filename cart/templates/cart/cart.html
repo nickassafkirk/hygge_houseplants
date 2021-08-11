@@ -29,14 +29,16 @@
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center p-0">
-                                    <form action="" class="update-cart-item-qty">
+                                    {% with item_id=item.product.id|build_item_id:item.variant.id %}
+                                    <form action="{% url 'update_cart_qty' item_id %}" class="update-cart-item-qty">
+                                    {% endwith %}
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
                                                 <button class="decrease-qty btn" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="decrease-btn_{{ item.product.id }}-{{ item.variant.id }}">
                                                     <i class="fas fa-minus fa-sm"></i>
                                                 </button>
                                             </div>
-                                            <input type="number" class="form-control adj-quantity" value="{{ item.quantity }}" min="1" max="{{ item.variant.quantity }}" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="id_qty_{{ item.product.id }}-{{ item.variant.id }}">
+                                            <input type="number" class="form-control adj-quantity" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.variant.quantity }}" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="id_qty_{{ item.product.id }}-{{ item.variant.id }}">
                                             <div class="input-group-append">
                                                 <button class="increase-qty btn" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="increase-btn_{{ item.product.id }}-{{ item.variant.id }}">
                                                     <i class="fas fa-plus fa-sm"></i>
@@ -60,14 +62,14 @@
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center p-0">
-                                    <form action="" class="update-cart-item-qty">
+                                    <form action="{% url 'update_cart_qty' item.product.id %}" class="update-cart-item-qty">
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
                                                 <button class="decrease-qty btn" data-item_id="{{ item.product.id }}" id="decrease-btn_{{ item.product.id }}">
                                                     <i class="fas fa-minus fa-sm"></i>
                                                 </button>
                                             </div>
-                                            <input class="form-control adj-quantity" type="number" value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}" data-item_id="{{ item.product.id }}" id="id_qty_{{ item.product.id }}">
+                                            <input class="form-control adj-quantity" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}" data-item_id="{{ item.product.id }}" id="id_qty_{{ item.product.id }}">
                                             <div class="input-group-append">
                                                 <button class="increase-qty btn" data-item_id="{{ item.product.id }}" id="increase-btn_{{ item.product.id }}">
                                                         <i class="fas fa-plus fa-sm"></i>

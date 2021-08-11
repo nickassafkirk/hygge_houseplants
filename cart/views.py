@@ -85,11 +85,12 @@ def remove_from_cart(request, item_id):
             product_id = item_id
 
         cart = request.session.get('cart', {})
-        print(1, cart)
 
         if variant_id:
-            cart.pop(product_id)
-            messages.success(request, 'Item removed from cart!')
+            del cart[product_id]['product_variants'][str(variant_id)]
+            if not cart[product_id]['product_variants']:
+                cart.pop(product_id)
+            messages.success(request, f'Item {item_id} removed from cart!')
         else:
             cart.pop(product_id)
             messages.success(request, 'Item removed from cart!')

@@ -70,8 +70,38 @@ def add_to_cart(request, product_id):
 
 
 def remove_from_cart(request, item_id):
-    if "-" in item_id:
-        product_id = item_id.split('-', 0)
-        print(product_id)
-    else:
-        print(item_id)
+
+    try:
+        product_id = None
+        variant_id = None
+
+        if "-" in item_id:
+            product_id = item_id.split('-')[0]
+            variant_id = item_id.split('-')[1]
+
+            print(isinstance(product_id, str))
+            print(isinstance(variant_id, str))
+        else:
+            product_id = item_id
+
+        cart = request.session.get('cart', {})
+        print(1, cart)
+
+        if variant_id:
+            print(cart[product_id]['product_variants'][variant_id])
+            cart_item = cart[product_id]['product_variants'][variant_id]
+            print(isinstance(cart_item, object))
+            print(cart[product_id]['product_variants'][variant_id])
+            if not cart[product_id]['product_variants'][variant_id]:
+                cart.pop(product_id)
+            messages.success(request, 'Item removed from cart!')
+        else:
+            cart.pop(product_id)
+            messages.success(request, 'Item removed from cart!')
+
+        request.session['cart'] = cart
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
+        return HttpResponse(status=500)

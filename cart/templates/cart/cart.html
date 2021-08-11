@@ -43,18 +43,20 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <button class="btn text-bright" type="submit">Update</button>
                                     </form>
+                                    <a class="update-qty-link btn text-bright" type="submit">Update <i class="fas fa-sync-alt"></i></button>
+                                    <a class="remove-item text-danger btn" id="remove_{{ item.product.id }}-{{ item.variant.id }}">Remove <i class="fas fa-trash-alt"></i></a>
                                 </td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
                             </tr>
-                        {% else %} 
+                        {% else %}
                             <tr>
                                 <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
                                         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}</strong>
+                                    <strong>{{ item_id }}</strong>
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center p-0">
@@ -72,13 +74,13 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <button class="btn text-bright" type="submit">Update</button>
                                     </form>
+                                    <a class="update-qty-link btn text-bright">Update <i class="fas fa-sync-alt"></i></a>
+                                    <a class="remove-item text-danger btn" id="remove_{{ item.product.id }}">Remove <i class="fas fa-trash-alt"></i></a>
                                 </td>
                                 <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% endif %}
-                    
                     {% endfor %}
                     <tr>
                         <td class="adjust-colspan column-total" colspan="2"></td>
@@ -115,6 +117,8 @@
 {% endblock %}
 
 {% block footerjs %}
+
+<!-- Scripts for qty input -->
     <script type="text/javascript">
         // Prevent out of bounds
         function preventOutOfBounds(itemId) {
@@ -161,5 +165,23 @@
             preventOutOfBounds(itemId)
         });
 
+    </script>
+
+    <!-- Submit Update & Delete -->
+    <script type="text/javascript">
+
+        // remove and reload on click
+        $('.remove-item').click(function(e) {
+            let csrfToken = "{{ csrf_token }}";
+            let itemId = $(this).attr('id').split('remove_')[1];
+            console.log(itemId)
+            let variant;
+            if (itemId.includes('-')) {
+                variant = itemId.split('-')[1];
+            } else {
+                variant = null;
+            }
+            console.log(variant) 
+        })
     </script>
 {% endblock %}

@@ -67,3 +67,11 @@ def add_to_cart(request, product_id):
 
     # redirect to same product page
     return redirect('single_product', product_id=product.id)
+
+
+def remove_from_cart(request, item_id):
+    if "-" in item_id:
+        product_id = item_id.split('-', 0)
+        print(product_id)
+    else:
+        print(item_id)

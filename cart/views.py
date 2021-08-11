@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 
 from products.models import Product, Variant
@@ -69,8 +69,37 @@ def add_to_cart(request, product_id):
     return redirect('single_product', product_id=product.id)
 
 
+def update_cart_qty(request, item_id):
+    product_id = None
+    variant_id = None
+    product = None
+    variant = None
+
+    if "-" in item_id:
+        product_id = item_id.split('-')[0]
+        variant_id = item_id.split('-')[1]
+    else:
+        product_id = item_id
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    cart = request.session.get('cart', {})
+
+    quantity = request.POST['quantity']
+
+    if variant_id:
+        variant = get_object_or_404(Variant, pk=variant_id)
+        cart[product_id]['product_variants'][str(variant_id)] = quantity
+        messages.success(request, f'{product.name} - { variant.name } Qty updated successfully')
+    else:
+        cart[product.id] = quantity
+        messages.success(request, f'{product.name} Qty updated successfully')
+
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
+
+
 def remove_from_cart(request, item_id):
-    
     try:
         product_id = None
         variant_id = None

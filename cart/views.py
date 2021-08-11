@@ -72,8 +72,6 @@ def add_to_cart(request, product_id):
 def update_cart_qty(request, item_id):
     product_id = None
     variant_id = None
-    product = None
-    variant = None
 
     if "-" in item_id:
         product_id = item_id.split('-')[0]
@@ -81,21 +79,21 @@ def update_cart_qty(request, item_id):
     else:
         product_id = item_id
 
-    product = get_object_or_404(Product, pk=product_id)
-
     cart = request.session.get('cart', {})
 
-    quantity = request.POST['quantity']
+    quantity = request.POST.get('quantity')
+    print('cart', cart)
+    print('qty', quantity)
 
     if variant_id:
-        variant = get_object_or_404(Variant, pk=variant_id)
+        print('w/var before', cart[product_id]['product_variants'][str(variant_id)])
         cart[product_id]['product_variants'][str(variant_id)] = quantity
-        messages.success(request, f'{product.name} - { variant.name } Qty updated successfully')
+        print('w/var after', cart[product_id]['product_variants'][str(variant_id)])
     else:
-        cart[product.id] = quantity
-        messages.success(request, f'{product.name} Qty updated successfully')
+        print('before', cart[product_id])
+        cart[product_id] = quantity
+        print('after', cart[product_id])
 
-    request.session['cart'] = cart
     return redirect(reverse('view_cart'))
 
 

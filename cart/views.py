@@ -87,12 +87,14 @@ def update_cart_qty(request, item_id):
 
     if variant_id:
         print('w/var before', cart[product_id]['product_variants'][str(variant_id)])
-        cart[product_id]['product_variants'][str(variant_id)] = quantity
+        cart[product_id]['product_variants'][str(variant_id)] = int(quantity)
         print('w/var after', cart[product_id]['product_variants'][str(variant_id)])
     else:
         print('before', cart[product_id])
-        cart[product_id] = quantity
+        cart[product_id] = int(quantity)
         print('after', cart[product_id])
+
+    request.session['cart'] = cart
 
     return redirect(reverse('view_cart'))
 

@@ -123,3 +123,35 @@ the default number input adjust buttons and to center the text.
 
 #### Bugs Fixed:
 * Variant delete functionality not operating as anticipated. When creating the delete variant functionality [djangos in built can_delete method](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/#can_delete) was used. When the form was submitted, products were not being deleted. Using print statements it was determined that while the variant was being deleted, it was then subsequently being recreated with the same id when, the save() method was called on each form in the formset. To fix this bug the variant delete functionality was called after the form was saved to ensure that the variant is not recreated. 
+
+* When trying to remove Products with variants from the cart. The variant id attribute is extracted from a unique item_id, this variant id is the key for each variant object in the cart session variable. 
+
+eg. ```
+    {product_id: {'product_variants': {variant_id: item_quantity}}}
+    ```
+
+When taking trying this initially I was experiencing an issue where the product variant was not being removed from the cart. To debug this I checked if the variant_id was a string, it returned True each time. I then checked if the variant was None with a if statement and I added a secondary print statement to check the value of the variant_id variable again. I found that it was returning as an int, which meant that when I tried to delete the variant object from the cart dictionary it was looking for an index of the dictionary that didn't exist instead of calling a dictionary key. To remedy this I explicitly converted the variant_id variable to a string so that the correct dictionary key is selected when the del keyword is used. 
+
+See code below:
+
+    ```
+    try:
+            product_id = None
+            variant_id = None
+
+            if "-" in item_id:
+                product_id = item_id.split('-')[0]
+                variant_id = request.POST.get('variant')
+
+                print(isinstance(product_id, str))
+                print(isinstance(variant_id, str))
+            else:
+                product_id = item_id
+
+            cart = request.session.get('cart', {})
+
+            if variant_id:
+                print(variant_id)
+                print(type(variant_id))
+                del cart[product_id]['product_variants'][str(variant_id)]
+    ```

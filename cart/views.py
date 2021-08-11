@@ -87,6 +87,8 @@ def remove_from_cart(request, item_id):
         cart = request.session.get('cart', {})
 
         if variant_id:
+            print(variant_id)
+            print(type(variant_id))
             del cart[product_id]['product_variants'][str(variant_id)]
             if not cart[product_id]['product_variants']:
                 cart.pop(product_id)

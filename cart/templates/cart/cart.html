@@ -30,8 +30,10 @@
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center p-0">
                                     {% with item_id=item.product.id|build_item_id:item.variant.id %}
-                                    <form action="{% url 'update_cart_qty' item_id %}" class="update-cart-item-qty">
+                                    {{ item_id }}
+                                    <form action="{% url 'update_cart_qty' item_id %}" method="POST" class="update-cart-item-qty">
                                     {% endwith %}
+                                        {% csrf_token %}
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
                                                 <button class="decrease-qty btn" data-item_id="{{ item.product.id }}-{{ item.variant.id }}" id="decrease-btn_{{ item.product.id }}-{{ item.variant.id }}">
@@ -62,7 +64,8 @@
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center p-0">
-                                    <form action="{% url 'update_cart_qty' item.product.id %}" class="update-cart-item-qty">
+                                    <form action="{% url 'update_cart_qty' item.product.id %}" method="POST" class="update-cart-item-qty">
+                                        {% csrf_token %}
                                         <div class="input-group adj-quantity-group mx-auto">
                                             <div class="input-group-prepend">
                                                 <button class="decrease-qty btn" data-item_id="{{ item.product.id }}" id="decrease-btn_{{ item.product.id }}">
@@ -178,6 +181,12 @@
 
     <!-- Submit Update & Delete -->
     <script type="text/javascript">
+
+       // update quantity on click
+        $('.update-qty-link').click(function(e) {
+            var form = $(this).prev('.update-cart-item-qty');
+            form.submit();
+        })
 
         // remove and reload on click
         $('.remove-item').click(function(e) {

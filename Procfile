@@ -1,0 +1,1 @@
+web: gunicorn hygge_houseplants.wsgi:application

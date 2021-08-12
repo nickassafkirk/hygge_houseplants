@@ -134,24 +134,68 @@ When taking trying this initially I was experiencing an issue where the product 
 
 See code below:
 
-    ```
-    try:
-            product_id = None
-            variant_id = None
+``` try:
+        product_id = None
+        variant_id = None
 
-            if "-" in item_id:
-                product_id = item_id.split('-')[0]
-                variant_id = request.POST.get('variant')
+        if "-" in item_id:
+            product_id = item_id.split('-')[0]
+            variant_id = request.POST.get('variant')
 
-                print(isinstance(product_id, str))
-                print(isinstance(variant_id, str))
-            else:
-                product_id = item_id
+            print(isinstance(product_id, str))
+            print(isinstance(variant_id, str))
+        else:
+            product_id = item_id
 
-            cart = request.session.get('cart', {})
+        cart = request.session.get('cart', {})
 
-            if variant_id:
-                print(variant_id)
-                print(type(variant_id))
-                del cart[product_id]['product_variants'][str(variant_id)]
-    ```
+        if variant_id:
+            print(variant_id)
+            print(type(variant_id))
+            del cart[product_id]['product_variants'][str(variant_id)]
+```
+
+***
+
+### Deployment 
+
+
+To replicate this project in your own local environment, the following steps should be followed:
+ 1. Go to the [project repository on Github](https://github.com/nickassafkirk/hygge_houseplants)
+
+ 1. ![deployment step 1](/media/deploys1.png) Within the code section if using the Gitpod IDE, first install [Gitpod's browser extension](https://www.gitpod.io/docs/browser-extension/), then with the extension installed click the green gitpod button to create a clone of this project in your own Gitpod IDE. 
+ 
+ 1. If using the a different development environment this project can be cloned to your local machine using HTTPS or SSH - Detailed instructions on how to do this can be found in [Github's documentation](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
+
+ 1. With the project repositiory cloned to your machine you will then need to create and env.py file in your root directory. If it is not already there you must then create a .gitignore file and add your env.py file to it.
+
+ 1. In your env.py file first ```import os``` you will create your environmental variables using the statement ```os.environ.setdefault('VARIABLE_NAME', 'variable_value')```
+
+    For this project the following env variables should be created.
+    * 'SECRET_KEY' - Your Django secret key token: To create a secret key [this secret key generator can be used](https://miniwebtool.com/django-secret-key-generator/)
+    * 'DEFAULT_FROM_EMAIL' - The default from email used for emails sent from the application
+    * 'DATABASE_URL' - The postgress database URL created when Postgress was installed in your Heroku app
+    * 'HEROKU_HOSTNAME' - The URL for your deployed heroku app eg. your_project_name.herokuapp.com
+    * 'EMAIL_HOST_PASS'
+    * 'EMAIL_HOST_USER'
+
+    The following env variables should be added to the config vars in your Heroku app but can be added to you local env for development purposes. 
+
+    * 'AWS_ACCESS_KEY_ID'
+    * 'AWS_S3_REGION_NAME'
+    * 'AWS_SECRET_ACCESS_KEY'
+    * 'AWS_STORAGE_BUCKET_NAME'
+    * 'STRIPE_PUBLIC_KEY'
+    * 'STRIPE_SECRET_KEY'
+    * 'STRIPE_WH_SECRET'
+    * 'USE_AWS' - Set to True
+    
+1. With the Environmental variables defined we now need to install the packages needed to run the project. These can be found in the requirements.txt file in the root directory. We can install each dependency by using the ```pip3 install <package_name>``` command in the terminal. 
+    * pip3 install django
+    * pip3 install django-allauth
+    * pip3 install django-crispy-forms
+    * pip3 install dj-database-url
+    * pip3 install gunicorn
+    * pip3 install pillow
+    * pip3 install psycopg2-binary
+    

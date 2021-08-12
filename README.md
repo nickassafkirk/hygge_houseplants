@@ -198,4 +198,10 @@ To replicate this project in your own local environment, the following steps sho
     * pip3 install gunicorn
     * pip3 install pillow
     * pip3 install psycopg2-binary
+
+1. If the requirements.txt file does not exist in your workspace, you can create it by using the ```pip3 freeze > requirements.txt``` command in the terminal.
+
+1. At this point you need to create a Procfile if it does not already exist. To do this you can use the command ```touch Procfile``` in the terminal. Once created you can write the following code in the Procfile: ```web: gunicorn <project_name>.wsgi:application``` with the name of the project where ```<project_name>``` has been include in the command above.
+
+1. Were now ready to create our app in Heroku. 
     

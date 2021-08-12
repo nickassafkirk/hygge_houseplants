@@ -199,9 +199,36 @@ To replicate this project in your own local environment, the following steps sho
     * pip3 install pillow
     * pip3 install psycopg2-binary
 
-1. If the requirements.txt file does not exist in your workspace, you can create it by using the ```pip3 freeze > requirements.txt``` command in the terminal.
+1. If the requirements.txt file does not exist in your workspace, you can create it by using the ```pip3 freeze > requirements.txt``` command in the terminal or by installing the packages outlined [here](https://github.com/nickassafkirk/hygge_houseplants/blob/main/requirements.txt)     
+*Please note: The package versions listed in the requirements.txt file above were accurate at the time this project was created. New iterations of these dependecies may have been released at the time that you wish to clone this project - You can consult each package's documentation should you require additonal information.*
+
+    *Also note: Each package installed may be composed of more than one component, please check what dependencies are installed with the command* ```pip3 freeze``` *after each package has been installed.*
 
 1. At this point you need to create a Procfile if it does not already exist. To do this you can use the command ```touch Procfile``` in the terminal. Once created you can write the following code in the Procfile: ```web: gunicorn <project_name>.wsgi:application``` with the name of the project where ```<project_name>``` has been include in the command above.
 
-1. Were now ready to create our app in Heroku. 
+1. Were now ready to create our app in Heroku. To do so go to [heroku.com](https//:www.heroku.com) and create an account or login by following the prompts.
+
+    Next, in your account panel click the 'new' dropdown button in the top right corner. From the options select the 'Create new app' option. This will bring you to the following page.
+
+    ![heroku create app](media/herokusgrab1.png)
+
+    Here you can select a name for you application and select your nearest geographical region. In my case Europe.
+
+1. You will no be brought to the main panel for your new app. In the resources tab search for postgres in the add-ons search box. Select Heroku Postgres. YOu can select the Hobby Dev option tier. 
+
+    ![heroku resource add ons](/media/herokusgrab2.png)
+
+1. Once we've added the Heroku Postgres Add-on we can go to the settings tab in the panel. Next click 'reveal config vars'. After adding the Heroku Postgres add-on your DATABASE_URL variable should have been automatically created in heroku. You can now copy and paste this value into the env.py file you have already created in your local environment. 
+Having done this you can now create the Environmental variables you have already included in your env.py file in the config vars section in heroku.
+
+1. Next we need to Configure AWS S3: first go to [Amazon AWS](https://aws.amazon.com/) and sign in or sign up by following the prompts. You will need to provide credit card details to successfully create an account but it is unlikely that you will incur any charges. You can read Amazon's terms and conditions for further information on Billing, Privacy and more. 
+
+1. Once you've created and verified your account, navigate to AWS S3 using the search bar or services menu at the top of the page. Next click create bucket.
+Assign your bucket name and pick your closest region. You can then scroll past all other options and click save. 
+
+1. In the permissions tab, unblock all the options and click save changes. You may be required to confirm your decision by typing confirm.
+
+1. In the permissions tab go to edit permissions and then click the policy generator tab. Select policy type of 'S3 Bucket Policy'
+
+
     

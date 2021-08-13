@@ -242,9 +242,29 @@ You can now create the Environmental variables you have already included in your
 1. Once you've created and verified your account, navigate to AWS S3 using the search bar or services menu at the top of the page. Next click create bucket.
 Assign your bucket name and pick your closest region. You can then scroll past all other options and click save. 
 
-1. In the permissions tab, unblock all the options and click save changes. You may be required to confirm your decision by typing confirm.
+1. In the menu within your newly created bucket, click the properties tab. Then scroll to the static website hosting section and click edit. Here click the host website checkbox and enter index.html and error.html in the suggested fields. After that click save. While the two specified pages are irrelevant, this will create a URL that we can use to access our static and media files.
 
-1. In the permissions tab go to edit permissions and then click the policy generator tab. Select policy type of 'S3 Bucket Policy'
+1. Next in the permissions tab in the bucket panel, go to the CORS section, click edit and paste in the following code: 
+    ```
+    [
+        {
+            "AllowedHeaders": [
+                "Authorization"
+            ],
+            "AllowedMethods": [
+                "GET"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+    ```
+
+1.  In the permission again, in the "Block public access (bucket settings)" section click edit and unblock all the options and click save changes. You may be required to confirm your decision by typing confirm.
+
+1. In the permissions tab go to edit permissions, first copy (ctrl/cmd + c) the 'Bucket ARN' and then click the policy generator tab. In the policy generator select policy type of 'S3 Bucket Policy', effect can be left as the default allow, in the principal we can use the * symbol. In the action dropdown menu select 'Get Object' and then in the ARN file dpaste the ARN value we copied from teh previous page. Next click 'add statement' and finally the 'add policy' button.
 
 
     

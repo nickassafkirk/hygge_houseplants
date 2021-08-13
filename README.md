@@ -268,4 +268,22 @@ Assign your bucket name and pick your closest region. You can then scroll past a
 
 1. Finally in the Permissions section again, navigate to the access control list section. In the public access section, click edit and then beside the 'Everyone (public access)' subheading click the 'list' checkbox and click save.
 
-1. Next configure IAM
+1. Next configure IAM. In the AWS services menu Search for IAM. Once in IAM, in the dashboard on the left hand side click the user groups tab. Click the create user group button and and give your new group a name in the relevant field. Skip the next page sections and click the button to create your user group. 
+
+1. On dashboard on the left hand side you now click the 'policies tab. Now click the blue create policy button. This will open a popup. Click the JSON tab and then the link in the top right corner of the popup that says 'Import managed policy'. Using the search bar select the 'Amazon S3 full access' option and click import. This will load some Json into a textfield. We're going to change the value of the 'resource' key to a list. the first list item will be the S3 Bucket ARN that we used when configuring our s3 bucket, the second list item will be the S3 Bucket ARN followed by '/*'
+
+    eg: 
+    ``` 
+        'resource': [
+            'enter the s3 arn here',
+            'enter the s3 arn here/*',
+        ]
+        
+    ```
+    now click the 'next tags' button, and after that skip the tag options and click the 'next review' button. On the review page you can give the policy a name and a description and click create policy. This will bring you back to the policies page where you should now see your new policy listed.
+
+1. Now in the dashboard on the left click into the user groups section. Access the group you created in step 22. In the permissions tab, click the 'add permissions menu in the right hand corner of the permissions panel. The click the 'attach policies' link. From the list of available policies find the policy we just created adn then click the attach permissions button to attach it to our user group. 
+
+1. We now need to create a user. In the left hand panel click 'users', then click the 'create users' button. Add a user name in the relevant field eg projectname-staticfiles-user. Select the 'programmatic access' checkbox and then click the 'next permissions' button. we'll be taken to a page where our different user groups are listed. Selected the user group that we created in the provious steps and then click 'next; tags'. We can skip the add tags section and click the 'review' button. Finally having reviewed the user we just created we can click the create user button. 
+
+1. You will land on a success page where your user, user_access_key_id and user_secret_key are listed. Download the user security details using the download csv button and save the file somewhere secure. It's important to download the file as you wont be able to access them again.

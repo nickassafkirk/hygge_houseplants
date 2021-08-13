@@ -190,11 +190,13 @@ To replicate this project in your own local environment, the following steps sho
     * 'STRIPE_WH_SECRET'
     * 'USE_AWS' - Set to True
     
-1. With the Environmental variables defined we now need to install the packages needed to run the project. These can be found in the requirements.txt file in the root directory. We can install each dependency by using the ```pip3 install <package_name>``` command in the terminal. 
+1. With the Environmental variables defined we now need to install the packages needed to run the project. These can be found in the requirements.txt file in the root directory. We can install each dependency by using the ```pip3 install <package_name>``` command in the terminal.
+    * pip3 install boto3
     * pip3 install django
     * pip3 install django-allauth
     * pip3 install django-crispy-forms
     * pip3 install dj-database-url
+    * pip3 install django-storages
     * pip3 install gunicorn
     * pip3 install pillow
     * pip3 install psycopg2-binary
@@ -287,3 +289,26 @@ Assign your bucket name and pick your closest region. You can then scroll past a
 1. We now need to create a user. In the left hand panel click 'users', then click the 'create users' button. Add a user name in the relevant field eg projectname-staticfiles-user. Select the 'programmatic access' checkbox and then click the 'next permissions' button. we'll be taken to a page where our different user groups are listed. Selected the user group that we created in the provious steps and then click 'next; tags'. We can skip the add tags section and click the 'review' button. Finally having reviewed the user we just created we can click the create user button. 
 
 1. You will land on a success page where your user, user_access_key_id and user_secret_key are listed. Download the user security details using the download csv button and save the file somewhere secure. It's important to download the file as you wont be able to access them again.
+
+1. You now need to connect your Django app to our S3 Bucket. In settings.py, first ensure that 'storages' is added to you our list of installed apps. Then ensure the following code is included in the settings.py file under the static/media comment/ 
+    ```
+    if 'USE_AWS' in os.environ:
+        AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+        AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+        AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    ```
+
+1. In heroku under the settings section reveal your config vars and use the values from S3 Bucket and the CSV file that you downloaded at step 26 to add the config variables to your heroku app. You will also need to Add the following variables
+
+    AWS_STORAGE_BUCKET_NAME -> The name of your S3 Bucket you created for this project
+    AWS_S3_REGION_NAME -> The region for your S3 Bucket eg 'eu-west-1'
+    AWS_ACCESS_KEY_ID -> The AWS access key ID from the CSV file you downloaded
+    AWS_SECRET_ACCESS_KEY -> The AWS secret access key from the CSV file you downloaded
+    USE_AWS -> True
+
+1. You can then delete the DISABLE_COLLECTSTATIC config variable from your heroku app to allow heroku to collect static files and upload them to S3
+
+
+

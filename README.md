@@ -264,7 +264,8 @@ Assign your bucket name and pick your closest region. You can then scroll past a
 
 1.  In the permission again, in the "Block public access (bucket settings)" section click edit and unblock all the options and click save changes. You may be required to confirm your decision by typing confirm.
 
-1. In the permissions tab go to edit permissions, first copy (ctrl/cmd + c) the 'Bucket ARN' and then click the policy generator tab. In the policy generator select policy type of 'S3 Bucket Policy', effect can be left as the default allow, in the principal we can use the * symbol. In the action dropdown menu select 'Get Object' and then in the ARN file dpaste the ARN value we copied from teh previous page. Next click 'add statement' and finally the 'add policy' button.
+1. In the permissions tab go to edit permissions, first copy (ctrl/cmd + c) the 'Bucket ARN' and then click the policy generator tab. In the policy generator select policy type of 'S3 Bucket Policy', effect can be left as the default allow, in the principal we can use the * symbol. In the action dropdown menu select 'Get Object' and then in the ARN field paste the ARN value you copied from the previous page. Next click 'add statement' and finally the 'add policy' button. The completed policy will then be revealed. Copy this completed policy and paste it into the policy field on the edit policy page. Finally within the pasted policy add /* to the end of the resource key to enable access to all resources in the bucket.
 
+1. Finally in the Permissions section again, navigate to the access control list section. In the public access section, click edit and then beside the 'Everyone (public access)' subheading click the 'list' checkbox and click save.
 
-    
+1. Next configure IAM

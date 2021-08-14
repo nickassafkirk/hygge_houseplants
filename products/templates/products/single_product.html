@@ -90,6 +90,11 @@
         let currentVariantImg = currentVariant.attr('data-var_img')
         let mainProductImage = $('#main-product-img')
         mainProductImage.attr('src', currentVariantImg)
+
+        let currentVariantPrice = currentVariant.attr('data-var_price')
+        console.log(currentVariantPrice)
+        let mainProductPrice = $('#product-price')
+        mainProductPrice.text(`€${currentVariantPrice}`)
     })
 </script>
 {% endblock %}

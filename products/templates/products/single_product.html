@@ -81,3 +81,16 @@
 </div>
 {% endblock %}
 
+{% block footerjs %}
+<script type="text/javascript">
+
+    $('#variant-select').change(function(){
+        let currentVariantId = $(this).val()
+        let currentVariant = $(`#variant-${currentVariantId}`)
+        let currentVariantImg = currentVariant.attr('data-var_img')
+        let mainProductImage = $('#main-product-img')
+        mainProductImage.attr('src', currentVariantImg)
+    })
+</script>
+{% endblock %}
+

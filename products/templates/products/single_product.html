@@ -19,7 +19,7 @@
                     <li class="var-img" id="variant-{{ variant.id}}" data-var_img="{{ product.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
                 {% endif %}
             {% endfor %}
-            <li id="base-price" data-var_price="{{ product.price }}"></li>
+            <li id="base-price" data-var_price="{{ product.price }}" data-var_img="{{ product.image.url }}"></li>
         </ul>
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
             <div class="row">
@@ -165,7 +165,8 @@
         $('#add-to-cart-btn').addClass('bg-danger')
     }
 
-    let variantImages = []
+    const baseProductImg = document.querySelector('#base-price').dataset.var_img
+    let variantImages = [baseProductImg]
     let variants = document.querySelectorAll('.var-img');
     for (variant of variants){
         let singleImg = variant.dataset.var_img
@@ -181,14 +182,15 @@
         }
     }
 
-    setThumnailImage(0);
+    let setImageThumnailIndex = 0
 
-    console.log(variantImages)
-        
-    
-    
-    
-    
+    setThumnailImage(setImageThumnailIndex);
+
+   $('.thumbnail').click(function(){
+       let targetImage = $(this).children('.thumbnail-img').attr('src')
+       let mainProductImage = $('#main-product-img');
+       mainProductImage.attr('src', targetImage);
+   })
 
 </script>
 {% endblock %}

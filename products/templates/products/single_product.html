@@ -12,12 +12,13 @@
         </div>
         <ul class="hidden-variants ">
             {% for variant in variants %}
-                {% if variant.image.url != '' or variant.image.url != None %}
+                {% if variant.image %}
                     <li id="variant-{{ variant.id}}"  data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
                 {% else %}
                     <li id="variant-{{ variant.id}}" data-var_img="{{ product.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
                 {% endif %}
             {% endfor %}
+            <li id="base-price" data-var_price="{{ product.price }}"></li>
         </ul>
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
             <div class="row">
@@ -28,7 +29,7 @@
             {% if variants %}
                 <div class="row">
                     {% for variant in variants %}
-                        {% if variant.image.url != '' or variant.image.url != None %}
+                        {% if variant.image %}
                             <div class="col-4 ps-3 pt-3">
                                 <img src="{{ variant.image.url }}" class="thumbnail-img" alt="{{ variant.name }}">
                             </div>
@@ -105,7 +106,8 @@
         if (currentVariantPrice != "None") {
             mainProductPrice.text(`€${currentVariantPrice}`);
         } else {
-
+            const basePrice = $('#base-price').attr('data-var_price');
+            mainProductPrice.text(`€${basePrice}`);
         }
         
         

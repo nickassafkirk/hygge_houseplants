@@ -10,10 +10,15 @@
             <a href="{% url 'products' %}?category={{ product.category }}">{{ product.category | title }}</a> /
             <a href="{% url 'single_product' product.id %}">Product/{{product.id}}</a>
         </div>
+        <ul class="hidden-variants ">
+            {% for variant in variants %}
+                <li id="variant-{{ variant.id}}" data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
+            {% endfor %}
+        </ul>
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
             <div class="row">
                 <div class="col-12 single-product-img-container p-0">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
                 </div>
             </div>
             {% if variants %}
@@ -30,10 +35,10 @@
         </div>
         <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
             <h3 class="px-3 px-lg-5">{{ product.name }}</h3>
-            <h4 class="px-3 px-lg-5">€{{ product.price }}</h4>
+            <h4 class="px-3 px-lg-5" id="product-price">€{{ product.price }}</h4>
             <hr>
             
-            <p class="px-3 px-lg-5"><strong>Availability: </strong>
+            <p class="px-3 px-lg-5" id="product-quantity"><strong>Availability: </strong>
                 {% if product.quantity > 0 %}
                 <span class="text-success">{{ product.quantity }} In Stock</span>
                 {% else %}
@@ -48,7 +53,7 @@
                     {% if variants %}
                         <select class="form-select" name="variant-select" id="variant-select">
                             {% for variant in variants %}
-                                <option value="{{ variant.id }}" data-var_id="{{ variant.id }}" data-var_qty="{{ variant.qty }}" selected="selected">{{ variant.color | title }} - {{ variant.size | upper }}</option>
+                                <option value="{{ variant.id }}">{{ variant.color | title }} - {{ variant.size | upper }}</option>
                             {% endfor %}
                         </select>
                     {% endif %}

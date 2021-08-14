@@ -67,7 +67,7 @@
                     <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1">
                 </div>
                 <div class="col-12 mt-2">
-                    <button type="submit" class="btn btn-bright w-100 p-2">Add to Cart <i class="fas fa-cart-plus"></i></button>
+                    <button type="submit" class="btn btn-bright w-100 p-2" id="add-to-cart-btn">Add to Cart <i class="fas fa-cart-plus"></i></button>
                 </div>
             </form>
 
@@ -110,7 +110,6 @@
             mainProductPrice.text(`€${basePrice}`);
         }
         
-        
         // repeat for quantity
         let currentVariantQty = currentVariant.attr('data-var_qty');
         let productAvailablity = $('#product-availability');
@@ -120,14 +119,30 @@
                 <span class="text-success">${currentVariantQty} In Stock</span>
                 `
             )
+            enableAddToCart()
         } else {
             productAvailablity.html(
                 `<strong>Availability: </strong>
                 <span class="text-danger">Sold Out</span>
                 `
             )
+            disableAddToCart()
         } 
     })
+
+    function enableAddToCart(){
+        $('#add-to-cart-btn').removeClass('bg-danger')
+        $('#add-to-cart-btn').html(`Add to Cart <i class="fas fa-cart-plus"></i>`)
+        $('#add-to-cart-btn').attr('disabled', false)
+    }
+
+    function disableAddToCart(){
+        $('#add-to-cart-btn').attr('disabled', true)
+        $('#add-to-cart-btn').html('Sold Out <i class="fas fa-ban"></i>')
+        $('#add-to-cart-btn').addClass('bg-danger')
+
+    }
+
 </script>
 {% endblock %}
 

@@ -430,6 +430,14 @@ a.product-path:focus {
     object-fit: scale-down;
 }
 
+.indicator {
+    content: "";
+    height: 0.3rem;
+    width: 0.3rem;
+    border-radius: 50%;
+    background: #555;
+}
+
 /* Add Product Form */ 
 
 .form-container form label, #contact-form label, #add-product-form label {

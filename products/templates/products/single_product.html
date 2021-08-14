@@ -54,9 +54,9 @@
                     <img src="" alt="" class="thumbnail-img thumbnail-test">
                 </div>
             </div>
-            <div class="text-center">
-                <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-3x"></i></a>
-                <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-3x"></i></a>
+            <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
+                <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
+                <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-2x"></i></a>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
@@ -182,11 +182,13 @@
             i += 1
         }
     }
-
+    
+    // Set image thumnails when page loads
     let imageThumbnailIndex = 0
     
     setThumbnailImage(imageThumbnailIndex)
-
+    
+    // Go back one image when left arrow button is clicked
     $('#thumbnail-prev').click(function(){
         if (imageThumbnailIndex == 0 ){
             imageThumbnailIndex = (variantImages.length - 3)
@@ -202,15 +204,8 @@
         } else {
             imageThumbnailIndex += 1
         }
-        
         setThumbnailImage(imageThumbnailIndex)
-        console.log(imageThumbnailIndex)
-        
     });
-
-    console.log(imageThumbnailIndex)
-
-    
 
    // Set main gallery image to selected thumnail on click
    $('.thumbnail').click(function(){
@@ -218,6 +213,13 @@
        let mainProductImage = $('#main-product-img');
        mainProductImage.attr('src', targetImage);
    })
+
+  // Create indicator dots to represent number of images
+  for (i=0; i < variantImages.length; i++) {
+      let newIndicator = document.createElement('span');
+      $(newIndicator).addClass('indicator');
+      $('#thumbnail-prev').after(newIndicator);
+  }
 
 </script>
 {% endblock %}

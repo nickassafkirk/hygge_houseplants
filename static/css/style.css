@@ -186,6 +186,22 @@ footer .social-icon a i {
     border-right: 2px solid #e4e3db;
 }
 
+/* Messages Container */
+
+.message-container {
+    padding: 1%;
+}
+
+.message-container .success {
+    color:rgba(0, 140, 45, 0.75);
+    font-family: var(--head);
+    border-top: 2px solid rgba(0, 140, 45, 0.75);
+    border-bottom: 2px solid rgba(0, 140, 45, 0.75);
+    max-width: 75%;
+    padding: 1% 0;
+    margin: 0 auto;
+}
+
 /* Homepage Hero Image */
 
 .hero-image-container {

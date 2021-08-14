@@ -11,7 +11,7 @@
             <a href="{% url 'single_product' product.id %}">Product/{{product.id}}</a>
         </div>
         <!-- Create list of hidden variants to enable dynamic change of images, availability and pricing -->
-        <ul class="hidden-variants ">
+        <ul class="hidden-variants d-none">
             {% for variant in variants %}
                 {% if variant.image %}
                     <li id="variant-{{ variant.id}}"  data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>

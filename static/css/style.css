@@ -235,8 +235,16 @@ footer .social-icon a i {
 .hero-image-btn {
     display: block;
     max-width: 50%;
-    background: rgba(0, 140, 45, 0.75);
+    background: #cebfa8;
     font-family: var(--hygge);
+    color: #000;
+    text-shadow: none;
+}
+
+.hero-image-btn:hover,
+.hero-image-btn:active,
+.hero-image-btn:focus {
+    background: var(--orange);
 }
 
 /* Hygge Info Box */
@@ -254,10 +262,9 @@ footer .social-icon a i {
 
 #hygge-what {
     font-family: var(--hygge);
-    text-shadow: 2px 2px #ddd;
     text-underline-offset: 7px;
     text-decoration: underline double;
-    text-decoration-color: rgb(192, 56, 197);
+    text-decoration-color: var(--orange);
 }
 
 #hygge-is {
@@ -310,7 +317,7 @@ footer .social-icon a i {
 .tile-title:hover,
 .tile-title:active,
 .tile-title:focus {
-    color: var(--orange);
+    color: #cebfa8;
 }
 
 .tile:before {

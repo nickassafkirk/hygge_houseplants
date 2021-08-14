@@ -165,7 +165,7 @@
         $('#add-to-cart-btn').addClass('bg-danger')
     }
 
-
+    // Build array of variant images and add base product image
     const baseProductImg = document.querySelector('#base-price').dataset.var_img
     let variantImages = [baseProductImg]
     let variants = document.querySelectorAll('.var-img');
@@ -183,23 +183,32 @@
         }
     }
 
-    let setImageThumbnailIndex = 0
+    let imageThumbnailIndex = 0
     
-    setThumbnailImage(setImageThumbnailIndex)
+    setThumbnailImage(imageThumbnailIndex)
 
     $('#thumbnail-prev').click(function(){
-        console.log(setImageThumbnailIndex)
-        setImageThumbnailIndex -= 1
-        setThumbnailImage(setImageThumbnailIndex)
+        if (imageThumbnailIndex == 0 ){
+            imageThumbnailIndex = (variantImages.length - 3)
+        } else {
+            imageThumbnailIndex -= 1
+        }
+        setThumbnailImage(imageThumbnailIndex)
     });
 
     $('#thumbnail-next').click(function(){
-        setImageThumbnailIndex += 1
-        setThumbnailImage(setImageThumbnailIndex)
-        console.log(setImageThumbnailIndex)
+        if (imageThumbnailIndex == (variantImages.length - 3) ){
+            imageThumbnailIndex = 0
+        } else {
+            imageThumbnailIndex += 1
+        }
+        
+        setThumbnailImage(imageThumbnailIndex)
+        console.log(imageThumbnailIndex)
+        
     });
 
-    console.log(setImageThumbnailIndex)
+    console.log(imageThumbnailIndex)
 
     
 

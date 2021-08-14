@@ -55,8 +55,8 @@
                 </div>
             </div>
             <div class="text-center">
-                <a class="btn" id="thumnail-prev"><i class="fas fa-chevron-circle-left fa-3x"></i></a>
-                <a class="btn" id="thumnail-next"><i class="fas fa-chevron-circle-right fa-3x"></i></a>
+                <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-3x"></i></a>
+                <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-3x"></i></a>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
@@ -165,6 +165,7 @@
         $('#add-to-cart-btn').addClass('bg-danger')
     }
 
+
     const baseProductImg = document.querySelector('#base-price').dataset.var_img
     let variantImages = [baseProductImg]
     let variants = document.querySelectorAll('.var-img');
@@ -175,17 +176,34 @@
 
     let thumbnailImageBoxes = document.querySelectorAll('.thumbnail-test');
     
-    function setThumnailImage(i) {
+    function setThumbnailImage(i) {
         for (box of thumbnailImageBoxes){
             box.src = variantImages[i]
             i += 1
         }
     }
 
-    let setImageThumnailIndex = 0
+    let setImageThumbnailIndex = 0
+    
+    setThumbnailImage(setImageThumbnailIndex)
 
-    setThumnailImage(setImageThumnailIndex);
+    $('#thumbnail-prev').click(function(){
+        console.log(setImageThumbnailIndex)
+        setImageThumbnailIndex -= 1
+        setThumbnailImage(setImageThumbnailIndex)
+    });
 
+    $('#thumbnail-next').click(function(){
+        setImageThumbnailIndex += 1
+        setThumbnailImage(setImageThumbnailIndex)
+        console.log(setImageThumbnailIndex)
+    });
+
+    console.log(setImageThumbnailIndex)
+
+    
+
+   // Set main gallery image to selected thumnail on click
    $('.thumbnail').click(function(){
        let targetImage = $(this).children('.thumbnail-img').attr('src')
        let mainProductImage = $('#main-product-img');

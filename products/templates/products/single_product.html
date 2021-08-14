@@ -10,6 +10,7 @@
             <a href="{% url 'products' %}?category={{ product.category }}">{{ product.category | title }}</a> /
             <a href="{% url 'single_product' product.id %}">Product/{{product.id}}</a>
         </div>
+        <!-- Create list of hidden variants to enable dynamic change of images, availability and pricing -->
         <ul class="hidden-variants ">
             {% for variant in variants %}
                 {% if variant.image %}
@@ -23,14 +24,19 @@
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
             <div class="row">
                 <div class="col-12 single-product-img-container p-0">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
+                    <img src="{% if first_available_variant.image %}{{ first_available_variant.image.url }}{% elif product.image %}{{ product.image }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
                 </div>
             </div>
             {% if variants %}
-                <div class="row">
+                <div class="thumbnail-container">
+                    {% if first_available_variant.image %}
+                        <div class="thumbnail">
+                            <img src="{{ product.image.url }}" class="thumbnail-img" alt="{{ product.name }}">
+                        </div>
+                    {% endif %}
                     {% for variant in variants %}
                         {% if variant.image %}
-                            <div class="col-4 ps-3 pt-3">
+                            <div class="thumbnail">
                                 <img src="{{ variant.image.url }}" class="thumbnail-img" alt="{{ variant.name }}">
                             </div>
                         {% endif %}

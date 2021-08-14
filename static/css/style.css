@@ -331,7 +331,6 @@ footer .social-icon a i {
     width: 100%;
 }
 
-
 /* Products */
 
 .product-container {
@@ -405,11 +404,30 @@ a.product-path:focus {
     margin: 0 auto;
 }
 
-.thumbnail-img {
+.thumbnail-container {
     max-width: 100%;
-    max-height: 100%;
+    margin: 0 auto;
+    padding: 0 3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.thumbnail {
+    margin-top: 3%;
+    flex-basis: 30%;
+    text-align: center;
+    height: 200px;
+    background: #fff;
+}
+
+.thumbnail-img {
+    padding: 3% 0;
+    width: 100%;
+    height: 100%;
     object-fit: scale-down;
-    margin: 2% 0;
 }
 
 /* Add Product Form */ 

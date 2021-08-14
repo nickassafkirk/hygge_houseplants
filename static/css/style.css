@@ -419,7 +419,7 @@ a.product-path:focus {
     margin-top: 3%;
     flex-basis: 30%;
     text-align: center;
-    height: 200px;
+    height: 100px;
     background: #fff;
 }
 
@@ -747,5 +747,9 @@ input[type='number']::-webkit-outer-spin-button {
 
     .adj-quantity-group {
         max-width: 60%;
+    }
+
+    .thumbnail {
+        height: 150px;
     }
 }

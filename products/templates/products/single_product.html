@@ -12,7 +12,11 @@
         </div>
         <ul class="hidden-variants ">
             {% for variant in variants %}
-                <li id="variant-{{ variant.id}}" data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
+                {% if variant.image.url != '' or variant.image.url != None %}
+                    <li id="variant-{{ variant.id}}"  data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
+                {% else %}
+                    <li id="variant-{{ variant.id}}" data-var_img="{{ product.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
+                {% endif %}
             {% endfor %}
         </ul>
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
@@ -24,7 +28,7 @@
             {% if variants %}
                 <div class="row">
                     {% for variant in variants %}
-                        {% if variant.image %}
+                        {% if variant.image.url != '' or variant.image.url != None %}
                             <div class="col-4 ps-3 pt-3">
                                 <img src="{{ variant.image.url }}" class="thumbnail-img" alt="{{ variant.name }}">
                             </div>
@@ -97,7 +101,13 @@
         // repeat for price
         let currentVariantPrice = currentVariant.attr('data-var_price');
         let mainProductPrice = $('#product-price');
-        mainProductPrice.text(`€${currentVariantPrice}`);
+
+        if (currentVariantPrice != "None") {
+            mainProductPrice.text(`€${currentVariantPrice}`);
+        } else {
+
+        }
+        
         
         // repeat for quantity
         let currentVariantQty = currentVariant.attr('data-var_qty');

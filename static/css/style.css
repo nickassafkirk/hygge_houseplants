@@ -392,7 +392,7 @@ a.product-path:focus {
 
 .single-product-img-container {
     background: #fff;
-    max-height: 40vmax;
+    max-height: 30vmax;
     max-width: 90%;
     margin: 0 auto;
 }
@@ -423,7 +423,7 @@ a.product-path:focus {
     background: #fff;
 }
 
-.thumbnail-img {
+.thumbnail-img.thumbnail-test {
     padding: 3% 0;
     width: 100%;
     height: 100%;

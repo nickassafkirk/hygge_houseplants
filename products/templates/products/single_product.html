@@ -14,9 +14,9 @@
         <ul class="hidden-variants d-none">
             {% for variant in variants %}
                 {% if variant.image %}
-                    <li id="variant-{{ variant.id}}"  data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
+                    <li class="var-img" id="variant-{{ variant.id}}"  data-var_img="{{ variant.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
                 {% else %}
-                    <li id="variant-{{ variant.id}}" data-var_img="{{ product.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
+                    <li class="var-img" id="variant-{{ variant.id}}" data-var_img="{{ product.image.url }}" data-var_price="{{ variant.price }}" data-var_qty="{{ variant.quantity }}"></li>
                 {% endif %}
             {% endfor %}
             <li id="base-price" data-var_price="{{ product.price }}"></li>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             {% if variants %}
-                <div class="thumbnail-container">
+                <div class="thumbnail-container d-none">
                     {% if first_available_variant.image %}
                         <div class="thumbnail">
                             <img src="{{ product.image.url }}" class="thumbnail-img" alt="{{ product.name }}">
@@ -43,6 +43,21 @@
                     {% endfor %}
                 </div>     
             {% endif %}
+            <div class="thumbnail-container">
+                <div class="thumbnail">
+                    <img src="" alt="" class="thumbnail-img thumbnail-test">
+                </div>
+                <div class="thumbnail">
+                    <img src="" alt="" class="thumbnail-img thumbnail-test">
+                </div>
+                <div class="thumbnail">
+                    <img src="" alt="" class="thumbnail-img thumbnail-test">
+                </div>
+            </div>
+            <div class="text-center">
+                <a class="btn" id="thumnail-prev"><i class="fas fa-chevron-circle-left fa-3x"></i></a>
+                <a class="btn" id="thumnail-next"><i class="fas fa-chevron-circle-right fa-3x"></i></a>
+            </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
             <h3 class="px-3 px-lg-5">{{ product.name }}</h3>
@@ -149,6 +164,31 @@
         $('#add-to-cart-btn').html('Sold Out <i class="fas fa-ban"></i>')
         $('#add-to-cart-btn').addClass('bg-danger')
     }
+
+    let variantImages = []
+    let variants = document.querySelectorAll('.var-img');
+    for (variant of variants){
+        let singleImg = variant.dataset.var_img
+        variantImages.push(singleImg)
+    }
+
+    let thumbnailImageBoxes = document.querySelectorAll('.thumbnail-test');
+    
+    function setThumnailImage(i) {
+        for (box of thumbnailImageBoxes){
+            box.src = variantImages[i]
+            i += 1
+        }
+    }
+
+    setThumnailImage(0);
+
+    console.log(variantImages)
+        
+    
+    
+    
+    
 
 </script>
 {% endblock %}

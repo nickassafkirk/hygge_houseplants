@@ -402,6 +402,7 @@ a.product-path:focus {
     max-height: 100%;
     display: block;
     margin: 0 auto;
+    cursor: zoom-in;
 }
 
 .thumbnail-container {
@@ -421,6 +422,7 @@ a.product-path:focus {
     text-align: center;
     height: 100px;
     background: #fff;
+    cursor: pointer;
 }
 
 .thumbnail-img.thumbnail-test {
@@ -428,6 +430,15 @@ a.product-path:focus {
     width: 100%;
     height: 100%;
     object-fit: scale-down;
+}
+
+#thumbnail-prev:hover, 
+#thumbnail-prev:active, 
+#thumbnail-prev:focus, 
+#thumbnail-next:hover,
+#thumbnail-next:active, 
+#thumbnail-next:focus {
+    color: var(--orange);
 }
 
 .indicator {

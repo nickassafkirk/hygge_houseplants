@@ -70,10 +70,21 @@ def single_product(request, product_id):
 
     if product.has_variants:
         variants = Variant.objects.filter(parent_product=product_id)
+
+        # assign first variant with stock
+        first_available_variant = None
+
+        for variant in variants:
+            if variant.quantity > 0:
+                first_available_variant = variant
+                break
+
         context = {
             'product': product,
             'variants': variants,
+            'first_available_variant': first_available_variant,
         }
+
     else:
         context = {'product': product, }
 

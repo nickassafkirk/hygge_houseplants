@@ -115,10 +115,23 @@ the default number input adjust buttons and to center the text.
         -webkit-appearance: none;
         margin: 0;
     }
-```
+    ```
 
 * To enable a 'not-allowed' cursor on a disabled button I used ``` cursor-events: all !important ``` to override a bootstrap error preventing this desired behaviour. I was made aware of this fix from [this stackoverflow post](https://stackoverflow.com/questions/50349017/how-can-i-change-cursor-for-disabled-button-or-a-in-bootstrap-4)
 
+
+* To prevent form submission on enter I recycled some code that I used in my MS3 project:
+    ```
+    $(document).ready(function() {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+    ```
+    This code was originally sourced from [this stackoverflow post](https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter).
 ---
 ### Code
 ---

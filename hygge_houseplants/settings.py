@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'products',
     'contact',
     'cart',
+    'checkout',
 
     'allauth',
     'allauth.account',
@@ -201,6 +202,9 @@ if 'USE_AWS' in os.environ:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
+FREE_SHIPPING_THRESHOLD = 50
+STANDARD_SHIPPING_FEE = 6.99
+DEFAULT_CURRENCY = 'euro'
 DEFAULT_TAX_RATE = 0.23
 
 # Default primary key field type

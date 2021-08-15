@@ -9,6 +9,11 @@ def calc_subtotal(price, quantity):
     return price * quantity
 
 
+@register.filter(name="subtract")
+def subtract(val1, val2):
+    return round((val1 - val2),2)
+
+
 @register.filter(name="calc_tax")
 def calc_tax(total_price):
     tax_rate = settings.DEFAULT_TAX_RATE

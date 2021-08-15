@@ -21,7 +21,7 @@
             {% endfor %}
             <li id="base-price" data-var_price="{{ product.price }}" data-var_img="{{ product.image.url }}"></li>
         </ul>
-        <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
+        <div class="col-12 col-sm-6 col-lg-5 offset-lg-1">
             <div class="row">
                 <div class="col-12 single-product-img-container p-0">
                     <img src="{% if first_available_variant.image %}{{ first_available_variant.image.url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
@@ -50,7 +50,7 @@
             {% endif %}
             
         </div>
-        <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
+        <div class="col-12 col-sm-6 col-lg-5 mt-3 mt-sm-0">
             <h3 class="px-3 px-lg-5">{{ product.name }}</h3>
             <h4 class="px-3 px-lg-5" id="product-price">€{{ product.price }}</h4>
             <hr>
@@ -68,7 +68,7 @@
             <form action="{% url 'add_to_cart' product.id %}" method="POST" class="row px-3 px-lg-5">
                 {% csrf_token %}
                 
-                <div class="col-8">
+                <div class="col-8 col-lg-7">
                     {% if variants %}
                         <select class="form-select" name="variant-select" id="variant-select">
                             {% for variant in variants %}
@@ -81,10 +81,12 @@
                         </select>
                     {% endif %}
                 </div>
-                <div class="col-4">
+                <div class="col-8 col-lg-5 mt-3 mb-1 mt-lg-0 form-group d-flex flex-row">
+                    <button type="button" class="btn input-group-prepend px-3" id="decrease-qty"><i class="fas fa-minus"></i></button>
                     <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1" max="{{ first_available_variant.quantity }}">
+                    <button type="button" class="btn input-group-append px-3" id="increase-qty"><i class="fas fa-plus"></i></button>
                 </div>
-                <div class="col-12 mt-2">
+                <div class="col-8 col-lg-12 mt-2">
                     <button type="submit" class="btn btn-bright w-100 p-2" id="add-to-cart-btn">Add to Cart <i class="fas fa-cart-plus"></i></button>
                 </div>
             </form>
@@ -106,6 +108,39 @@
 
 {% block footerjs %}
 <script type="text/javascript">
+    function preventOutOfBoundsProd(){
+        let maxValue = $('#add-to-cart-quantity').attr('max')
+        let currentQtyVal = $('#add-to-cart-quantity').val()
+        let disableDecreaseBtn = currentQtyVal < 2;
+        let disableIncreaseBtn = currentQtyVal >= parseInt(maxValue);
+        $(`#decrease-qty`).prop('disabled', disableDecreaseBtn);
+        $(`#increase-qty`).prop('disabled', disableIncreaseBtn);
+    };
+
+    $('#add-to-cart-quantity').change(preventOutOfBoundsProd);
+
+    $('#increase-qty').click(function(){
+        let currentQtyVal = $('#add-to-cart-quantity').val()
+        $('#increase-qty').attr('disabled', false);
+        $('#add-to-cart-quantity').val((parseInt(currentQtyVal) + 1))
+        preventOutOfBoundsProd()
+        
+    });
+
+    $('#decrease-qty').click(function(){
+        let currentQtyVal = $('#add-to-cart-quantity').val()
+        $('#add-to-cart-quantity').val((parseInt(currentQtyVal) - 1))
+        preventOutOfBoundsProd()
+    });
+    
+    $(document).ready(function() {
+        $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+            }
+        });
+    });
 
     $('#variant-select').change(function(){
         // Get Variant ID
@@ -146,6 +181,7 @@
                 <span class="text-danger">Sold Out</span>
                 `
             )
+            preventOutOfBoundsProd()
             disableAddToCart()
         } 
     })

@@ -29,15 +29,11 @@
             </div>
             {% if variants %}
                 <div class="thumbnail-container">
+                    {% for variant in variants %}
                     <div class="thumbnail">
                         <img src="" alt="" class="thumbnail-img">
                     </div>
-                    <div class="thumbnail">
-                        <img src="" alt="" class="thumbnail-img">
-                    </div>
-                    <div class="thumbnail">
-                        <img src="" alt="" class="thumbnail-img">
-                    </div>
+                    {% endfor %}
                 </div>
                 <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
                     <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
@@ -145,7 +141,8 @@
             disableAddToCart()
         } 
     })
-
+   
+    // Check if quantity input is > available stock & reduce stock if True
     $('#add-to-cart-quantity').change(preventOverSelling)
 
     function preventOverSelling(){
@@ -182,7 +179,7 @@
     let variantImages = [baseProductImg]
     let variants = document.querySelectorAll('.var-img');
     for (variant of variants){
-        let singleImg = variant.dataset.var_img
+        let singleImg = variant.dataset.var_img;
         variantImages.push(singleImg)
     }
 

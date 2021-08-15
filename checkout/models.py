@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from django.db.models import sum
+from django.db.models import Sum
 from django.conf import settings
 from django_countries.fields import CountryField
 
@@ -27,7 +27,7 @@ class Order(models.Model):
     state_or_province = models.CharField(
         max_length=80, null=False, blank=False)
 
-    postcode = models.CharField(max_lenght=25, null=False, blank=False)
+    postcode = models.CharField(max_length=25, null=False, blank=False)
 
     country = CountryField(blank_label='Country *', null=False, blank=False)
 
@@ -44,7 +44,7 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        self.item_total = self.lineitems.aggregate(sum('lineitem_total'))['lineitem_total_sum']
+        self.item_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total_sum']
         if self.item_total < settings.FREE_SHIPPING_THRESHOLD:
             self.delivery_cost = settings.STANDARD_SHIPPING_FEE
         else:
@@ -56,6 +56,9 @@ class Order(models.Model):
         if not self.order_number:
             self._create_order_number()
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.order_number
 
 
 class OrderLineItem(models.Model):
@@ -70,8 +73,22 @@ class OrderLineItem(models.Model):
         Variant, blank=True, null=True, on_delete=models.CASCADE)
 
     quantity = models.IntegerField(
-        max_length=3, blank=False, null=False, default=0)
+        blank=False, null=False, default=0)
 
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2,
         null=False, blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        if self.variant:
+            self.lineitem_total = self.variant.price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        if self.variant:
+            return f'{self.product.name}-{self.variant.name}'
+        else:
+            return f'{self.product.name}'

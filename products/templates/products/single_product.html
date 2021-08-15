@@ -52,7 +52,9 @@
             <hr>
             
             <p class="px-3 px-lg-5" id="product-availability"><strong>Availability: </strong>
-                {% if product.quantity > 0 %}
+                {% if first_available_variant.quantity %}
+                <span class="text-success">{{ first_available_variant.quantity }} In Stock</span>
+                {% elif product.quantity > 0 %}
                 <span class="text-success">{{ product.quantity }} In Stock</span>
                 {% else %}
                 <span class="text-danger">Sold Out</span>
@@ -76,7 +78,7 @@
                     {% endif %}
                 </div>
                 <div class="col-4">
-                    <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1">
+                    <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1" max="{{ first_available_variant.quantity }}">
                 </div>
                 <div class="col-12 mt-2">
                     <button type="submit" class="btn btn-bright w-100 p-2" id="add-to-cart-btn">Add to Cart <i class="fas fa-cart-plus"></i></button>
@@ -131,6 +133,8 @@
                 <span class="text-success">${currentVariantQty} In Stock</span>
                 `
             )
+            $('#add-to-cart-quantity').attr('max', currentVariantQty)
+            preventOverSelling()
             enableAddToCart()
         } else {
             productAvailablity.html(
@@ -141,6 +145,21 @@
             disableAddToCart()
         } 
     })
+
+    $('#add-to-cart-quantity').change(preventOverSelling)
+
+    function preventOverSelling(){
+        let quantityInput = $('#add-to-cart-quantity')
+        let quantityInputVal = quantityInput.val()
+        let quantityInputMax = quantityInput.attr('max')
+        if (quantityInputVal > quantityInputMax) {
+            $(quantityInput).css('border', '2px solid red')
+            setTimeout(function(){
+                $(quantityInput).css('border', 'none')
+                $(quantityInput).val(quantityInputMax)
+            }, 1000)
+        }
+    }
 
     // Enable add to cart button if stock available
     function enableAddToCart(){

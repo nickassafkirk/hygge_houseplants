@@ -143,6 +143,7 @@
         $('#add-to-cart-btn').removeClass('bg-danger')
         $('#add-to-cart-btn').html(`Add to Cart <i class="fas fa-cart-plus"></i>`)
         $('#add-to-cart-btn').attr('disabled', false)
+        $('#add-to-cart-btn').removeClass('not-allowed')
     }
 
     // Disable add to cart button if sold out
@@ -150,6 +151,7 @@
         $('#add-to-cart-btn').attr('disabled', true)
         $('#add-to-cart-btn').html('Sold Out <i class="fas fa-ban"></i>')
         $('#add-to-cart-btn').addClass('bg-danger')
+        $('#add-to-cart-btn').addClass('not-allowed')
     }
 
     // Build an array of product/variant image.srcs

@@ -117,6 +117,8 @@ the default number input adjust buttons and to center the text.
     }
 ```
 
+* To enable a 'not-allowed' cursor on a disabled button I used ``` cursor-events: all !important ``` to override a bootstrap error preventing this desired behaviour. I was made aware of this fix from [this stackoverflow post](https://stackoverflow.com/questions/50349017/how-can-i-change-cursor-for-disabled-button-or-a-in-bootstrap-4)
+
 ---
 ### Code
 ---
@@ -208,7 +210,7 @@ To replicate this project in your own local environment, the following steps sho
 
 1. At this point you need to create a Procfile if it does not already exist. To do this you can use the command ```touch Procfile``` in the terminal. Once created you can write the following code in the Procfile: ```web: gunicorn <project_name>.wsgi:application``` with the name of the project where ```<project_name>``` has been include in the command above.
 
-1. Were now ready to create our app in Heroku. To do so go to [heroku.com](https//:www.heroku.com) and create an account or login by following the prompts.
+1. Were now ready to create our app in Heroku. To do so go to [heroku.com](https://www.heroku.com) and create an account or login by following the prompts.
 
     Next, in your account panel click the 'new' dropdown button in the top right corner. From the options select the 'Create new app' option. This will bring you to the following page.
 

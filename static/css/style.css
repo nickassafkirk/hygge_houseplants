@@ -449,6 +449,12 @@ a.product-path:focus {
     background: #555;
 }
 
+.not-allowed:hover, 
+button.not-allowed:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
 /* Add Product Form */ 
 
 .form-container form label, #contact-form label, #add-product-form label {

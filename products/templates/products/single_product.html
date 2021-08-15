@@ -30,9 +30,11 @@
             {% if variants %}
                 <div class="thumbnail-container">
                     {% for variant in variants %}
-                    <div class="thumbnail">
-                        <img src="" alt="" class="thumbnail-img">
-                    </div>
+                        {% if forloop.counter <= 3 %}
+                            <div class="thumbnail">
+                                <img src="" alt="" class="thumbnail-img">
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">

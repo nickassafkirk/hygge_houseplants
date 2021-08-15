@@ -108,6 +108,7 @@
 
 {% block footerjs %}
 <script type="text/javascript">
+    // Disable +/- buttons to prevent exceeding available quantity
     function preventOutOfBoundsProd(){
         let maxValue = $('#add-to-cart-quantity').attr('max')
         let currentQtyVal = $('#add-to-cart-quantity').val()
@@ -117,22 +118,22 @@
         $(`#increase-qty`).prop('disabled', disableIncreaseBtn);
     };
 
-    $('#add-to-cart-quantity').change(preventOutOfBoundsProd);
-
+    // Increase quantity value by 1 on click
     $('#increase-qty').click(function(){
         let currentQtyVal = $('#add-to-cart-quantity').val()
         $('#increase-qty').attr('disabled', false);
         $('#add-to-cart-quantity').val((parseInt(currentQtyVal) + 1))
         preventOutOfBoundsProd()
-        
     });
 
+    // Decrease quantity value by 1 on click
     $('#decrease-qty').click(function(){
         let currentQtyVal = $('#add-to-cart-quantity').val()
         $('#add-to-cart-quantity').val((parseInt(currentQtyVal) - 1))
         preventOutOfBoundsProd()
     });
     
+    // Prevent form submission on enter 
     $(document).ready(function() {
         $(window).keydown(function(event){
         if(event.keyCode == 13) {
@@ -142,6 +143,7 @@
         });
     });
 
+    // Dynamically change price, Qty, Image if for selected variant
     $('#variant-select').change(function(){
         // Get Variant ID
         let currentVariantId = $(this).val();
@@ -174,6 +176,7 @@
             )
             $('#add-to-cart-quantity').attr('max', currentVariantQty)
             preventOverSelling()
+            preventOutOfBoundsProd();
             enableAddToCart()
         } else {
             productAvailablity.html(
@@ -181,19 +184,23 @@
                 <span class="text-danger">Sold Out</span>
                 `
             )
-            preventOutOfBoundsProd()
+            $('#add-to-cart-quantity').val(1)
             disableAddToCart()
-        } 
+        }
     })
    
     // Check if quantity input is > available stock & reduce stock if True
-    $('#add-to-cart-quantity').change(preventOverSelling)
+    $('#add-to-cart-quantity').change(function(){
+        console.log('changed')
+        preventOverSelling();
+        preventOutOfBoundsProd();
+    });
 
     function preventOverSelling(){
         let quantityInput = $('#add-to-cart-quantity')
         let quantityInputVal = quantityInput.val()
         let quantityInputMax = quantityInput.attr('max')
-        if (quantityInputVal > quantityInputMax) {
+        if (parseInt(quantityInputVal) > parseInt(quantityInputMax)) {
             $(quantityInput).css('border', '2px solid red')
             setTimeout(function(){
                 $(quantityInput).css('border', 'none')

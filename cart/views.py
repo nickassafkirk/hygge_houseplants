@@ -62,7 +62,7 @@ def add_to_cart(request, product_id):
                         )
             else:
                 messages.error(
-                        request, f'Not enough stock - {product.quantity} available! Reduce quantity and try again.'
+                        request, f'Not enough stock! ( {cart[product_id]} in cart, Max {product.quantity} available ) Reduce quantity and try again.'
                         )
         else:
             # else add it to cart dict and assign it's quantity value
@@ -117,7 +117,7 @@ def update_cart_qty(request, item_id):
                 messages.success(request, 'Quantity updated successfully')
             else:
                 messages.error(
-                        request, f'Not enough stock - {product.quantity} available! Reduce quantity and try again.'
+                        request, f'Not enough stock! ( {cart[product_id]} in cart, Max {product.quantity} available ) Reduce quantity and try again.'
                         )
         else:
             cart.pop(product_id)

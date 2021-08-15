@@ -425,7 +425,7 @@ a.product-path:focus {
     cursor: pointer;
 }
 
-.thumbnail-img.thumbnail-test {
+.thumbnail-img {
     padding: 3% 0;
     width: 100%;
     height: 100%;

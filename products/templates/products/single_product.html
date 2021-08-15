@@ -24,40 +24,27 @@
         <div class="col-12 col-sm-6 col-lg-4 offset-lg-2">
             <div class="row">
                 <div class="col-12 single-product-img-container p-0">
-                    <img src="{% if first_available_variant.image %}{{ first_available_variant.image.url }}{% elif product.image %}{{ product.image }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
+                    <img src="{% if first_available_variant.image %}{{ first_available_variant.image.url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
                 </div>
             </div>
             {% if variants %}
-                <div class="thumbnail-container d-none">
-                    {% if first_available_variant.image %}
-                        <div class="thumbnail">
-                            <img src="{{ product.image.url }}" class="thumbnail-img" alt="{{ product.name }}">
-                        </div>
-                    {% endif %}
-                    {% for variant in variants %}
-                        {% if variant.image %}
-                            <div class="thumbnail">
-                                <img src="{{ variant.image.url }}" class="thumbnail-img" alt="{{ variant.name }}">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>     
+                <div class="thumbnail-container">
+                    <div class="thumbnail">
+                        <img src="" alt="" class="thumbnail-img">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="" alt="" class="thumbnail-img">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="" alt="" class="thumbnail-img">
+                    </div>
+                </div>
+                <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
+                    <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
+                    <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-2x"></i></a>
+                </div>
             {% endif %}
-            <div class="thumbnail-container">
-                <div class="thumbnail">
-                    <img src="" alt="" class="thumbnail-img thumbnail-test">
-                </div>
-                <div class="thumbnail">
-                    <img src="" alt="" class="thumbnail-img thumbnail-test">
-                </div>
-                <div class="thumbnail">
-                    <img src="" alt="" class="thumbnail-img thumbnail-test">
-                </div>
-            </div>
-            <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
-                <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
-                <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-2x"></i></a>
-            </div>
+            
         </div>
         <div class="col-12 col-sm-6 col-lg-4 mt-3 mt-sm-0">
             <h3 class="px-3 px-lg-5">{{ product.name }}</h3>
@@ -165,7 +152,7 @@
         $('#add-to-cart-btn').addClass('bg-danger')
     }
 
-    // Build array of variant images and add base product image
+    // Build an array of product/variant image.srcs
     const baseProductImg = document.querySelector('#base-price').dataset.var_img
     let variantImages = [baseProductImg]
     let variants = document.querySelectorAll('.var-img');
@@ -174,18 +161,17 @@
         variantImages.push(singleImg)
     }
 
-    let thumbnailImageBoxes = document.querySelectorAll('.thumbnail-test');
-    
+    // assign image.src to each of 3 image thumbnail img elements
     function setThumbnailImage(i) {
-        for (box of thumbnailImageBoxes){
-            box.src = variantImages[i]
+        let thumbnailImages = document.querySelectorAll('.thumbnail-img');
+        for (image of thumbnailImages){
+            image.src = variantImages[i]
             i += 1
         }
     }
     
     // Set image thumnails when page loads
     let imageThumbnailIndex = 0
-    
     setThumbnailImage(imageThumbnailIndex)
     
     // Go back one image when left arrow button is clicked
@@ -198,6 +184,7 @@
         setThumbnailImage(imageThumbnailIndex)
     });
 
+    // Go forward one image when left arrow button is clicked
     $('#thumbnail-next').click(function(){
         if (imageThumbnailIndex == (variantImages.length - 3) ){
             imageThumbnailIndex = 0

@@ -27,9 +27,9 @@ def shopping_cart(request):
             # iterate through product_data to extract variant_id & Qty
 
             for variant_id, quantity in product_data["product_variants"].items():     
-                total += int(quantity) * float(product.price)
                 product_count += int(quantity)
                 variant = get_object_or_404(Variant, pk=variant_id)
+                total += int(quantity) * float(variant.price)
                 cart_contents.append({
                     'product_id': product_id,
                     'quantity': quantity,

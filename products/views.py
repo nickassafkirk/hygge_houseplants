@@ -50,10 +50,13 @@ def products(request):
 
     current_sorting = f'{sort}_{order}'
 
+    variants = Variant.objects.all()
+
     template = 'products/products.html'
 
     context = {
         'products': products,
+        'variants': variants,
         'search_criteria': query,
         'current_categories': categories,
         'current_sorting': current_sorting,

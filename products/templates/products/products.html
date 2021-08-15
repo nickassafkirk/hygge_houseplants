@@ -28,16 +28,22 @@
                 <div class="product-tile-name mt-3">
                     <h5 class="ms-2">{{ product.name }}</h5>
                 </div>
-                <h4 class="text-center">€{{ product.price }}</h4>
+                {% if product.has_variants %}
+                    <h4 class="text-center">From: €{{ product.price }}</h4>
+                {% else %}
+                    <h4 class="text-center">€{{ product.price }}</h4>
+                {% endif %}
                 <div class="product-tile-buttons my-4">
                     <a href="{% url 'single_product' product.id %}" class="btn btn-dark"><i class="far fa-eye"></i><br>View Product</a>
-                    <a href="" class="btn btn-bright"><i class="fas fa-cart-plus"></i><br>Add to Cart</a>
+                    <a href="#" class="btn btn-bright"><i class="fas fa-cart-plus"></i><br>Add to Cart</a>
                 </div>
                 {% if request.user.is_superuser %}
                     <div class="text-center mb-2 edit-delete-container">
                         <a href="{% url 'edit_product' product.id %}" class="text-info">Edit Product</a> | <a class="text-danger delete-product">Delete Product</a>
                         <div class="are-you-sure">
-                            <a href="{% url 'delete_product' product.id %}" class="btn btn-success"><i class="fas fa-trash-alt"></i>  Delete</a> | <span class="cancel btn btn-danger"><i class="fas fa-times-circle"></i>  Cancel</span>
+                            <a href="{% url 'delete_product' product.id %}" class="btn btn-success"><i class="fas fa-trash-alt"></i>  Delete</a>
+                             | 
+                            <span class="cancel btn btn-danger"><i class="fas fa-times-circle"></i>  Cancel</span>
                         </div>
                     </div>
                 {% endif %}

@@ -55,10 +55,15 @@ def add_to_cart(request, product_id):
         # Handle product without variants
         if product_id in list(cart.keys()):
             # if product in cart, increase it's quantity value
-            cart[product_id] += quantity
-            messages.success(
-                    request, f'Updated {product.name} quantity to {cart[product_id]}!'
-                    )
+            if int(cart[product_id]) + quantity <= product.quantity:
+                cart[product_id] += quantity
+                messages.success(
+                        request, f'Updated {product.name} quantity to {cart[product_id]}!'
+                        )
+            else:
+                messages.error(
+                        request, f'Not enough stock - {product.quantity} available! Reduce quantity and try again.'
+                        )
         else:
             # else add it to cart dict and assign it's quantity value
             cart[product_id] = quantity
@@ -105,9 +110,15 @@ def update_cart_qty(request, item_id):
             messages.success(
                 request, 'Item removed from cart!')
     else:
+        product = get_object_or_404(Product, pk=product_id)
         if quantity > 0:
-            cart[product_id] = int(quantity)
-            messages.success(request, 'Quantity updated successfully')
+            if quantity <= product.quantity:
+                cart[product_id] = int(quantity)
+                messages.success(request, 'Quantity updated successfully')
+            else:
+                messages.error(
+                        request, f'Not enough stock - {product.quantity} available! Reduce quantity and try again.'
+                        )
         else:
             cart.pop(product_id)
             messages.success(

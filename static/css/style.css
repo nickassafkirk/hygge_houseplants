@@ -412,7 +412,6 @@ a.product-path:focus {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     align-items: stretch;
 }
 

@@ -28,19 +28,25 @@
                 </div>
             </div>
             {% if variants %}
-                <div class="thumbnail-container">
-                    {% for variant in variants %}
-                        {% if forloop.counter <= 3 %}
-                            <div class="thumbnail">
-                                <img src="" alt="" class="thumbnail-img">
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
-                    <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
-                    <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-2x"></i></a>
-                </div>
+                {% if variants|length >= 3 %}
+                    <div class="thumbnail-container justify-content-between">
+                {% else %}
+                    <div class="thumbnail-container justify-content-start">
+                {% endif %}
+                        {% for variant in variants %}
+                            {% if forloop.counter <= 3 %}
+                                <div class="thumbnail {% if variants|length < 3%}me-3{% endif %}">
+                                    <img src="" alt="" class="thumbnail-img">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if variants|length > 3 %}
+                    <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
+                        <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
+                        <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-2x"></i></a>
+                    </div>
+                    {% endif %}
             {% endif %}
             
         </div>
@@ -226,7 +232,7 @@
    })
 
   // Create indicator dots to represent number of images
-  for (i=0; i < variantImages.length; i++) {
+  for (i=0; i < variantImages.length - 1; i++) {
       let newIndicator = document.createElement('span');
       $(newIndicator).addClass('indicator');
       $('#thumbnail-prev').after(newIndicator);

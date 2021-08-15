@@ -66,7 +66,11 @@
                     {% if variants %}
                         <select class="form-select" name="variant-select" id="variant-select">
                             {% for variant in variants %}
-                                <option value="{{ variant.id }}">{{ variant.color | title }} - {{ variant.size | upper }}</option>
+                                <option value="{{ variant.id }}">
+                                    {% if variant.color %}{{ variant.color | title }}{% endif %}
+                                    {% if variant.color and variant.size %} - {% endif %} 
+                                    {% if variant.size %}{{ variant.size | upper }}{% endif %}
+                                </option>
                             {% endfor %}
                         </select>
                     {% endif %}

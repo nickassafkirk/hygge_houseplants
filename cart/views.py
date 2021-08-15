@@ -30,10 +30,15 @@ def add_to_cart(request, product_id):
             # check if a specific variant is in the cart
             if variant_id in list(cart[product_id]['product_variants'].keys()):
                 # if variant exists increase it's quantity
-                cart[product_id]['product_variants'][variant_id] += quantity
-                messages.success(
-                    request, f'Updated {product.name} - {variant.name} quantity to {cart[product_id]["product_variants"][variant_id]}!'
-                    )
+                if int(cart[product_id]['product_variants'][variant_id]) + int(quantity) <= variant.quantity:
+                    cart[product_id]['product_variants'][variant_id] += quantity
+                    messages.success(
+                        request, f'Updated {product.name} - {variant.name} quantity to {cart[product_id]["product_variants"][variant_id]}!'
+                        )
+                else:
+                    messages.error(
+                        request, 'Not enough stock, reduce quantity and try again!'
+                        )
             else:
                 # if not add prodcut variant to cart
                 cart[product_id]['product_variants'][variant_id] = quantity
@@ -84,9 +89,15 @@ def update_cart_qty(request, item_id):
     quantity = int(request.POST.get('quantity'))
 
     if variant_id:
+        variant = get_object_or_404(Variant, pk=variant_id)
         if quantity > 0:
-            cart[product_id]['product_variants'][str(variant_id)] = int(quantity)
-            messages.success(request, 'Quantity updated successfully')
+            if quantity < variant.quantity:
+                cart[product_id]['product_variants'][str(variant_id)] = int(quantity)
+                messages.success(request, 'Quantity updated successfully')
+            else:
+                messages.error(
+                        request, f'Not enough stock - {variant.quantity} available! Reduce quantity and try again.'
+                        )
         else:
             del cart[product_id]['product_variants'][str(variant_id)]
             if not cart[product_id]['product_variants']:

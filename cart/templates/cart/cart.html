@@ -141,6 +141,16 @@
     <!-- Submit Update & Delete -->
     <script type="text/javascript">
 
+       // Prevent form submission on enter 
+       $(document).ready(function() {
+            $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+                }
+            });
+        });
+
        // update quantity on click
         $('.update-qty-link').click(function(e) {
             var form = $(this).prev('.update-cart-item-qty');

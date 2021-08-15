@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.db.models import sum
 from django.conf import settings
 from django_countries.fields import CountryField
 
@@ -39,11 +40,28 @@ class Order(models.Model):
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
 
+    def _create_order_number(self):
+        return uuid.uuid4().hex.upper()
+
+    def update_total(self):
+        self.item_total = self.lineitems.aggregate(sum('lineitem_total'))['lineitem_total_sum']
+        if self.item_total < settings.FREE_SHIPPING_THRESHOLD:
+            self.delivery_cost = settings.STANDARD_SHIPPING_FEE
+        else:
+            self.delivery_cost = 0
+        self.order_total = self.item_total + self.delivery_cost
+        self.save()
+
+    def save(self, *args, **kwargs):
+        if not self.order_number:
+            self._create_order_number()
+        super().save(*args, **kwargs)
+
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(
         Order, null=False, blank=False,
-        on_delete=models.CASCADE, related_name='line_items')
+        on_delete=models.CASCADE, related_name='lineitems')
 
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE)

@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-8 col-lg-5 mt-3 mb-1 mt-lg-0 form-group d-flex flex-row">
                     <button type="button" class="btn input-group-prepend px-3" id="decrease-qty"><i class="fas fa-minus"></i></button>
-                    <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1" max="{{ first_available_variant.quantity }}">
+                    <input class="form-control" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1" max="{% if variants %}{{ first_available_variant.quantity }}{% else %}{{ product.quantity }}{% endif %}">
                     <button type="button" class="btn input-group-append px-3" id="increase-qty"><i class="fas fa-plus"></i></button>
                 </div>
                 <div class="col-8 col-lg-12 mt-2">

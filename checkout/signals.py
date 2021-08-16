@@ -4,8 +4,18 @@ from django.dispatch import receiver
 from .models import OrderLineItem
 
 
+@receiver(post_save, sender=OrderLineItem)
 def update_on_save(sender, instance, created, **kwargs):
     """
     sender is sender of signal, instance is instance of model, created is bool val to say if
     instance is new or to be updates, keywaords handle additional arguements.
     """
+    instance.order.update_total()
+
+
+@receiver(post_delete, sender=OrderLineItem)
+def update_on_delete(sender, instance, **kwargs):
+    """
+    Update the cart total when lineitem is deleted
+    """
+    instance.order.update_total()

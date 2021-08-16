@@ -10,9 +10,20 @@
             <hr>
         </div>
         <div class="col-12">
-            <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
+            <form action="{% url 'checkout' %}" method="POST" id="checkout-form" class="row"> 
                 {% csrf_token %}
-                {{ form | crispy}}
+                {% for field in form.visible_fields %}
+                    {% if field.name == 'country' or field.name == 'postcode' %} 
+                        <div class="col-md-6">
+                            {{ field }}
+                        </div>
+                    {% else %}
+                        <div class="col-12">
+                            {{ field }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
                 <div class="button-container mt-3">
                     <button type="submit" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
                     <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>

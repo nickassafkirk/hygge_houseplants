@@ -24,8 +24,8 @@ class Order(models.Model):
 
     city_or_town = models.CharField(max_length=80, null=False, blank=False)
 
-    state_or_province = models.CharField(
-        max_length=80, null=False, blank=False)
+    county_or_state = models.CharField(
+        max_length=80, null=True, blank=True)
 
     postcode = models.CharField(max_length=25, null=False, blank=False)
 

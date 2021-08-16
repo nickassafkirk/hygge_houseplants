@@ -105,6 +105,24 @@ header a:active,
     color: #fff;
 }
 
+.btn-outline-bright {
+    background: transparent;
+    color: var(--orange);
+    border: 1px solid var(--orange);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.button-container a, .button-container button {
+    flex-basis: 45%;
+    margin-right: 2.5%;
+}
+
 /* Account & Cart Area */
 
 .user-area {

@@ -125,7 +125,10 @@
                 {% endif %}
                 <hr>
                 </p>
-                <a href="{% url 'checkout' %}" class="btn btn-bright">Checkout <i class="fas fa-shopping-cart"></i></a>
+                <div class="button-container">
+                    <a href="{% url 'checkout' %}" class="btn btn-bright">Checkout <i class="fas fa-lock"></i></a>
+                    <a class="btn btn-outline-bright" href="{% url 'products' %}">Continue Shopping <i class="fas fa-shopping-bag"></i></a>
+                </div>
             </div>
             
         </div>

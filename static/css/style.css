@@ -743,6 +743,10 @@ input[type='number']::-webkit-outer-spin-button {
     border: none;
 }
 
+.checkout-container form label{
+    font-weight: 600;
+}
+
 input.form-control::placeholder, select{
     color: #555;
 }

@@ -16,7 +16,7 @@
             <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                 <div class="row">
                     {% csrf_token %}
-                        <legend>Shipping Details</legend>
+                        <h5>Shipping Details</h5>
                         {% for field in form.visible_fields %}
                             {% if field.name == 'country' or field.name == 'postcode' or field.name == 'city_or_town' or field.name == 'county_or_state' %} 
                                 <div class="col-md-6">
@@ -28,11 +28,21 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
+                        <div class="col-3 mt-3 ps-4">
+                            <label for="save-details">Save Details</label>
+                            <br>
+                            <input type="checkbox" name="save-details" id="save-details">
+                        </div>
+                        <div class="col-3 mt-3 ps-4">
+                            <label for="save-details">Sign up to newsletter</label>
+                            <br>
+                            <input type="checkbox" name="accept-marketing" id="accept-marketing">
+                        </div>
                 </div>
                 <div class="row mt-3">
-                        <legend>Payment Details</legend>
-                        <div class="col-12" id="card-element"></div>
-                        <div class="col-12" id="card-errors"></div>
+                    <h5>Payment Details</h5>
+                    <div class="col-12" id="card-element"></div>
+                    <div class="col-12" id="card-errors"></div>
                 </div>
             </form>
         </div>

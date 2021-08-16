@@ -648,7 +648,7 @@ button.not-allowed:disabled {
     background: #ededed;
 }
 
-.cart-items-table td h6 {
+.cart-items-table td h6{
     font-size: 0.9rem;
     font-weight: 600;
 }
@@ -758,6 +758,10 @@ select, #id_country {
     cursor: pointer;
 }
 
+#checkout-form h5 {
+    font-family: var(--main);
+    font-weight: 600;
+}
 
 
 @media screen and (min-width: 576px) {
@@ -797,11 +801,11 @@ select, #id_country {
         margin-right: 2%;
     }
 
-    .cart-items-table th {
+    .cart-items-table th{
         font-size: 1.1rem;
     }
 
-    .cart-items-table td h6 {
+    .cart-items-table td h6{
         font-size: 1.1rem;
         font-weight: 600;
     }

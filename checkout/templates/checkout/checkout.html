@@ -32,8 +32,11 @@
         </div>
         <!-- Order Summary -->
         <div class="col-xl-6 order-1 order-xl-2 p-0 line-items-container">
-            <h4 class="bg-main p-2">Order Summary</h4>
-            <table class="table table-responsive cart-items-table">
+            <h4 class="bg-main p-2 d-flex justify-content-between">Order Summary <a href="checkout-summary-collapse" data-bs-toggle="collapse" data-bs-target="#checkout-summary-collapse" role="button" aria-expanded="false" class="text-white" id="toggle-show-hide">
+                Hide Summary <i class="fas fa-caret-down"></i>
+            </a>
+            </h4>
+            <table class="table table-responsive cart-items-table collapse show" id="checkout-summary-collapse">
                 <tr>
                     <th class="ps-sm-3 pe-0">Product</th>
                     <th class="text-center">Price</th>
@@ -109,3 +112,4 @@
     </div>
 </div>
 {% endblock %}
+

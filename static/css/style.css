@@ -91,6 +91,10 @@ header a:active,
     font-style: italic;
 }
 
+.text-white {
+    color: #fff;
+}
+
 .bg-bright {
     background: var(--orange);
     color: #fff;

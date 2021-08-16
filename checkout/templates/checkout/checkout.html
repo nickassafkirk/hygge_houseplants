@@ -48,15 +48,14 @@
                            <tr>
                                 <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
-                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
+                                        <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
                                 <td class="text-center p-0">
-                                    
-                                    {{item.variant.quantity}}
+                                    {{ item.quantity }}
                                 </td>
-                                <td class="text-center">€{{ item.variant.price }}</td>
+                                <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% else %}
                             <tr>
@@ -69,9 +68,9 @@
                                 </td>
                                 <td class="text-center">€{{ item.product.price }}</td>
                                 <td class="text-center p-0">
-                                    {{ item.product.quantity}}
+                                   {{ item.quantity }}
                                 </td>
-                                <td class="text-center">€{{ item.product.price }}</td>
+                                <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                             </tr>
                         {% endif %}
                     {% endfor %}

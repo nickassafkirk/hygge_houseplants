@@ -7,8 +7,11 @@ from .models import OrderLineItem
 @receiver(post_save, sender=OrderLineItem)
 def update_on_save(sender, instance, created, **kwargs):
     """
-    sender is sender of signal, instance is instance of model, created is bool val to say if
-    instance is new or to be updates, keywaords handle additional arguements.
+    This method updates the cart total when a lineitem is edited
+    sender is sender of signal,
+    instance is instance of model,
+    created is bool val to say if instance is new or to be updates,
+    keywords handle additional arguements.
     """
     instance.order.update_total()
 

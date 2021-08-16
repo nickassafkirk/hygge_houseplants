@@ -38,4 +38,5 @@ class OrderAdmin(admin.ModelAdmin):
 
     ordering = ('order_number',)
 
+
 admin.site.register(Order, OrderAdmin)

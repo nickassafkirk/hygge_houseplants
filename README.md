@@ -132,6 +132,19 @@ the default number input adjust buttons and to center the text.
     });
     ```
     This code was originally sourced from [this stackoverflow post](https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter).
+
+* To add padding to the default select menu caret I hid the default caret and displayed an svg image instead. This method was described by 'kilinkis' in [this stackoverflow post](https://stackoverflow.com/questions/62576942/css-webkit-appearance-menulist-dropdown-select-tag-how-to-give-padding-to) and was edited to position the caret further towards the center of the select field. The caret Icon SVG was sourced from [fontawesome.com](https://fontawesome.com/v5.15/icons/caret-down?style=solid) | [license for use here.](https://fontawesome.com/license/free)
+
+    ```
+    select {
+      appearance: none;
+      background-color: transparent;
+      background-image: url(arrow.svg);
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size: 30px;
+    }
+    ```
 ---
 ### Code
 ---

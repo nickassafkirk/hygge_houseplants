@@ -6,12 +6,12 @@
 {% block content %}
 <div class="container-fluid my-5 checkout-container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 order-0">
             <h3>Checkout</h3>
             <hr>
         </div>
         <!-- Billing Form -->
-        <div class="col-xl-6">
+        <div class="col-xl-6 order-2 order-xl-1">
             <h4 class="bg-main p-2">Billing Details</h4>
             <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                 <div class="row">
@@ -27,16 +27,11 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    
-                    <div class="button-container mt-3">
-                        <button type="submit" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
-                        <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>
-                    </div>
                 </div>
             </form>
         </div>
         <!-- Order Summary -->
-        <div class="col-xl-6 p-0line-items-container">
+        <div class="col-xl-6 order-1 order-xl-2 p-0 line-items-container">
             <h4 class="bg-main p-2">Order Summary</h4>
             <table class="table table-responsive cart-items-table">
                 <tr>
@@ -101,9 +96,16 @@
                 
                 </p>
             </div>
+        </div>
+        <div class="col-12 order-3">
             <hr>
         </div>
-        
+        <div class="col-12 col-md-6 offset-md-3 order-4">
+            <div class="button-container mt-3">
+                <button type="submit" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
+                <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>
+            </div>
+        </div> 
     </div>
 </div>
 {% endblock %}

@@ -11,7 +11,7 @@
             <hr>
         </div>
         <!-- Billing Form -->
-        <div class="col-xl-6 order-2 order-xl-1">
+        <div class="col-xl-6 order-2 order-xl-1 mt-4 mt-xl-0">
             <h4 class="bg-main p-2">Billing Details</h4>
             <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                 <div class="row">
@@ -31,11 +31,14 @@
             </form>
         </div>
         <!-- Order Summary -->
-        <div class="col-xl-6 order-1 order-xl-2 p-0 line-items-container">
-            <h4 class="bg-main p-2 d-flex justify-content-between">Order Summary <a href="checkout-summary-collapse" data-bs-toggle="collapse" data-bs-target="#checkout-summary-collapse" role="button" aria-expanded="false" class="text-white" id="toggle-show-hide">
-                Hide Summary <i class="fas fa-caret-down"></i>
-            </a>
+        <div class="col-xl-6 order-1 order-xl-2 line-items-container">
+            <h4 class="bg-main p-2 d-flex justify-content-between align-items-center">Order Summary
+                <a href="checkout-summary-collapse" data-bs-toggle="collapse" data-bs-target="#checkout-summary-collapse" role="button" aria-expanded="false" id="toggle-show-hide" class="text-white" style="font-size: 1rem;">
+                    Hide Summary <i class="fas fa-caret-up"></i>
+                </a>
             </h4>
+            
+            
             <table class="table table-responsive cart-items-table collapse show" id="checkout-summary-collapse">
                 <tr>
                     <th class="ps-sm-3 pe-0">Product</th>
@@ -80,8 +83,11 @@
                         <td class="text-center column-total"><h6>€{{ total| floatformat:2 }}</h6></td>
                     </tr>
             </table>
+        </div>
+        <div class="col-12 order-3">
             <hr>
-            <div class="p-3">
+            <div class="text-center">
+                
                 {% if shipping > 0 %} 
                 <p><strong>Subtotal:</strong> €{{ total| floatformat:2 }}</p>
                 <p><strong>Shipping:</strong> €{{ shipping| floatformat:2 }}</p>
@@ -99,9 +105,6 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 order-3">
-            <hr>
-        </div>
         <div class="col-12 col-md-6 offset-md-3 order-4">
             <div class="button-container mt-3">
                 <button type="submit" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
@@ -116,10 +119,10 @@
     <script type="text/javascript">
         // Change show/hide text on click
         $('#toggle-show-hide').click(function(){
-            if ($(this).text() == 'Show Summary') {
-                $(this).text('Hide Summary')
+            if ($(this).html() == 'Show Summary <i class="fas fa-caret-down"></i>') {
+                $(this).html('Hide Summary <i class="fas fa-caret-up"></i>')
             } else {
-                $(this).text('Show Summary')
+                $(this).html('Show Summary <i class="fas fa-caret-down"></i>')
             }
         })
     </script>

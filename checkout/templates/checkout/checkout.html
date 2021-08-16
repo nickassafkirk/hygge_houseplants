@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load cart_filters %}
 
 {% block content %}
 <div class="container-fluid my-5 checkout-container">
@@ -9,30 +10,100 @@
             <h3>Checkout</h3>
             <hr>
         </div>
-        <div class="col-12">
-            
-            <form action="{% url 'checkout' %}" method="POST" id="checkout-form" class="row"> 
-                <h4>Billing Details</h4>
-            <hr>
-                {% csrf_token %}
-                {% for field in form.visible_fields %}
-                    {% if field.name == 'country' or field.name == 'postcode' or field.name == 'city_or_town' or field.name == 'county_or_state' %} 
-                        <div class="col-md-6">
-                            {{ field }}
-                        </div>
-                    {% else %}
-                        <div class="col-12">
-                            {{ field }}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-                
-                <div class="button-container mt-3">
-                    <button type="submit" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
-                    <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>
+        <!-- Billing Form -->
+        <div class="col-xl-6">
+            <h4 class="bg-main p-2">Billing Details</h4>
+            <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
+                <div class="row">
+                    {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                        {% if field.name == 'country' or field.name == 'postcode' or field.name == 'city_or_town' or field.name == 'county_or_state' %} 
+                            <div class="col-md-6">
+                                {{ field }}
+                            </div>
+                        {% else %}
+                            <div class="col-12">
+                                {{ field }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="button-container mt-3">
+                        <button type="submit" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
+                        <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>
+                    </div>
                 </div>
             </form>
         </div>
+        <!-- Order Summary -->
+        <div class="col-xl-6 p-0line-items-container">
+            <h4 class="bg-main p-2">Order Summary</h4>
+            <table class="table table-responsive cart-items-table">
+                <tr>
+                    <th class="ps-sm-3 pe-0">Product</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Sub<br class="d-inline d-sm-none">total</th>
+                </tr>
+                    {% for item in cart_contents %}
+                        {% if item.variant %}
+                           <tr>
+                                <td class="ps-sm-3 pe-0">
+                                    <div class="image-preview-container">
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
+                                    </div>
+                                    <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
+                                <td class="text-center">€{{ item.variant.price }}</td>
+                                <td class="text-center p-0">
+                                    
+                                    {{item.variant.quantity}}
+                                </td>
+                                <td class="text-center">€{{ item.variant.price }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td class="ps-sm-3 pe-0">
+                                    <div class="image-preview-container">
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
+                                    </div>
+                                    <strong class="overflow-wrap">{{ item.product.name }}</strong>
+                                    <strong>{{ item_id }}</strong>
+                                </td>
+                                <td class="text-center">€{{ item.product.price }}</td>
+                                <td class="text-center p-0">
+                                    {{ item.product.quantity}}
+                                </td>
+                                <td class="text-center">€{{ item.product.price }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <tr>
+                        <td class="adjust-colspan column-total" colspan="2"></td>
+                        <td class="text-center column-total"><h6>{{ product_count }}<h6></td>
+                        <td class="text-center column-total"><h6>€{{ total| floatformat:2 }}</h6></td>
+                    </tr>
+            </table>
+            <hr>
+            <div class="p-3">
+                {% if shipping > 0 %} 
+                <p><strong>Subtotal:</strong> €{{ total| floatformat:2 }}</p>
+                <p><strong>Shipping:</strong> €{{ shipping| floatformat:2 }}</p>
+                {% endif %}
+                
+                <h5>Order Total:</h5>
+                <h4 class="d-inline-block">€{{ cart_total| floatformat:2 }}</h4> <small class="text-capitalize d-inline-block ms-1"> Incl VAT.</small> / <h5 class="d-inline-block ms-1">€{{ cart_total | calc_tax| floatformat:2 }}</h5><small class="text-capitalize d-inline-block ms-1">  Excl VAT.</small>
+                {% with ex_vat=total|calc_tax %}
+                    <small class="ms-2"><strong>VAT:</strong> €{{ cart_total|subtract:ex_vat| floatformat:2 }}</small>
+                {% endwith %}
+                {% if shipping == 0 %}
+                <p><em>You qualify for free shipping! - <i class="fas fa-shipping-fast"></i></em></p>
+                {% endif %}
+                
+                </p>
+            </div>
+            <hr>
+        </div>
+        
     </div>
 </div>
 {% endblock %}

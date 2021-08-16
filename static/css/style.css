@@ -91,6 +91,21 @@ header a:active,
     font-style: italic;
 }
 
+.bg-bright {
+    background: var(--orange);
+    color: #fff;
+}
+
+.bg-dark {
+    background: var(--grn-dark);
+    color: #fff;
+}
+
+.bg-main {
+    background: var(--grn);
+    color: #fff;
+}
+
 .btn {
     border: none;
 }
@@ -608,9 +623,10 @@ button.not-allowed:disabled {
 }
 
 .cart-items-table {
-    border-radius: 5px;
     padding: 0;
     margin: 0;
+    background: #ededed;
+    border-radius: 15px;
 }
 
 .cart-items-table th{
@@ -619,12 +635,14 @@ button.not-allowed:disabled {
     border-bottom: 2px solid #ddd;
     width: 25%;
     vertical-align: baseline;
+    background: #ededed;
 }
 
 .cart-items-table td {
     font-size: 1rem;
     vertical-align: baseline;
     width: 25%;
+    background: #ededed;
 }
 
 .cart-items-table td h6 {
@@ -829,7 +847,7 @@ select, #id_country {
         font-size: 1rem;
     }
 
-    .product-container, .checkout-container{
+    .product-container{
         width: 40vw;
     }
 

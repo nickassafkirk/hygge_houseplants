@@ -113,3 +113,15 @@
 </div>
 {% endblock %}
 
+{% block footerjs %}
+    <script type="text/javascript">
+        // Change show/hide text on click
+        $('#toggle-show-hide').click(function(){
+            if ($(this).text() == 'Show Summary') {
+                $(this).text('Hide Summary')
+            } else {
+                $(this).text('Show Summary')
+            }
+        })
+    </script>
+{% endblock %}

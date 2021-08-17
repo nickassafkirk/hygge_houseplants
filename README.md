@@ -42,6 +42,9 @@ credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
 * [Accessories Category Tile Image](https://unsplash.com/photos/NLcLjLNUJbY)
 credit Tom Crew from [Unsplash](https://unsplash.com/)
 
+* [Hygge Plaque image](https://unsplash.com/photos/SDxDQXixgfU)
+credit Julian Hochgesang from [Unsplash](https://unsplash.com/)
+
 #### Code Credits
 
 * Contact form Tutorial - To add a contact form functionality to the project, I used a guide from this

@@ -3,8 +3,8 @@ from django.contrib import messages
 from django.db.models import Q
 from django.forms import modelformset_factory
 from django.db.models.functions import Lower
-from .models import Product, Category, Variant
-from .forms import ProductForm, VariantForm
+from .models import Product, Category, Variant, Collection
+from .forms import ProductForm, VariantForm, CollectionForm
 
 
 # All products view
@@ -244,4 +244,13 @@ def delete_variant(pk):
     variant = get_object_or_404(Variant, pk=pk)
     print('delete called', variant)
     variant.delete()
-    
+
+
+def add_collection(request):
+
+    collection_form = CollectionForm()
+    template = 'products/add_collection.html'
+    context = {
+        'collection_form': collection_form,
+    }
+    return render(request, template, context)

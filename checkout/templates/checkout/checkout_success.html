@@ -7,12 +7,130 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid my-5 checkout-container">
+<div class="container-fluid my-5 checkout-success-container">
     <div class="row">
         <div class="col-12 order-0">
             <h3>Order Confirmed</h3>
             <hr>
             <p>Thank you for placing your order. An email will be sent to <strong>{{ order.email }}</strong></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>Order Summary:</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row checkout-success-section-wrapper">
+            <div class="col-12">
+                <h6>Billing Info:</h6>
+                <hr>
+            </div>
+            <div class="col-4">
+                <strong>Order Number:</strong>
+            </div>
+            <div class="col-8">
+                {{ order.order_number }}
+            </div>
+            <div class="col-4">
+                <strong>Order Placed:</strong>
+            </div>
+            <div class="col-8">
+                {{ order.date }}
+            </div>
+            <div class="col-4">
+                <strong>Name</strong>
+            </div>
+            <div class="col-8">
+                {{ order.full_name }}
+            </div>
+            <div class="col-4">
+                <strong>Email</strong>
+            </div>
+            <div class="col-8">
+                {{ order.email }}
+            </div>
+            {% if order.phone %}
+            <div class="col-4">
+                <strong>Name</strong>
+            </div>
+            <div class="col-8">
+                {{ order.phone_number }}
+            </div>
+            {% endif %}
+    </div>
+    <div class="row checkout-success-section-wrapper">
+        <div class="col-12">
+            <h6>Shipping Info:</h6>
+            <hr>
+        </div>
+        <div class="col-4">
+            <strong>Street Address 1</strong>
+        </div>
+        <div class="col-8">
+            {{ order.street_address1 }}
+        </div>
+        {% if order.street_address2 %}
+            <div class="col-4">
+                <strong>Street Address 2</strong>
+            </div>
+            <div class="col-8">
+                {{ order.street_address2 }}
+            </div>
+        {% endif %}
+        <div class="col-4">
+            <strong>City/Town</strong>
+        </div>
+        <div class="col-8">
+            {{ order.city_or_town }}
+        </div>
+        {% if order.county_or_state %}
+            <div class="col-4">
+                <strong>County/State</strong>
+            </div>
+            <div class="col-8">
+                {{ order.county_or_state }}
+            </div>
+        {% endif %}
+        <div class="col-4">
+            <strong>Postcode</strong>
+        </div>
+        <div class="col-8">
+            {{ order.postcode }}
+        </div>
+        <div class="col-4">
+            <strong>Country</strong>
+        </div>
+        <div class="col-8">
+            {{ order.country }}
+        </div>
+    </div>
+    <div class="row checkout-success-section-wrapper">
+        <div class="col-12">
+            <h6>Pricing Info:</h6>
+            <hr>
+        </div>
+        <div class="col-4">
+            <strong>Items Total</strong>
+        </div>
+        <div class="col-8">
+            €{{ order.item_total }}
+        </div>
+        <div class="col-4">
+            <strong>Shipping</strong>
+        </div>
+        <div class="col-8">
+            {% if order.delivery_cost > 0 %}
+            €{{ order.delivery_cost }}
+            {% else %}
+            Free
+            {% endif %}
+        </div>
+        <div class="col-4">
+            <strong>Order Total</strong>
+        </div>
+        <div class="col-8">
+            €{{ order.order_total }}
         </div>
     </div>
 </div>

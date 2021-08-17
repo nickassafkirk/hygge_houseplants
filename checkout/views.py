@@ -66,8 +66,8 @@ def checkout(request):
                     messages.error(request, (
                         'One or more products, was not found - please contact us for assistance.')
                     )
-                    order.delete()
-                   return redirect(reverse('view_cart'))
+                order.delete()
+                return redirect(reverse('view_cart'))
         # Form is invalid - display message and return to request address
         else:
             messages.error(request, 'Checkout unsuccessful, check details and try again!')
@@ -108,10 +108,7 @@ def checkout_success(request, order_number):
 
     save_details = request.session.get('save-details')
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, (
-        f'Thank you for placing your order! \ Your order number is {order_number}.
-        A confirmation email will be send to {order.email}.'
-        ))
+    messages.success(request, f'Thank you for placing your order! Your order number is {order_number}. A confirmation email will be send to {order.email}.')
     if 'cart' in request.session:
         del request.session['cart']
     template = 'checkout/checkout_success.html'

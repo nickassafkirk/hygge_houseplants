@@ -59,6 +59,17 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 - I need to view, create, edit and delete orders.
 - I need to be able to assign additional site administrators.
 
+---
+### Structure
+---
+**Apps:**
+- Index
+- Products
+- Cart
+- Checkout
+- Contact
+- Account
+- Social
 
 ---
 ### Technologies Used:

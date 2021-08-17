@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load cart_filters %}
 
 {% block additional_headstyles %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
@@ -107,6 +108,29 @@
     </div>
     <div class="row checkout-success-section-wrapper">
         <div class="col-12">
+            <h6>Items:</h6>
+            <hr>
+        </div>
+        <div class="col-6"><strong>Item</strong></div>
+        <div class="col-3"><strong>Qty</strong></div>
+        <div class="col-3"><strong>Price</strong></div>
+        {% for lineitem in lineitems %}
+            <div class="col-6">
+                {{ lineitem.product.name }}
+                {% if lineitem.variant %}
+                - {{ lineitem.variant.name}}
+                {% endif %}
+            </div>
+            <div class="col-3">
+                {{ lineitem.quantity }}
+            </div>
+            <div class="col-3">
+                €{{ lineitem.lineitem_total }}
+            </div>
+        {% endfor %} 
+    </div>
+    <div class="row checkout-success-section-wrapper">
+        <div class="col-12">
             <h6>Pricing Info:</h6>
             <hr>
         </div>
@@ -131,6 +155,13 @@
         </div>
         <div class="col-8">
             €{{ order.order_total }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="button-container">
+                <a class="btn btn-outline-bright" href="{% url 'products' %}">Return To Products <i class="fas fa-shopping-bag"></i></a>
+            </div>
         </div>
     </div>
 </div>

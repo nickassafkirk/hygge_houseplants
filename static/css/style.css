@@ -829,7 +829,7 @@ select, #id_country {
 /* Checkout Success */
 
 .checkout-success-section-wrapper {
-    margin: 1rem;
+    margin: 1rem auto;
     border: 1px solid #898e94;
     padding: 0.5rem;
     border-radius: 5px;
@@ -837,13 +837,14 @@ select, #id_country {
 }
 
 .checkout-success-section-wrapper h6 {
+    margin-top: 0.35rem;
     font-weight: 600;
 }
 
 .checkout-success-section-wrapper .col-8, .checkout-success-section-wrapper .col-4 {
     margin: 0.3rem auto;
 }
-.checkout-success-section-wrapper .col-8 {
+.checkout-success-section-wrapper .col-8, .checkout-success-section-wrapper .col-3 {
     text-align: right;
 }
 

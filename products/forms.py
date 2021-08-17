@@ -2,7 +2,7 @@ from django import forms
 from .widgets import CustomClearableFileInput
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Product, Category, Variant
+from .models import Product, Category, Variant, Collection
 
 
 class ProductForm(forms.ModelForm):
@@ -61,3 +61,8 @@ class VariantForm(forms.ModelForm):
 
         parent_product = self.fields['parent_product']
         parent_product.widget.attrs['class'] = "d-none"
+
+
+class CollectionForm(forms.ModelForm):
+    model = Collection
+    fields = ('name', 'products',)

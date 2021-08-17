@@ -1,8 +1,26 @@
 from django import forms
+from django.forms.widgets import CheckboxSelectMultiple
 from .widgets import CustomClearableFileInput
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Product, Category, Variant, Collection
+
+
+class CollectionForm(forms.ModelForm):
+    class Meta:
+        model = Collection
+        fields = ('name', 'description', 'products', 'active',)
+
+    name = forms.CharField(max_length=80)
+
+    description = forms.Textarea()
+
+    products = forms.ModelMultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        queryset=Product.objects.all(),
+    )
+
+    active = forms.BooleanField(initial=True)
 
 
 class ProductForm(forms.ModelForm):
@@ -63,6 +81,4 @@ class VariantForm(forms.ModelForm):
         parent_product.widget.attrs['class'] = "d-none"
 
 
-class CollectionForm(forms.ModelForm):
-    model = Collection
-    fields = ('name', 'products',)
+

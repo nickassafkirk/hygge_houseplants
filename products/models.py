@@ -78,7 +78,7 @@ class Collection(models.Model):
 
     name = models.CharField(max_length=35)
     description = models.TextField(max_length=254)
-    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
     display_name = models.CharField(max_length=35, null=True, blank=True)
     active = models.BooleanField(default=True)
 

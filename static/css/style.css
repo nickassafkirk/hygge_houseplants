@@ -16,7 +16,7 @@
     --terra-light: #fca886;
 
     --orange: #ee9b00;
-    --sand: #cebfa8
+    --sand: #cebfa8;
 
 }
 
@@ -270,7 +270,7 @@ footer .social-icon a i {
     left: 50%;
     width: 80%;
     height: auto;
-    background: rgba(13, 13, 13, 0.75);
+    background: rgba(0, 27, 19, 0.79);
     transform: translate(-50%, -50%);
     color: #fff;
     text-shadow: 2px 2px rgba(33, 33, 33, 0.5);
@@ -286,9 +286,9 @@ footer .social-icon a i {
 .hero-image-btn {
     display: block;
     max-width: 50%;
-    background: #cebfa8;
+    background: var(--grn);
     font-family: var(--hygge);
-    color: #000;
+    color: #fff;
     text-shadow: none;
 }
 
@@ -303,9 +303,9 @@ footer .social-icon a i {
 .info-container {
     max-width: 80vw;
     margin: 0 auto;
-    background: #cebfa8;
-    color: #000;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    background: var(--sand);
+    color: rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.75);
     border-radius: 5px;
     padding: 1rem;
     cursor: pointer;
@@ -315,7 +315,15 @@ footer .social-icon a i {
     font-family: var(--hygge);
     text-underline-offset: 7px;
     text-decoration: underline double;
+    text-decoration-color: rgba(0,0,0,0.75);
+    cursor: pointer;
+    text-shadow: 2px 2px var(--orange);
+}
+
+#hygge-what:hover {
+    color: var(--orange);
     text-decoration-color: var(--orange);
+    text-shadow: 2px 2px rgba(0,0,0,0.75);
 }
 
 #hygge-is {

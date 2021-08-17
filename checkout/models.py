@@ -41,7 +41,9 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
 
     def _create_order_number(self):
-        return uuid.uuid4().hex.upper()
+        prefix = '#HH'
+        unique_id = uuid.uuid4().hex[:6].upper()
+        return prefix + unique_id
 
     def update_total(self):
         self.item_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0

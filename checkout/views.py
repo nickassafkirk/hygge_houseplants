@@ -30,7 +30,7 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
-        print(order_form)
+
         # Form is valid case
         if order_form.is_valid():
             order = order_form.save()
@@ -111,7 +111,7 @@ def checkout_success(request, order_number):
 
     save_details = request.session.get('save-details')
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Thank you for placing your order! Your order number is {order_number}. A confirmation email will be send to {order.email}.')
+    messages.success(request, f'Thank you for ordering! Your order number is {order_number}. A confirmation email will be send to {order.email}.')
     if 'cart' in request.session:
         del request.session['cart']
     template = 'checkout/checkout_success.html'

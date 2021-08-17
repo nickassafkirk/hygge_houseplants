@@ -13,11 +13,11 @@ var elements = stripe.elements(); /* create an instance of stripe.elements so we
 var style = {
       base: {
         color: '#000',
-        fontFamily: 'Helvetica Neue, Helvetica, sans-serif',
+        fontFamily: 'Source Sans Pro, sans-serif',
         fontSize: '16px',
         fontSmoothing: 'antialiased',
         '::placeholder': {
-          color: '#aab7c4'
+          color: '#898e94'
         }
       },
       invalid: {

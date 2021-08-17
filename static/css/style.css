@@ -748,7 +748,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 input.form-control::placeholder, select{
-    color: #555;
+    color: #898e94;
 }
 
 select, #id_country {
@@ -765,6 +765,10 @@ select, #id_country {
 #checkout-form h5 {
     font-family: var(--main);
     font-weight: 600;
+}
+
+.form-check-input:checked {
+    background: var(--grn);
 }
 
 

@@ -2,7 +2,7 @@
 .stripe-style-input {
   box-sizing: border-box;
   height: 40px;
-  width: 90%;
+  width: 96%;
   margin: 0 auto;
   padding: 10px 12px;
   border: none;
@@ -20,11 +20,11 @@
 }
 
 .StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+  background-color: #898e94 !important;
 }
 
 .stripe-style-input::placeholder {
-    color: #aab7c4;
+    color: #898e94;
 }
 
 .fieldset-label {
@@ -45,7 +45,7 @@ select option {
 
 select:invalid,
 select option[value=""] {
-  color: #aab7c4 !important;
+  color: #898e94 !important;
 }
 
 #loading-overlay {

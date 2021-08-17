@@ -153,6 +153,10 @@ the default number input adjust buttons and to center the text.
         widget=forms.CheckboxSelectMultiple
     )
     ```
+
+* To create a more user friendly order number I used ```.hex[:6]``` when creating the uuid to limit it to 6 charachters. I then added a prefix to make order numbers more consistent. 
+I discovered the ability to limit UUID in [this stack overflow post](https://stackoverflow.com/questions/26030811/generate-a-unique-string-in-python-django/26032898)
+
 ---
 ### Code
 ---

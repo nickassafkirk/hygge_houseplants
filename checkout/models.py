@@ -8,7 +8,7 @@ from products.models import Product, Variant
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=25, null=False, editable=False)
+    order_number = models.CharField(max_length=25, null=False, editable=False, unique=True)
 
     date = models.DateField(auto_now_add=True)
 

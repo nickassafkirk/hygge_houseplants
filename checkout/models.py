@@ -49,12 +49,12 @@ class Order(models.Model):
             self.delivery_cost = settings.STANDARD_SHIPPING_FEE
         else:
             self.delivery_cost = 0
-        self.order_total = self.item_total + self.delivery_cost
+        self.order_total = float(self.item_total) + float(self.delivery_cost)
         self.save()
 
     def save(self, *args, **kwargs):
         if not self.order_number:
-            self._create_order_number()
+            self.order_number = self._create_order_number()
         super().save(*args, **kwargs)
 
     def __str__(self):

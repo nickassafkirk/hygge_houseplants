@@ -30,6 +30,7 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
+        print(order_form)
         # Form is valid case
         if order_form.is_valid():
             order = order_form.save()
@@ -66,15 +67,17 @@ def checkout(request):
                     messages.error(request, (
                         'One or more products, was not found - please contact us for assistance.')
                     )
-                order.delete()
-                return redirect(reverse('view_cart'))
+                    order.delete()
+                    return redirect(reverse('view_cart'))
+
+            # save info to user's profile.
+            print('Try clause success')
+            request.session['save-details'] = 'save-details' in request.POST
+            request.session['accept-marketing'] = 'accept-marketing' in request.POST
+            return redirect(reverse('checkout_success', kwargs={"order_number": order.order_number,}))
         # Form is invalid - display message and return to request address
         else:
             messages.error(request, 'Checkout unsuccessful, check details and try again!')
-
-        request.session['save-details'] = 'save-details' in request.POST
-        request.session['accept-marketing'] = 'accept-marketing' in request.POST
-        return redirect(reverse('checkout_success', args=[order.order_number]))
     else:
         cart = request.session.get('cart', {})
         if not cart:

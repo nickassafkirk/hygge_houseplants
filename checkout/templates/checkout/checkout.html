@@ -3,6 +3,10 @@
 {% load crispy_forms_tags %}
 {% load cart_filters %}
 
+{% block additional_headstyles %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid my-5 checkout-container">
     <div class="row">
@@ -39,9 +43,9 @@
                             <input class="form-check-input" type="checkbox" name="accept-marketing" id="accept-marketing">
                         </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row my-3">
                     <h5>Payment Details</h5>
-                    <div class="col-12" id="card-element"></div>
+                    <div class="col-12 p-2" id="card-element"></div>
                     <div class="col-12 text-danger" id="card-errors" role="alert"></div>
                 </div>
             </form>
@@ -132,6 +136,10 @@
 {% endblock %}
 
 {% block footerjs %}
+    {{block.super}}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ stripe_public_key|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
     <script type="text/javascript">
         // Change show/hide text on click
         $('#toggle-show-hide').click(function(){

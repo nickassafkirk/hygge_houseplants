@@ -145,6 +145,14 @@ the default number input adjust buttons and to center the text.
       background-size: 30px;
     }
     ```
+* To render each collection product as an individual option, each product was rendered as a checkbox to provide a better user experience thant the default django multi-choice dropdown field. To enable this functionality 'forms.CheckboxSelectMultiple' was used. This technique was learned from [this medium.com blog post](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024). The code snippet used can be seen below:
+
+    ```  
+    members = forms.ModelMultipleChoiceField(
+        queryset=Member.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+    ```
 ---
 ### Code
 ---

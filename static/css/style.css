@@ -87,7 +87,7 @@ header a:active,
 }
 
 .site-search::placeholder {
-    color:var(--grn-dark);
+    color:var(--grn-dark) !important;
     font-style: italic;
 }
 

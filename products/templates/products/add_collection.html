@@ -7,7 +7,7 @@
     <h3>Add Collection</h3>
     <p>Collections allow us to group multiple related products together to make it easy for customers to find and buy related items.</p>
     <hr>
-    <form action="">
+    <form action="{% url 'add_collection' %}" method="POST">
         {% csrf_token %}
         {{ collection_form | crispy }}
         <hr>

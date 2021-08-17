@@ -248,9 +248,20 @@ def delete_variant(pk):
 
 def add_collection(request):
 
-    collection_form = CollectionForm()
-    template = 'products/add_collection.html'
-    context = {
-        'collection_form': collection_form,
-    }
+    if request.method == "POST":
+        collection_form = CollectionForm(request.POST)
+        if collection_form.is_valid():
+            new_collection = collection_form.save()
+            messages.success(request, f'Collection {new_collection.name} successfully added!')
+            return redirect('add_collection')
+        else:
+            messages.error(request, 'Collection not saved, check form and try again!')
+            return redirect('add_collection')
+    else:
+        collection_form = CollectionForm()
+
+        template = 'products/add_collection.html'
+        context = {
+            'collection_form': collection_form,
+        }
     return render(request, template, context)

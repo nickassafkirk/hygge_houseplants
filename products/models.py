@@ -70,3 +70,17 @@ class Variant(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Collection(models.Model):
+    class Meta:
+        verbose_name_plural = 'Collections'
+
+    name = models.CharField(max_length=35)
+    description = models.TextField(max_length=254)
+    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    display_name = models.CharField(max_length=35, null=True, blank=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name

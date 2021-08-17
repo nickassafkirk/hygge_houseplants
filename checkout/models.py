@@ -44,7 +44,7 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        self.item_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total_sum'] or 0
+        self.item_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.item_total < settings.FREE_SHIPPING_THRESHOLD:
             self.delivery_cost = settings.STANDARD_SHIPPING_FEE
         else:

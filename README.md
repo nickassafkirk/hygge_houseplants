@@ -139,6 +139,9 @@ credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
 * [Accessories Category Tile Image](https://unsplash.com/photos/NLcLjLNUJbY)
 credit Tom Crew from [Unsplash](https://unsplash.com/)
 
+* [Hygge Plaque image](https://unsplash.com/photos/SDxDQXixgfU)
+credit Julian Hochgesang from [Unsplash](https://unsplash.com/)
+
 #### Code Credits
 
 * Contact form Tutorial - To add a contact form functionality to the project, I used a guide from this
@@ -242,6 +245,18 @@ the default number input adjust buttons and to center the text.
       background-size: 30px;
     }
     ```
+* To render each collection product as an individual option, each product was rendered as a checkbox to provide a better user experience thant the default django multi-choice dropdown field. To enable this functionality 'forms.CheckboxSelectMultiple' was used. This technique was learned from [this medium.com blog post](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024). The code snippet used can be seen below:
+
+    ```  
+    members = forms.ModelMultipleChoiceField(
+        queryset=Member.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+    ```
+
+* To create a more user friendly order number I used ```.hex[:6]``` when creating the uuid to limit it to 6 charachters. I then added a prefix to make order numbers more consistent. 
+I discovered the ability to limit UUID in [this stack overflow post](https://stackoverflow.com/questions/26030811/generate-a-unique-string-in-python-django/26032898)
+
 ---
 ### Code
 ---

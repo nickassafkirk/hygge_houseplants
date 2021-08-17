@@ -8,7 +8,7 @@ from products.models import Product, Variant
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=25, null=False, editable=False)
+    order_number = models.CharField(max_length=25, null=False, editable=False, unique=True)
 
     date = models.DateField(auto_now_add=True)
 
@@ -41,20 +41,22 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
 
     def _create_order_number(self):
-        return uuid.uuid4().hex.upper()
+        prefix = '#HH'
+        unique_id = uuid.uuid4().hex[:6].upper()
+        return prefix + unique_id
 
     def update_total(self):
-        self.item_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total_sum']
+        self.item_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.item_total < settings.FREE_SHIPPING_THRESHOLD:
             self.delivery_cost = settings.STANDARD_SHIPPING_FEE
         else:
             self.delivery_cost = 0
-        self.order_total = self.item_total + self.delivery_cost
+        self.order_total = float(self.item_total) + float(self.delivery_cost)
         self.save()
 
     def save(self, *args, **kwargs):
         if not self.order_number:
-            self._create_order_number()
+            self.order_number = self._create_order_number()
         super().save(*args, **kwargs)
 
     def __str__(self):

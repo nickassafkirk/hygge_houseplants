@@ -207,6 +207,11 @@ STANDARD_SHIPPING_FEE = 6.99
 DEFAULT_CURRENCY = 'euro'
 DEFAULT_TAX_RATE = 0.23
 
+# stripe
+STRIPE_CURRENCY = 'eur'
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

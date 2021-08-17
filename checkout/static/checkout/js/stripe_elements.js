@@ -46,17 +46,17 @@ card.addEventListener('change', function(event){
 }); 
 
 // Handle form submit
-var form = document.getElementById('payment-form');
+var form = document.getElementById('checkout-form');
 
 form.addEventListener('submit', function(ev) {
   ev.preventDefault();
   card.update({ 'disabled': true});
-  $('#submit-button').attr('disabled', true);
-  $('#payment-form').fadeToggle(100);
+  $('#btn-checkout').attr('disabled', true);
+  $('#checkout-form').fadeToggle(100);
   $('#loading-overlay').fadeToggle(100);
 
 
-  var saveInfo = Boolean($('#id-save-info').attr('checked'));
+  var saveInfo = Boolean($('#save-details').attr('checked'));
   var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
   var postData = {
     'csrfmiddlewaretoken': csrfToken,
@@ -78,9 +78,9 @@ form.addEventListener('submit', function(ev) {
           address:{
             line1: $.trim(form.street_address1.value),
             line2: $.trim(form.street_address2.value),
-            city: $.trim(form.town_or_city.value),
+            city: $.trim(form.city_or_town.value),
             country: $.trim(form.country.value),
-            state: $.trim(form.county.value),
+            state: $.trim(form.county_or_state.value),
           }
         }
       },
@@ -90,10 +90,10 @@ form.addEventListener('submit', function(ev) {
         address:{
           line1: $.trim(form.street_address1.value),
           line2: $.trim(form.street_address2.value),
-          city: $.trim(form.town_or_city.value),
+          city: $.trim(form.city_or_town.value),
           country: $.trim(form.country.value),
           postal_code: $.trim(form.postcode.value),
-          state: $.trim(form.county.value),
+          state: $.trim(form.county_or_state.value),
         }
       }
     }).then(function(result) {
@@ -105,10 +105,10 @@ form.addEventListener('submit', function(ev) {
                     </span>
                     <span>${result.error.message}</span>`;
         $(errorDiv).html(html);
-        $('#payment-form').fadeToggle(100);
+        $('#checkout-form').fadeToggle(100);
         $('#loading-overlay').fadeToggle(100);
         card.update({ 'disabled': false});
-        $('#submit-button').attr('disabled', false);
+        $('#btn-checkout').attr('disabled', false);
       } else {
         // The payment has been processed
         if (result.paymentIntent.status === 'succeeded') {

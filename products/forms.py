@@ -5,20 +5,41 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Product, Category, Variant, Collection
 
 
+class CollectionForm(forms.ModelForm):
+    class Meta:
+        model = Collection
+        fields = ('name', 'description', 'products', 'active',)
+
+    name = forms.CharField(max_length=80)
+
+    description = forms.Textarea()
+
+    products = forms.ModelMultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        queryset=Product.objects.all(),
+    )
+
+    active = forms.BooleanField(initial=True)
+
+
 class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
         exclude = ('created_date',)
 
-    image = forms.ImageField(label="Image", required=False, widget=CustomClearableFileInput)
+    image = forms.ImageField(
+        label="Image", required=False, widget=CustomClearableFileInput)
     has_variants = forms.BooleanField(required=False)
     available = forms.BooleanField(required=True, initial=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
-        display_names = [(category.id, category.get_display_name()) for category in categories]
+        display_names = [
+            (category.id, category.get_display_name())
+            for category in categories
+            ]
 
         cat_field = self.fields['category']
         variants_field = self.fields['has_variants']
@@ -36,7 +57,10 @@ class VariantForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        fields = ('parent_product', 'color', 'size', 'price', 'quantity', 'image_url', 'image', )
+        fields = (
+            'parent_product', 'color', 'size', 'price',
+            'quantity', 'image_url', 'image',
+            )
         labels = {
             'parent_product': _(''),
             'name': _(''),
@@ -61,8 +85,3 @@ class VariantForm(forms.ModelForm):
 
         parent_product = self.fields['parent_product']
         parent_product.widget.attrs['class'] = "d-none"
-
-
-class CollectionForm(forms.ModelForm):
-    model = Collection
-    fields = ('name', 'products',)

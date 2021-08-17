@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid my-5 collection-container">
+    <h3>Add Collection</h3>
+    <p>Collections allow us to group multiple related products together to make it easy for customers to find and buy related items.</p>
+    <hr>
+    <form action="{% url 'add_collection' %}" method="POST">
+        {% csrf_token %}
+        {{ collection_form | crispy }}
+        <hr>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-dark">Add Collection <i class="fas fa-plus"></i></button> 
+        </div>
+    </form>
+</div>
+{% endblock %}

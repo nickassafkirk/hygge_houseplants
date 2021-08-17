@@ -60,6 +60,10 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 - I need to be able to assign additional site administrators.
 
 ---
+### Scope
+---
+
+---
 ### Structure
 ---
 **Apps:**
@@ -70,6 +74,27 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 - Contact
 - Account
 - Social
+
+---
+### Skeleton
+---
+
+---
+### Surface
+---
+
+**Fonts**
+1.  --hygge:  'Karla', sans-serif -> This is the Logo font.
+1.  --main: 'Source Sans Pro', sans-serif -> This font is used for the body text, larger passages of text and with heavier font weight it is also used for form labels and lesser headings.
+1.  --head: 'Staatliches', cursive; - This is used as the main Headin font. It's uppercase font style and bold font-weight is bold and striking and draws attention to key section headinds, alerts and other sections of informations that site users need to be made aware of.
+
+**Colors**
+A predominently green color palette was chosen for this project to allude to the site's main content (Plants). Three shades of green (light, mid, dark) are the basis of the color palette. 
+These are offset with bright orange accent color used for buttons, links and other interactive elements. Bootstraps default green (success) and red (danger) color's are utilised in "yes"/"no", "do"/"don't" scenarios, where users are given multiple decisions or when feedback to a user input with a positive or negative connotation is provided. In such instances the traffic light (green means go, red means stop) metaphor is chosen rather than adhering to the color scheme in order to provide a better user experience and improved first-time-learning. 
+
+**Images**
+
+**Icons**
 
 ---
 ### Technologies Used:

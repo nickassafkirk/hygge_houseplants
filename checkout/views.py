@@ -30,12 +30,16 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
-
+        # Form is valid case
         if order_form.is_valid():
             order = order_form.save()
+
+            # If form is valid create and save each lineitem
+            # This is reverse of building the cart_contents object
             for product_id, product_data in cart.items():
                 try:
                     product = get_object_or_404(Product, pk=product_id)
+
                     # handle lineitem without variants
                     if isinstance(product_data, int):
                         order_line_item = OrderLineItem(
@@ -44,7 +48,8 @@ def checkout(request):
                             product=product
                         )
                         order_line_item.save()
-                    # handle product with variant
+
+                    # handle lineitem with variant
                     else:
                         # iterate through product_data to extract variant_id & Qty
                         for variant_id, quantity in product_data["product_variants"].items():
@@ -56,12 +61,21 @@ def checkout(request):
                                 quantity=quantity,
                             )
                             order_line_item.save()
+
                 except Product.DoesNotExist:
                     messages.error(request, (
                         'One or more products, was not found - please contact us for assistance.')
                     )
                     order.delete()
-                    return redirect(reverse('view_cart'))
+                   return redirect(reverse('view_cart'))
+        # Form is invalid - display message and return to request address
+        else:
+            messages.error(request, 'Checkout unsuccessful, check details and try again!')
+
+        request.session['save-details'] = 'save-details' in request.POST
+        request.session['accept-marketing'] = 'accept-marketing' in request.POST
+
+        return redirect(reverse('checkout_success', args=[order.order_number]))
     else:
         cart = request.session.get('cart', {})
         if not cart:

@@ -76,10 +76,9 @@ class Collection(models.Model):
     class Meta:
         verbose_name_plural = 'Collections'
 
-    name = models.CharField(max_length=35)
+    name = models.CharField(max_length=35, unique=True)
     description = models.TextField(max_length=254)
     products = models.ManyToManyField(Product)
-    display_name = models.CharField(max_length=35, null=True, blank=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):

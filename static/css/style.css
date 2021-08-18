@@ -526,6 +526,20 @@ button.not-allowed:disabled {
     pointer-events: all !important;
 }
 
+#add-to-cart-quantity {
+    border-radius: 0;
+}
+
+.input-group-prepend {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+ }
+
+ .input-group-append {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+ }
+
 /* Add Product Form */ 
 
 .btn-file {
@@ -721,12 +735,12 @@ input[type='number']::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.input-group-append {
+.cart-container .input-group-append {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
  }
 
- .input-group-prepend {
+ .cart-container .input-group-prepend {
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
  }

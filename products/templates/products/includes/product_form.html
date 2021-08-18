@@ -2,12 +2,17 @@
 {% csrf_token %}
 {% for field in product_form %}
     {% if field.name == "has_variants" %}
-    <hr>
-    <label for="{{ field.auto_id }}" class="me-2">{{ field.label }}</label>
+    
+    <div class="checkbox-row col-sm-6">
+        <label for="{{ field.auto_id }}">{{ field.label }}</label>
         {{ field }}
+    </div>
+
     {% elif field.name == "available" %}
-    <label for="{{ field.auto_id }}" class="ms-5 me-2">{{ field.label }}</label>
-        {{ field }}   
+    <div class="checkbox-row col-sm-6">
+        <label for="{{ field.auto_id }}">{{ field.label }}</label>
+        {{ field }}  
+    </div>
     {% else %}   
         {{ field | as_crispy_field }}
     {% endif %}

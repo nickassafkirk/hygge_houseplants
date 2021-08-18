@@ -63,6 +63,7 @@ select option[value=""] {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #62a68a;
   margin: 0;
   height: 100%;
 }

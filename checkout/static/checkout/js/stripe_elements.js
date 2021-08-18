@@ -26,6 +26,8 @@ var style = {
       }
 };
 
+
+
 var card = elements.create('card', {style: style}); 
 card.mount('#card-element'); /* mount the new card element to the appropriate part of our template */
 
@@ -47,18 +49,25 @@ card.addEventListener('change', function(event){
 
 // Handle form submit
 var form = document.getElementById('checkout-form');
-$('#btn-checkout').click(function(){
-  form.submit(handleStripePayment)
+
+$('#btn-checkout').click(function(ev){
+  
+  form.submit(ev)
+  console.log(ev)
+  ev.preventDefault();
 })
 
-
-function handleStripePayment(ev) {
+form.addEventListener('submit', function(ev) {
+  console.log('submit event fired')
+  console.log(ev)
   ev.preventDefault();
+
   card.update({ 'disabled': true});
   $('#btn-checkout').attr('disabled', true);
   $('#checkout-form').fadeToggle(100);
   $('#loading-overlay').fadeToggle(100);
 
+  setTimeout(function(){ alert("Hello"); }, 3000)
 
   var saveInfo = Boolean($('#save-details').attr('checked'));
   var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
@@ -116,7 +125,8 @@ function handleStripePayment(ev) {
       } else {
         // The payment has been processed
         if (result.paymentIntent.status === 'succeeded') {
-          form.submit();
+          alert("This is an alert")
+          form.submit()
         }
       }
     }) 
@@ -124,4 +134,4 @@ function handleStripePayment(ev) {
     // if post fails, reload the page so django error message is displayed.
     location.reload();
   })
-};
+});

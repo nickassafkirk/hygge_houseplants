@@ -26,8 +26,6 @@ var style = {
       }
 };
 
-
-
 var card = elements.create('card', {style: style}); 
 card.mount('#card-element'); /* mount the new card element to the appropriate part of our template */
 
@@ -50,88 +48,37 @@ card.addEventListener('change', function(event){
 // Handle form submit
 var form = document.getElementById('checkout-form');
 
-$('#btn-checkout').click(function(ev){
-  
-  form.submit(ev)
-  console.log(ev)
-  ev.preventDefault();
+$('#btn-checkout').click(function(){
+   $('#hidden-submit').click()
 })
 
 form.addEventListener('submit', function(ev) {
-  console.log('submit event fired')
-  console.log(ev)
   ev.preventDefault();
-
   card.update({ 'disabled': true});
   $('#btn-checkout').attr('disabled', true);
   $('#checkout-form').fadeToggle(100);
   $('#loading-overlay').fadeToggle(100);
-
-  setTimeout(function(){ alert("Hello"); }, 3000)
-
-  var saveInfo = Boolean($('#save-details').attr('checked'));
-  var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-  var postData = {
-    'csrfmiddlewaretoken': csrfToken,
-    'client_secret': clientSecret,
-    'save_info': saveInfo,
-  };
-  var url = '/checkout/cache_checkout_data/';
-  
-  // posts to the postData object above to the cahe_checkout_data view
-  // using .done, we execute the callback when we've received 200 response from view
-  $.post(url, postData).done(function(){
-    stripe.confirmCardPayment(clientSecret, {
+  stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: card,
-        billing_details: {
-          name: $.trim(form.full_name.value),
-          phone: $.trim(form.phone_number.value),
-          email: $.trim(form.email.value),
-          address:{
-            line1: $.trim(form.street_address1.value),
-            line2: $.trim(form.street_address2.value),
-            city: $.trim(form.city_or_town.value),
-            country: $.trim(form.country.value),
-            state: $.trim(form.county_or_state.value),
-          }
-        }
-      },
-      shipping: {
-        name: $.trim(form.full_name.value),
-        phone: $.trim(form.phone_number.value),
-        address:{
-          line1: $.trim(form.street_address1.value),
-          line2: $.trim(form.street_address2.value),
-          city: $.trim(form.city_or_town.value),
-          country: $.trim(form.country.value),
-          postal_code: $.trim(form.postcode.value),
-          state: $.trim(form.county_or_state.value),
-        }
+          card: card,
       }
-    }).then(function(result) {
+  }).then(function(result) {
       if (result.error) {
-        var errorDiv = document.getElementById('card-errors');
-        var html = `
-                    <span class="icon" role="alert">
-                      <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>`;
-        $(errorDiv).html(html);
-        $('#checkout-form').fadeToggle(100);
-        $('#loading-overlay').fadeToggle(100);
-        card.update({ 'disabled': false});
-        $('#btn-checkout').attr('disabled', false);
+          var errorDiv = document.getElementById('card-errors');
+          var html = `
+              <span class="icon" role="alert">
+              <i class="fas fa-times"></i>
+              </span>
+              <span>${result.error.message}</span>`;
+          $(errorDiv).html(html);
+          $('#checkout-form').fadeToggle(100);
+          $('#loading-overlay').fadeToggle(100);
+          card.update({ 'disabled': false});
+          $('#btn-checkout').attr('disabled', false);
       } else {
-        // The payment has been processed
-        if (result.paymentIntent.status === 'succeeded') {
-          alert("This is an alert")
-          form.submit()
-        }
+          if (result.paymentIntent.status === 'succeeded') {
+              form.submit();
+          }
       }
-    }) 
-  }).fail(function(){
-    // if post fails, reload the page so django error message is displayed.
-    location.reload();
-  })
+  });
 });

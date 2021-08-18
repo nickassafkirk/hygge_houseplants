@@ -3,13 +3,22 @@
     submitButton = $('#add-product-btn');
     btnText = submitButton.html();
 
-    $('#has_variants').change( function() {
-        if (this.checked === true) {
+    
+    // Change button text when variants checkbox is selected
+    $('#has_variants').change(function() {
+        console.log('changed')
+        changeBtnText()
+    })
+    
+    // Changes the button text on page load if variants or not selected
+    changeBtnText()
+
+    // Changes the add product submit button text
+    function changeBtnText(){
+        variantCheck = $('#has_variants');
+        if (variantCheck[0].checked == true) {
             $('#add-variants-form').removeClass('d-none');
-            /* Change submit button text when has_variants is checked */
             submitButton.html('Save & Add Variants <i class="fas fa-arrow-circle-right"></i>')
-            /* Disable sku and qty fields if product has variants */
-            
         } else {
             $('#add-variants-form').addClass('d-none');
             submitButton.html(btnText)
@@ -17,8 +26,8 @@
             $('#id_quantity').attr('disabled', false);
             $('#id_quantity').attr('required', true);
         }
-    })
-    
+    }
+
     $('#new-image').change(previewImage);
     
     /** 

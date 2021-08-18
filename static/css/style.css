@@ -748,7 +748,11 @@ form, .checkout-container form, .collection-container form {
     border-radius: 5px;
 }
 
-form input, form select, form textarea, .checkout-container form input, .checkout-container form select{
+form input, form select, form textarea, form label {
+    margin-top: 0.5rem;
+}
+
+.checkout-container form input, .checkout-container form select {
     margin-top: 1rem;
     border: none;
 }

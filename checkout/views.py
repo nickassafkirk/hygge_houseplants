@@ -15,13 +15,15 @@ import json
 def cache_checkout_data(request):
     try:
         # payment intent id
+        print('POST-request:', request.POST)
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # update metadate section in stripe payment intent
+        print('save-details:', request.POST['save_details'])
         stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
-            'save_details': request.POST.get('save-details'),
-            'accept_marketing': request.POST.get('accept-marketing'),
+            'save_details': request.POST.get('save_details'),
+            'accept_marketing': request.POST.get('accept_marketing'),
             'username': request.user,
         })
         return HttpResponse(status=200)

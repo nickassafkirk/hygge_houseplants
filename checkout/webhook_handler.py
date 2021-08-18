@@ -26,7 +26,6 @@ class StripeWH_Handler:
         cart = intent.metadata.cart
         save_details = intent.metadata.save_details
         accept_marketing = intent.metadata.accept_marketing
-
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         order_total = round(intent.data.charges[0].amount / 100, 2)
@@ -37,24 +36,34 @@ class StripeWH_Handler:
                 shipping_details.address[field] = None
 
         order_exists = False
-        try:
-            order = Order.objects.get(
-                full_name__iexact=shipping_details.name,
-                email__iexact=shipping_details.email,
-                phone_number__iexact=shipping_details.phone,
-                country__iexact=shipping_details.country,
-                postcode__iexact=shipping_details.postal_code,
-                city_or_town__iexact=shipping_details.city,
-                street_address1__iexact=shipping_details.line1,
-                street_address2__iexact=shipping_details.line2,
-                county_or_state__iexact=shipping_details.state,
-                order_total__iexact=order_total,
-            )
-            order_exists = True
+        attempt = 1
+        while attempt <= 5:
+
+            try:
+                order = Order.objects.get(
+                    full_name__iexact=shipping_details.name,
+                    email__iexact=shipping_details.email,
+                    phone_number__iexact=shipping_details.phone,
+                    country__iexact=shipping_details.country,
+                    postcode__iexact=shipping_details.postal_code,
+                    city_or_town__iexact=shipping_details.city,
+                    street_address1__iexact=shipping_details.line1,
+                    street_address2__iexact=shipping_details.line2,
+                    county_or_state__iexact=shipping_details.state,
+                    order_total__iexact=order_total,
+                )
+                order_exists = True
+                break
+
+            except Order.DoesNotExist:
+                attempt +=1
+                time.sleep(1)
+        if order_exists:
             return HttpResponse(
-                content=f'Webhook received {event["type"]} | SUCCESS: Order already in Database',
-                status=200)
-        except Order.DoesNotExist:
+                    content=f'Webhook received {event["type"]} | SUCCESS: Order already in Database',
+                    status=200)
+        else:
+            order = None
             try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
@@ -101,7 +110,7 @@ class StripeWH_Handler:
                     status=500)
 
         return HttpResponse(
-            content=f'Webhook received {event["type"]}',
+            content=f'Webhook received {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):

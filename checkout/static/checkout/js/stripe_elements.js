@@ -47,8 +47,12 @@ card.addEventListener('change', function(event){
 
 // Handle form submit
 var form = document.getElementById('checkout-form');
+$('#btn-checkout').click(function(){
+  form.submit(handleStripePayment)
+})
 
-form.addEventListener('submit', function(ev) {
+
+function handleStripePayment(ev) {
   ev.preventDefault();
   card.update({ 'disabled': true});
   $('#btn-checkout').attr('disabled', true);
@@ -120,4 +124,4 @@ form.addEventListener('submit', function(ev) {
     // if post fails, reload the page so django error message is displayed.
     location.reload();
   })
-});
+};

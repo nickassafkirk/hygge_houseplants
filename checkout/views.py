@@ -34,7 +34,7 @@ def checkout(request):
         # Form is valid case
         if order_form.is_valid():
             order = order_form.save()
-
+        
             # If form is valid create and save each lineitem
             # This is reverse of building the cart_contents object
             for product_id, product_data in cart.items():

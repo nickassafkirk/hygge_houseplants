@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="overlay"></div>
 <div class="container-fluid my-5 checkout-container">
     <div class="row">
         <div class="col-12 order-0">
@@ -127,11 +128,16 @@
         </div>
         <div class="col-12 col-md-6 offset-md-3 order-4">
             <div class="button-container mt-3">
-                <a href="#" role="submit" id="btn-checkout" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
+                <a role="submit" id="btn-checkout" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></button>
                 <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>
             </div>
         </div> 
     </div>
+</div>
+<div id="loading-overlay">
+    <h1 class="loading-spinner">
+        <i class="fab fa-pagelines fa-spin"></i>
+    </h1>
 </div>
 {% endblock %}
 
@@ -149,13 +155,5 @@
                 $(this).html('Show Summary <i class="fas fa-caret-down"></i>');
             }
         });
-
-        // Submit checkout form
-        $('#btn-checkout').click( function(){
-            form = $('#checkout-form');
-            $(form).submit();
-        });
-
-
     </script>
 {% endblock %}

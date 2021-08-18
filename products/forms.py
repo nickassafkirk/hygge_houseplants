@@ -59,7 +59,7 @@ class VariantForm(forms.ModelForm):
         model = Variant
         fields = (
             'parent_product', 'color', 'size', 'price',
-            'quantity', 'image_url', 'image',
+            'quantity', 'image',
             )
         labels = {
             'parent_product': _(''),
@@ -67,7 +67,6 @@ class VariantForm(forms.ModelForm):
             'sku': _('Variant Sku'),
             'price': _('Variant Price'),
             'quantity': _('Variant Quantity'),
-            'image_url': _('Variant Image Url'),
             'image': _('Variant Image'),
         }
 

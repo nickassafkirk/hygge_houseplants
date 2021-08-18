@@ -11,14 +11,11 @@
     --grn-dark: #004b33;
     --grn-light: #62a68a;
 
-    --terra: #c67859;
-    --terra-dark: rgb(146, 75, 47);
-    --terra-light: #fca886;
-
     --orange: #ee9b00;
     --sand: #cebfa8;
-
 }
+
+/* General Styles */
 
 body {
     font-family: var(--main);
@@ -37,64 +34,6 @@ h3, h4, h5 {
 
 .text-bright {
     color: var(--orange);
-}
-
-/* Header */
-
-.header-custom {
-    background:var(--grn);
-    color: #fff;
-}
-
-.header-custom a {
-    color: #fff;
-}
-
-.navbar-brand {
-    font-family: var(--hygge);
-    font-size: 1.4rem;
-}
-
-.hygge {
-    font-family: var(--hygge);
-    color: #fff;
-}
-
-.nav-link{
-    font-family: var(--head);
-    font-size: 1.2rem;
-}
-
-a.navbar-brand:hover,
-header a:hover,
-header a:focus,
-header a:active,
-.nav-link:hover,
-.nav-link:focus,
-.nav-link:active {
-    color: var(--orange) !important;
-}
-
-.navbar-toggler{
-    color: #fff;
-}
-
-/* Search area */
-
-header form {
-    background: none;
-    padding: 0;
-}
-
-.site-search{
-    margin-top: 0;
-    background: var(--grn-light);
-    border: none;
-}
-
-.site-search::placeholder {
-    color:var(--grn-dark) !important;
-    font-style: italic;
 }
 
 .text-white {
@@ -149,6 +88,64 @@ header form {
 
 .button-container a:first-child,  .button-container button:first-child{
     margin-right: 4%;
+}
+
+/* Header */
+
+.header-custom {
+    background:var(--grn);
+    color: #fff;
+}
+
+.header-custom a {
+    color: #fff;
+}
+
+.navbar-brand {
+    font-family: var(--hygge);
+    font-size: 1.4rem;
+}
+
+.hygge {
+    font-family: var(--hygge);
+    color: #fff;
+}
+
+.nav-link{
+    font-family: var(--head);
+    font-size: 1.2rem;
+}
+
+a.navbar-brand:hover,
+header a:hover,
+header a:focus,
+header a:active,
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+    color: var(--orange) !important;
+}
+
+.navbar-toggler{
+    color: #fff;
+}
+
+/* Search area */
+
+header form {
+    background-color: transparent;
+    padding: 0;
+}
+
+.site-search{
+    margin-top: 0;
+    background: var(--grn-light);
+    border: none;
+}
+
+.site-search::placeholder {
+    color:var(--grn-dark) !important;
+    font-style: italic;
 }
 
 /* Account & Cart Area */
@@ -524,6 +521,10 @@ a.product-path:focus {
 button.not-allowed:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
+}
+
+#add-to-cart-form {
+    background-color: transparent;
 }
 
 #add-to-cart-quantity {

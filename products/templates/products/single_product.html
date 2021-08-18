@@ -135,6 +135,8 @@
     
     // Prevent form submission on enter 
     $(document).ready(function() {
+        preventOverSelling();
+        preventOutOfBoundsProd();
         $(window).keydown(function(event){
         if(event.keyCode == 13) {
             event.preventDefault();

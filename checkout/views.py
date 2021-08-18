@@ -15,11 +15,9 @@ import json
 def cache_checkout_data(request):
     try:
         # payment intent id
-        print('POST-request:', request.POST)
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # update metadate section in stripe payment intent
-        print('save-details:', request.POST['save_details'])
         stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
             'save_details': request.POST.get('save_details'),
@@ -56,7 +54,11 @@ def checkout(request):
 
         # Form is valid case
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_cart = json.dumps(cart)
+            order.save()
 
             # If form is valid create and save each lineitem
             # This is reverse of building the cart_contents object
@@ -97,7 +99,7 @@ def checkout(request):
             print('Try clause success')
             request.session['save-details'] = 'save-details' in request.POST
             request.session['accept-marketing'] = 'accept-marketing' in request.POST
-            return redirect(reverse('checkout_success', kwargs={"order_number": order.order_number,}))
+            return redirect(reverse('checkout_success', kwargs={"order_number": order.order_number, }))
         # Form is invalid - display message and return to request address
         else:
             messages.error(request, 'Checkout unsuccessful, check details and try again!')

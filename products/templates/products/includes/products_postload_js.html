@@ -28,6 +28,15 @@
         }
     }
 
+    // highlight image container on mouseover
+    $('.image-drop-wrapper').mouseover(function(){
+        $('.btn-file').addClass('bg-bright');
+    })
+
+    $('.image-drop-wrapper').mouseleave(function(){
+        $('.btn-file').removeClass('bg-bright');
+    })
+
     $('#new-image').change(previewImage);
     
     /** 

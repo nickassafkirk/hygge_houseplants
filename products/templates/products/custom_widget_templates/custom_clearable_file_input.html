@@ -12,10 +12,12 @@
     <br>
     {{ widget.input_text }}
 {% endif %}
-<span class="btn btn-file ms-3 mt-3">
-    <i class="far fa-image"></i>
-    <br>
-    Add Image
+<div class="col-12 image-drop-wrapper mb-3">
+    <span class="btn btn-file">
+        <i class="far fa-image"></i>
+        <br>
+        Add Image
+    </span>
     <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
-</span>
-<strong><p class="text-danger" id="filename"></p></strong>
+    <strong><p class="text-danger" id="filename"></p></strong>
+</div>

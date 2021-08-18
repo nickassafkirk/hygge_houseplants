@@ -102,8 +102,8 @@ header form {
 }
 
 .bg-bright {
-    background: var(--orange);
-    color: #fff;
+    background: var(--orange) !important;
+    color: #fff !important;
 }
 
 .bg-dark {
@@ -542,18 +542,34 @@ button.not-allowed:disabled {
 
 /* Add Product Form */ 
 
-.btn-file {
+.col-12.image-drop-wrapper {
     position: relative;
+    border-radius: 5px;
+    padding: 2rem 0;
+    text-align: center;
+    background: #fff;
+    border: 1px dashed #898e94;
+}
+
+.btn-file {
+    margin: 0 auto;
     overflow: hidden;
-    background: var(--orange);
-    color: #eee;
+    background: #ededed;
+    color: #222;
+}
+
+.image-drop-wrapper:hover,
+.image-drop-wrapper:active,
+.image-drop-wrapper:focus {
+    border-color: var(--orange);
+    border-style: solid;
 }
 
 .btn-file i {
     font-size: 2rem;
 }
 
-.btn-file input[type="file"] {
+.image-drop-wrapper input[type="file"] {
     position: absolute;
     top: 0;
     right: 0;

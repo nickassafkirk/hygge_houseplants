@@ -48,6 +48,7 @@
                     <h5>Payment Details</h5>
                     <div class="col-12 px-4" id="card-element"></div>
                     <div class="col-12 text-danger" id="card-errors" role="alert"></div>
+                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </div>
                 <button type="submit" id="hidden-submit" hidden>hidden submit</button>
             </form>

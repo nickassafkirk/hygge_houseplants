@@ -45,7 +45,7 @@ card.addEventListener('change', function(event){
   }
 }); 
 
-// Taregt checkout form
+// Target checkout form
 let form = document.getElementById('checkout-form');
 
 // Submit form by clicking hidden button in form.
@@ -118,7 +118,7 @@ form.addEventListener('submit', function(ev) {
             $('#btn-checkout').attr('disabled', false);
         } else {
             if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
+              form.submit();
             }
         }
     });

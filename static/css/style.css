@@ -81,7 +81,13 @@ header a:active,
 
 /* Search area */
 
+header form {
+    background: none;
+    padding: 0;
+}
+
 .site-search{
+    margin-top: 0;
     background: var(--grn-light);
     border: none;
 }
@@ -169,6 +175,10 @@ header a:active,
 
 .dropdown-menu li:nth-of-type(3) {
     border-top: 1px solid #000;
+}
+
+.top-menu {
+    align-items: flex-start;
 }
 
 /* Footer */
@@ -518,13 +528,6 @@ button.not-allowed:disabled {
 
 /* Add Product Form */ 
 
-.form-container form label, #contact-form label, #add-product-form label {
-    font-family: var(--hygge);
-    color: #232323;
-    text-shadow: 0.5px 0.5px #eee;
-    margin: 0.5rem 0 0.25rem 0.25rem
-}
-
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -738,19 +741,19 @@ input[type='number']::-webkit-outer-spin-button {
 
 /* Checkout Page */
 
-.checkout-container form, .collection-container form {
+form, .checkout-container form, .collection-container form {
     padding: 2%;
     padding-bottom: 4%;
     background: #ededed;
     border-radius: 5px;
 }
 
-.checkout-container form input, .checkout-container form select{
+form input, form select, form textarea, .checkout-container form input, .checkout-container form select{
     margin-top: 1rem;
     border: none;
 }
 
-.checkout-container form label, .collection-container form label{
+form label, .checkout-container form label, .collection-container form label{
     font-weight: 600;
 }
 

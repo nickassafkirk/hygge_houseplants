@@ -878,19 +878,19 @@ select, #id_country {
     margin-left: 0.25rem;
 }
 
-#div_id_active, #div_id_remember {
+#div_id_active, #div_id_remember, #div_id_accept_marketing{
     display: flex;
     flex-direction: column-reverse;
     padding: 0;
     margin: 0;
 }
 
-#div_id_active label, #div_id_remember label {
+#div_id_active label, #div_id_remember label, #div_id_accept_marketing label {
     font-weight: 600;
     margin-left: 0;
 }
 
-#div_id_active input, #div_id_remember input{
+#div_id_active input, #div_id_remember input, #div_id_accept_marketing input{
     margin-left: 1rem;
 }
 

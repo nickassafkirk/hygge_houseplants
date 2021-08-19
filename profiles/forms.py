@@ -28,10 +28,4 @@ class UserProfileForm(forms.ModelForm):
         # set autofocus on full name field
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'default_country':
-                if self.fields[field].required:
-                    label = f'{labels[field]} *'  # puts a star on the placeholder if it's required
-                else:
-                    label = label[field]
-                self.fields[field].label = label
-            self.fields[field].widget.attrs['class'] = 'form-control'
+            self.fields[field].widget.attrs['class'] = 'form-control'  # adds a css class

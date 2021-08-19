@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from django.forms import modelformset_factory
@@ -97,7 +98,11 @@ def single_product(request, product_id):
 
 
 # Add new product view
+@login_required
 def add_product(request):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
 
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES)
@@ -123,7 +128,11 @@ def add_product(request):
 
 
 # Edit Product View
+@login_required
 def edit_product(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
 
@@ -152,14 +161,22 @@ def edit_product(request, product_id):
 
 
 # Delete Product View
+@login_required
 def delete_product(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     return redirect(reverse('products'))
 
 
 # Add variants
+@login_required
 def add_variants(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
     VariantFormSet = modelformset_factory(
@@ -240,13 +257,21 @@ def add_variants(request, product_id):
         return render(request, template, context)
 
 
+@login_required
 def delete_variant(pk):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
     variant = get_object_or_404(Variant, pk=pk)
     print('delete called', variant)
     variant.delete()
 
 
+@login_required
 def add_collection(request):
+     if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
 
     if request.method == "POST":
         collection_form = CollectionForm(request.POST)

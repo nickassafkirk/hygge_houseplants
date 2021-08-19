@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.contrib import messages
 from .forms import SocialForm, IconForm
 from .models import SocialMediaProfile
 
 
+@login_required
 def add_social_account(request):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
     if request.method == "POST":
 
         form2 = SocialForm(request.POST)
@@ -25,7 +30,11 @@ def add_social_account(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_social_account(request):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
     FormSet = modelformset_factory(
         SocialMediaProfile,
         form=SocialForm,
@@ -68,13 +77,21 @@ def edit_social_account(request):
         return render(request, template, context)
 
 
+@login_required
 def delete_account(pk):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
     account = get_object_or_404(SocialMediaProfile, pk=pk)
     print('delete called', account)
     account.delete()
 
 
+@login_required
 def add_icon(request):
+    if not request.user.is_superuser:
+        messages.error(request,"Site admin access only!")
+        return redirect(reverse('home'))
 
     if request.method == "POST":
 

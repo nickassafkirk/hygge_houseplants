@@ -93,10 +93,22 @@
                     </tr>
                     {% endfor %}
                     <tr>
+                        <td class="adjust-colspan column-total first-row" colspan="2"></td>
+                        <td class="text-center column-total first-row"><h6>Total Items<h6></td>
+                        <td class="text-center column-total first-row"><h6>{{ product_count }}</h6></td>
+                    </tr>
+                    <tr>
                         <td class="adjust-colspan column-total" colspan="2"></td>
-                        <td class="text-center column-total"><h6>{{ product_count }}<h6></td>
+                        <td class="text-center column-total"><h6>Cart Subtotal<h6></td>
                         <td class="text-center column-total"><h6>€{{ total| floatformat:2 }}</h6></td>
                     </tr>
+                    {% if shipping > 0 %}
+                        <tr>
+                            <td class="adjust-colspan column-total" colspan="2"></td>
+                            <td class="text-center column-total"><h6>Shipping<h6></td>
+                            <td class="text-center column-total"><h6>€{{ shipping| floatformat:2 }}</h6></td>
+                        </tr>
+                    {% endif %}
             </table>
             <hr>
         </div>
@@ -109,10 +121,7 @@
         </div>
         <div class="col-12 col-md-6 pt-2">
             <div class="w-75 ms-3">
-                {% if shipping > 0 %} 
-                <p><strong>Subtotal:</strong> €{{ total| floatformat:2 }}</p>
-                <p><strong>Shipping:</strong> €{{ shipping| floatformat:2 }}</p>
-                {% endif %}
+                
                 <hr>
                 <h5>Order Total:</h5>
                 <h4 class="d-inline-block">€{{ cart_total| floatformat:2 }}</h4> <small class="text-capitalize d-inline-block ms-1"> Incl VAT.</small> / <h5 class="d-inline-block ms-1">€{{ cart_total | calc_tax| floatformat:2 }}</h5><small class="text-capitalize d-inline-block ms-1">  Excl VAT.</small>

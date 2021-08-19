@@ -84,6 +84,7 @@ h3, h4, h5 {
 
 .button-container a, .button-container button {
     flex-basis: 50%;
+    align-self: stretch;
 }
 
 .button-container a:first-child,  .button-container button:first-child{
@@ -682,6 +683,11 @@ button.not-allowed:disabled {
     background: #ededed;
 }
 
+tr td.column-total.first-row {
+    padding-top: 0.75rem;
+    border-top: 2px solid #ddd;
+}
+
 .cart-items-table td {
     font-size: 1rem;
     vertical-align: baseline;
@@ -694,9 +700,11 @@ button.not-allowed:disabled {
     font-weight: 600;
 }
 
-.column-total {
-    border-top: 2px solid #ddd;
+tr td.column-total {
+    margin-top: 0;
+    border: none;
 }
+
 
 .image-preview-container, .image-preview {
     height: 90px;

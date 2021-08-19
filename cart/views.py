@@ -92,7 +92,7 @@ def update_cart_qty(request, item_id):
     if variant_id:
         variant = get_object_or_404(Variant, pk=variant_id)
         if quantity > 0:
-            if quantity < variant.quantity:
+            if quantity <= variant.quantity:
                 cart[product_id]['product_variants'][str(variant_id)] = int(quantity)
                 messages.success(request, 'Quantity updated successfully')
             else:

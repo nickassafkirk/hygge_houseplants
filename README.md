@@ -56,7 +56,6 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 - I need to be able to logout of my account.
 *As a site admin:*
 - I want to be able to manage site products.
-- I want to be able to manage site categories.
 - I want to sort products into relevant groups.
 - I need to view, create, edit and delete products.
 - I need to view, create, edit and delete categories.
@@ -88,10 +87,34 @@ The project is conmposed of the following applications. Each application is desi
 - Cart
 - Checkout
 - Contact
-- Account
+- Profile
 - Social
 
 Django-allauth is used to provide standard user account functionality such as login, logout, register, confirm email, forgot password etc....
+
+**Pages**
+Index Page - This is the primary landing page
+
+Products Page - View of all products with search options to narrow donw search.
+
+Single Product Page - A detailed view of a single product with an add to cart form and Edit and delete links for super users.
+
+Add Product page - This is an admin only page which contains a form where a new product can be added. There are two outcomes for this page.
+    1. If the product has no variants, the product is created and the creator is directed to the detailed product page on completion.
+    1. If the wproduct has variants, the user is taken to the add variants page on completion.
+
+Add Variant page - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of 
+the base product.
+
+Cart Page - This page displays the items that a user has added to their cart. There are two options, a user can then checkout using the button or go back to products using the alternate button.
+
+Checkout page - This page has two sections, a order summary section and a checkout area which enables the user to enter their details, pay and complete their order.
+
+Checkout success page - On successful checkout a user is brought to a success page which displays a concise summary of their order.
+
+Contact Page - The contact form is a generic contact form which enables users to send a message to the business. On successful completion a success message is displayed.
+
+
 
 ---
 ### Skeleton

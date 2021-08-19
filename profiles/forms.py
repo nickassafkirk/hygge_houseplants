@@ -6,7 +6,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user',)
-    
+
     accept_marketing = forms.BooleanField()
 
     def __init__(self, *args, **kwargs):
@@ -30,7 +30,4 @@ class UserProfileForm(forms.ModelForm):
         # set autofocus on full name field
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if self.fields[field] == "accept_marketing":
-                self.fields[field].widget.attrs['class'] = 'form-check-input'
-            else:
-                self.fields[field].widget.attrs['class'] = 'form-control'
+            self.fields[field].widget.attrs['class'] = 'form-control'

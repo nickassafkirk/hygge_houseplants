@@ -1,5 +1,7 @@
 # Hygge Houseplants - An ecommerce site built using the Django Framework
 
+[Visit the site here](https://hygge-houseplants.herokuapp.com/)
+
 ### Introduction:
 ---
 
@@ -20,8 +22,9 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 *As a site owner/stakeholder I want to:*
 - Increase our online awareness and attract new users to our business.
 - Increase revenues via direct ecommerce sales.
-- Increase indirect sales via offline purchases after users have discovered a product/s on the site.
 - Encourage existing customers to revisit the site to make additional purchases.
+- Manage products displayed on the site easily.
+- Improve my social media engagement.
 
 **Ideal User**  
 *The ideal user:*
@@ -30,7 +33,6 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 - Is located in the same country as the business.
 - Is comfortable shopping online. 
 - Has payment details saved on their device.
-- Has 
 - Is english speaking.
 - Likes to receive email updates from business's they are interested in.
 - Is active on social media.
@@ -39,12 +41,13 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 *As a new user:*
 - I wish to immediately know the site's intention.
 - I need to be able to navigate between site pages and sections easily.
-- I need to browse the sites product range.
+- I wish to browse the sites product range.
 - I need to view detailed information on particular products of interest.
 - I want to purchase products directly through the site.
 - I want to be able to create an account to improve my experience for future sessions.
 - I want to access the business's social media profiles. 
 - I need to be able to contact the business easily.
+- I want to register for an account.
 *As an existing user:*+
 - I need to be able to login to my account.
 - I need to view my past orders.
@@ -62,6 +65,7 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 ---
 ### Scope
 ---
+
 
 ---
 ### Structure

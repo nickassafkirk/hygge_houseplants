@@ -4,14 +4,16 @@
     {% if field.name == "has_variants" %}
     
     <div class="checkbox-row col-sm-6">
-        <label for="{{ field.auto_id }}">{{ field.label }}</label>
-        {{ field }}
+        <label>{{ field.label }}
+            {{ field }}
+        </label>
     </div>
 
     {% elif field.name == "available" %}
     <div class="checkbox-row col-sm-6">
-        <label for="{{ field.auto_id }}">{{ field.label }}</label>
-        {{ field }}  
+        <label>{{ field.label }}
+            {{ field }} 
+        </label>
     </div>
     {% else %}   
         {{ field | as_crispy_field }}

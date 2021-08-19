@@ -7,7 +7,7 @@
   <h2>Add Product</h2>
   <hr>
 
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="{% 'add_product' %}" method="POST" enctype="multipart/form-data">
     <fieldset disabled="disabled">
       {% include 'products/includes/product_form.html' %}
     </fieldset>

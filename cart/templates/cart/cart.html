@@ -47,8 +47,8 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <a class="update-qty-link btn text-bright" type="submit">Update <i class="fas fa-sync-alt"></i></button>
-                                    <a class="remove-item text-danger btn" id="remove_{{ item.product.id }}-{{ item.variant.id }}">Remove <i class="fas fa-trash-alt"></i></a>
+                                    <a href="#" class="update-qty-link btn text-bright">Update <i class="fas fa-sync-alt"></i></button>
+                                    <a href="#" class="remove-item text-danger btn" id="remove_{{ item.product.id }}-{{ item.variant.id }}">Remove <i class="fas fa-trash-alt"></i></a>
                                 </td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
                             </tr>

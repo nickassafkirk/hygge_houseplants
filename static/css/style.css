@@ -320,23 +320,19 @@ footer .social-icon a i {
 }
 
 #hygge-what {
+    margin: 1rem auto;
     font-family: var(--hygge);
-    text-underline-offset: 7px;
-    text-decoration: underline double;
-    text-decoration-color: rgba(0,0,0,0.75);
     cursor: pointer;
-    text-shadow: 2px 2px var(--orange);
+    
 }
 
 #hygge-what:hover {
     color: var(--orange);
-    text-decoration-color: var(--orange);
-    text-shadow: 2px 2px rgba(0,0,0,0.75);
 }
 
 #hygge-is {
     display: none;
-    margin: 2.5rem auto;
+    margin: 1rem auto;
     font-size: 1rem;
     font-weight: 500;
 }
@@ -383,7 +379,7 @@ footer .social-icon a i {
 .tile-title:hover,
 .tile-title:active,
 .tile-title:focus {
-    color: #cebfa8;
+    color: var(--orange);
 }
 
 .tile:before {
@@ -917,6 +913,15 @@ select, #id_country {
 }
 
 @media screen and (min-width: 768px) {
+
+    footer a{
+        font-size: 1.2rem;
+    }
+
+    .incentives-container {
+        font-size: 1rem;
+    }
+    
     .tile {
         height: 18vw;
     }

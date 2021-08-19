@@ -24,7 +24,7 @@
                            <tr>
                                 <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
-                                        <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
+                                        <img src="{% if item.variant.image %}{{ item.variant.image.url }}{% elif item.product.image %}{{ item.product.image.url }}{% else %}{{ MEDIA_URL}}hero1.jpg{% endif %}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
@@ -56,7 +56,7 @@
                             <tr>
                                 <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
-                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
+                                        <img src="{% if item.product.image.url %}{{ item.product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ item.product.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}</strong>
                                 </td>

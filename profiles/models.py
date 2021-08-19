@@ -19,7 +19,7 @@ class UserProfile(models.Model):
     default_county_or_state = models.CharField(max_length=80, null=True, blank=True)
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
     default_country = CountryField(blank_label='Country', null=True, blank=True)
-    accept_marketing = BooleanField(default=True, null=True, blank=True)
+    accept_marketing = models.BooleanField(default=True, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -31,7 +31,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     create ore update a user profile
     """
-    if created:
-        UserProfile.objects.create(user=instance)
+    # if created:
+    UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
-    instance.userprofile.save()
+    # instance.userprofile.save()

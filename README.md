@@ -1,6 +1,8 @@
 # Hygge Houseplants - An ecommerce site built using the Django Framework
 
-[Visit the site here](https://hygge-houseplants.herokuapp.com/)
+[![responsive project preview](media/responsive.png)](https://hygge-houseplants.herokuapp.com/)
+
+[Visit the live site here](https://hygge-houseplants.herokuapp.com/)
 
 ### Introduction:
 ---
@@ -66,10 +68,20 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 ### Scope
 ---
 
+The initial scope of the project was to build a fully functioning ecommerce site for his imagined business. Site users must have the means to browse and view products, add products to their cart and checkout successfully.
+
+The second core goal for this project was to enable site administrators to have to key functionalities to view, add, edit and delete products and other site content.
+
+for future development phases of this project, the main focus will be to add additional functionality for returning users and creating an admin panel where site admins can update site infiramtion in bulk.
 
 ---
 ### Structure
 ---
+
+The structure of the current project is as follows. 
+
+The project is conmposed of the following applications. Each application is designed to sepparate concerns of specific functionality.
+
 **Apps:**
 - Index
 - Products
@@ -78,6 +90,8 @@ Hygge Houseplants is an ecommerce website built to make this mock business's pro
 - Contact
 - Account
 - Social
+
+Django-allauth is used to provide standard user account functionality such as login, logout, register, confirm email, forgot password etc....
 
 ---
 ### Skeleton

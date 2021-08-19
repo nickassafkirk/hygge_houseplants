@@ -60,6 +60,7 @@
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
                         <li><a href="{% url 'add_product' %}" class="dropdown-item">Add Products</a></li>
+                        <li><a href="{% url 'add_collection' %}" class="dropdown-item">Add Collection</a></li>
                         {% endif %}
                         <li><a href="{% url 'profile' %}" class="dropdown-item">My Account</a></li>
                         <li><a href="{% url 'account_logout' %}" class="dropdown-item">Sign Out</a></li>

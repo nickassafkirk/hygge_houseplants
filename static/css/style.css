@@ -622,6 +622,10 @@ label[for="id_image"] {
 
 /* Add Variants Form */
 
+#add-variants-form {
+    background: transparent;
+}
+
 #add-variants-form h5{
     background: var(--grn-dark);
     color: #fff;
@@ -657,9 +661,9 @@ label[for="id_image"] {
 }
 
 .add-variant-area {
-    border: 1px solid #555;
     border-radius: 5px;
     padding: 2%;
+    background: #ededed;
 }
 
 .edit-delete-container {

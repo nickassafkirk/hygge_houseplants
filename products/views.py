@@ -261,11 +261,7 @@ def add_variants(request, product_id):
         return render(request, template, context)
 
 
-@login_required
 def delete_variant(pk):
-    if not request.user.is_superuser:
-        messages.error(request,"Site admin access only!")
-        return redirect(reverse('home'))
     variant = get_object_or_404(Variant, pk=pk)
     print('delete called', variant)
     variant.delete()
@@ -274,7 +270,7 @@ def delete_variant(pk):
 @login_required
 def add_collection(request):
     if not request.user.is_superuser:
-        messages.error(request,"Site admin access only!")
+        messages.error(request, "Site admin access only!")
         return redirect(reverse('home'))
 
     if request.method == "POST":

@@ -82,7 +82,7 @@
                         </select>
                     {% endif %}
                 </div>
-                <div class="col-10 col-lg-5 mt-3 mb-1 mt-lg-0 form-group d-flex flex-row align-items-stretch offset-1 offset-lg-0">
+                <div class="col-10 col-lg-5 offset-1 offset-lg-0 mt-3 mb-1 mt-lg-0 form-group d-flex flex-row align-items-stretch">
                     <button type="button" class="btn input-group-prepend px-3" id="decrease-qty"><i class="fas fa-minus"></i></button>
                     <input class="form-control mt-0" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1" max="{% if variants %}{{ first_available_variant.quantity }}{% else %}{{ product.quantity }}{% endif %}">
                     <button type="button" class="btn input-group-append px-3" id="increase-qty"><i class="fas fa-plus"></i></button>
@@ -93,7 +93,7 @@
             </form>
 
             {% if request.user.is_superuser %}
-            <div class="px-3 px-lg-5 mt-3">
+            <div class="mt-3 text-center">
                 <a href="{% url 'edit_product' product.id %}" class="text-info">Edit Product</a> | <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete Product</a>
             </div>
             {% endif %}

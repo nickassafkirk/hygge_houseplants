@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@1,700&family=Source+Sans+Pro:wght@300;400;900&family=Staatliches&display=swap');
 
 :root {
@@ -86,15 +93,27 @@ h3, h4, h5 {
 }
 
 .button-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .button-container a, .button-container button {
-    flex-basis: 50%;
-    align-self: stretch;
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    -ms-flex-item-align: stretch;
+        -ms-grid-row-align: stretch;
+        align-self: stretch;
 }
 
 .button-container a:first-child,  .button-container button:first-child{
@@ -154,6 +173,26 @@ header form {
     border: none;
 }
 
+.site-search::-webkit-input-placeholder {
+    color:var(--grn-dark) !important;
+    font-style: italic;
+}
+
+.site-search::-moz-placeholder {
+    color:var(--grn-dark) !important;
+    font-style: italic;
+}
+
+.site-search:-ms-input-placeholder {
+    color:var(--grn-dark) !important;
+    font-style: italic;
+}
+
+.site-search::-ms-input-placeholder {
+    color:var(--grn-dark) !important;
+    font-style: italic;
+}
+
 .site-search::placeholder {
     color:var(--grn-dark) !important;
     font-style: italic;
@@ -186,7 +225,9 @@ header form {
 }
 
 .top-menu {
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 
 /* Footer */
@@ -199,8 +240,12 @@ footer {
 }
 
 .social-icons-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .social-icon a i{
@@ -289,7 +334,9 @@ footer .social-icon a i {
     width: 80%;
     height: auto;
     background: rgba(0, 27, 19, 0.79);
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     color: #fff;
     text-shadow: 2px 2px rgba(33, 33, 33, 0.5);
     font-size: 1rem;
@@ -323,7 +370,8 @@ footer .social-icon a i {
     margin: 0 auto;
     background: var(--sand);
     color: rgba(0,0,0,0.75);
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.75);
+            box-shadow: 2px 2px 2px rgba(0,0,0,0.75);
     border-radius: 5px;
     padding: 1rem;
     cursor: pointer;
@@ -372,7 +420,8 @@ footer .social-icon a i {
 .tile-img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .tile-title {
@@ -427,19 +476,30 @@ footer .social-icon a i {
 .product-tile-img img {
     max-width: 100%;
     height: 300px;
-    object-fit: scale-down;
+    -o-object-fit: scale-down;
+       object-fit: scale-down;
 }
 
 .product-tile-name {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: start;
-    align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 3rem;
 }
 
 .product-tile-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .product-tile-buttons a {
@@ -482,6 +542,7 @@ a.product-path:focus {
     max-width: 100%;
     height: 100%;
     margin: 0 auto;
+    cursor: -webkit-zoom-in;
     cursor: zoom-in;
 }
 
@@ -489,16 +550,26 @@ a.product-path:focus {
     max-width: 90%;
     margin: 0 auto;
     padding: 0 3%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-    object-fit: scale-down;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -o-object-fit: scale-down;
+       object-fit: scale-down;
 }
 
 .thumbnail {
     margin-top: 3%;
-    flex-basis: 30%;
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
     text-align: center;
     height: 100px;
     background: #fff;
@@ -509,7 +580,8 @@ a.product-path:focus {
     padding: 3% 0;
     width: 100%;
     height: 100%;
-    object-fit: scale-down;
+    -o-object-fit: scale-down;
+       object-fit: scale-down;
     overflow-y: hidden;
 }
 
@@ -647,7 +719,8 @@ label[for="id_image"] {
 #image-preview, .image-preview {
     height: 150px;
     width: 150px;
-    object-fit: contain;
+    -o-object-fit: contain;
+       object-fit: contain;
 }
 
 #delete-icon {
@@ -763,7 +836,9 @@ input[type='number']::-webkit-outer-spin-button {
 .adj-quantity-group {
     width: 100%;
     margin: 0 auto;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .adj-quantity-group form {
@@ -826,12 +901,30 @@ form label, .checkout-container form label, .collection-container form label{
     font-weight: 600;
 }
 
+input.form-control::-webkit-input-placeholder{
+    color: #898e94;
+}
+
+input.form-control::-moz-placeholder{
+    color: #898e94;
+}
+
+input.form-control:-ms-input-placeholder{
+    color: #898e94;
+}
+
+input.form-control::-ms-input-placeholder{
+    color: #898e94;
+}
+
 input.form-control::placeholder, select{
     color: #898e94;
 }
 
 select, #id_country {
-    appearance: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-image: url(../../media/caret-down-solid.svg);
     background-repeat: no-repeat;
     background-position-x: 95%;
@@ -860,10 +953,18 @@ select, #id_country {
 }
 
 #div_id_products div{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex: row;
-    flex-wrap: wrap;
-    justify-content: start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
     background-color: #fff;
     border-radius: 5px;
 }
@@ -883,8 +984,13 @@ select, #id_country {
 }
 
 #div_id_active, #div_id_remember, #div_id_accept_marketing{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column-reverse;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
     padding: 0;
     margin: 0;
 }
@@ -1004,7 +1110,8 @@ select, #id_country {
         max-height: 70vh;
         margin: 0 auto;
         overflow: hidden;
-        object-fit: scale-down;
+        -o-object-fit: scale-down;
+           object-fit: scale-down;
     }
 
     .hero-image-text {

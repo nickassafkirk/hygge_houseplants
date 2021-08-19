@@ -5,7 +5,9 @@ from django.contrib import messages
 
 from products.models import Product, Variant
 from .models import Order, OrderLineItem
+from profiles.models import UserProfile
 from .forms import OrderForm
+from profiles.forms import UserProfileForm
 from cart.contexts import shopping_cart
 import stripe
 import json
@@ -135,9 +137,33 @@ def checkout_success(request, order_number):
     """
 
     save_details = request.session.get('save-details')
+    accept_marketing = request.session.get('accept_marketing')
     order = get_object_or_404(Order, order_number=order_number)
-    lineitems = OrderLineItem.objects.filter(order=order.id)
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+
+        # save the user's info if save info check box is ticked
+        if save_details:
+            profile_data = {
+                'default_phone_number': order.phone_number,
+                'default_country': order.country,
+                'default_postcode': order.postcode,
+                'default_city_or_town': order.city_or_town,
+                'default_street_address1': order.street_address1,
+                'default_street_address2': order.street_address2,
+                'default.county_or_state': order.county_or_state,
+                'accept_marketing': accept_marketing,
+            }
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+
     messages.success(request, f'Order Confirmed! Your order number is: {order_number}.')
+    lineitems = OrderLineItem.objects.filter(order=order.id)
     if 'cart' in request.session:
         del request.session['cart']
     template = 'checkout/checkout_success.html'

@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <a href="#" class="update-qty-link btn text-bright">Update <i class="fas fa-sync-alt"></i></button>
+                                    <a href="#" class="update-qty-link btn text-bright">Update <i class="fas fa-sync-alt"></i></a>
                                     <a href="#" class="remove-item text-danger btn" id="remove_{{ item.product.id }}-{{ item.variant.id }}">Remove <i class="fas fa-trash-alt"></i></a>
                                 </td>
                                 <td class="text-center">€{{ item.variant.price | calc_subtotal:item.quantity }}</td>
@@ -94,18 +94,18 @@
                     {% endfor %}
                     <tr>
                         <td class="adjust-colspan column-total first-row" colspan="2"></td>
-                        <td class="text-center column-total first-row"><h6>Total Items<h6></td>
+                        <td class="text-center column-total first-row"><h6>Total Items</h6></td>
                         <td class="text-center column-total first-row"><h6>{{ product_count }}</h6></td>
                     </tr>
                     <tr>
                         <td class="adjust-colspan column-total" colspan="2"></td>
-                        <td class="text-center column-total"><h6>Cart Subtotal<h6></td>
+                        <td class="text-center column-total"><h6>Cart Subtotal</h6></td>
                         <td class="text-center column-total"><h6>€{{ total| floatformat:2 }}</h6></td>
                     </tr>
                     {% if shipping > 0 %}
                         <tr>
                             <td class="adjust-colspan column-total" colspan="2"></td>
-                            <td class="text-center column-total"><h6>Shipping<h6></td>
+                            <td class="text-center column-total"><h6>Shipping</h6></td>
                             <td class="text-center column-total"><h6>€{{ shipping| floatformat:2 }}</h6></td>
                         </tr>
                     {% endif %}
@@ -132,7 +132,6 @@
                 <p><em>You qualify for free shipping! - <i class="fas fa-shipping-fast"></i></em></p>
                 {% endif %}
                 <hr>
-                </p>
                 <div class="button-container">
                     <a href="{% url 'checkout' %}" class="btn btn-bright">Checkout <i class="fas fa-lock"></i></a>
                     <a class="btn btn-outline-bright" href="{% url 'products' %}">Continue Shopping <i class="fas fa-shopping-bag"></i></a>

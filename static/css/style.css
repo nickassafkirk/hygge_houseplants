@@ -351,6 +351,10 @@ footer .social-icon a i {
     font-family: var(--head);
 }
 
+#hygge-is img {
+    width: 100%;
+}
+
 /* Popular Categories Grid */
 
 .popular-categories{

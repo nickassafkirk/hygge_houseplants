@@ -298,6 +298,7 @@ the default number input adjust buttons and to center the text.
 * To create a more user friendly order number I used ```.hex[:6]``` when creating the uuid to limit it to 6 charachters. I then added a prefix to make order numbers more consistent. 
 I discovered the ability to limit UUID in [this stack overflow post](https://stackoverflow.com/questions/26030811/generate-a-unique-string-in-python-django/26032898)
 
+* To prevent validation errors when submitting images with blank src values on the single product page I entered ```data:,``` as a temporary img src value. The images are dynamically changed using javascript so this is only necessary to prevent validation errors. The solution for this was found [in this post](https://stackoverflow.com/questions/5775469/whats-the-valid-way-to-include-an-image-with-no-src).
 ---
 ### Code
 ---

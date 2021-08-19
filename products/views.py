@@ -110,10 +110,12 @@ def add_product(request):
             has_variants = product_form['has_variants'].value()
             if has_variants:
                 new_product = product_form.save()
+                messages.success(request, f'Product {new_product.name} updated')
                 return redirect('add_variants', product_id=new_product.id)
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()
+                messages.success(request, f'Product {new_product.name} updated')
                 return redirect('single_product', product_id=new_product.id)
         else:
             print('invalid product form')
@@ -142,13 +144,15 @@ def edit_product(request, product_id):
             has_variants = product_form['has_variants'].value()
             if has_variants:
                 new_product = product_form.save()
+                messages.success(request, f'Product {new_product.name} updated')
                 return redirect('add_variants', product_id=new_product.id)
             else:
                 # value is False if checkbox is not selected
                 new_product = product_form.save()
+                messages.success(request, f'Product {new_product.name} updated')
                 return redirect('single_product', product_id=new_product.id)
         else:
-            print('invalid product form')
+            messages.error(request, 'invalid product, check form and try again.')
             return redirect('add_product')
     else:
         product_form = ProductForm(instance=product)
@@ -168,6 +172,7 @@ def delete_product(request, product_id):
         return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
+    messages.success(request, f'Product {product.name} successfully deleted')
     return redirect(reverse('products'))
 
 

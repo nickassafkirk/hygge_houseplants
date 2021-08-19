@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container-fluid my-5">
     <div class="row">
-        <div class="col-12 product-path ms-2 mb-5">
+        <div class="col-12 product-path ps-2 ps-lg-5 mb-5">
             <a href="{% url 'index' %}">Home</a> /
             <a href="{% url 'products' %}">Products</a> /
             <a href="{% url 'products' %}?category={{ product.category }}">{{ product.category | title }}</a> /
@@ -23,15 +23,15 @@
         </ul>
         <div class="col-12 col-sm-6 col-lg-5 offset-lg-1">
             <div class="row">
-                <div class="col-12 single-product-img-container p-0">
+                <div class="col-12 single-product-img-container">
                     <img src="{% if first_available_variant.image %}{{ first_available_variant.image.url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ product.name }}" class="single-product-img" id="main-product-img">
                 </div>
-            </div>
+            
             {% if variants %}
                 {% if variants|length >= 3 %}
-                    <div class="thumbnail-container justify-content-between">
+                    <div class="thumbnail-container justify-content-between col-12">
                 {% else %}
-                    <div class="thumbnail-container justify-content-start">
+                    <div class="thumbnail-container justify-content-start col-12">
                 {% endif %}
                         {% for variant in variants %}
                             {% if forloop.counter <= 3 %}
@@ -42,12 +42,13 @@
                         {% endfor %}
                     </div>
                     {% if variants|length > 3 %}
-                    <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4">
+                    <div id="thumbnail-btn-container" class="text-center d-flex justify-content-between align-items-center mt-2 px-4 col-12">
                         <a class="btn" id="thumbnail-prev"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
                         <a class="btn" id="thumbnail-next"><i class="fas fa-chevron-circle-right fa-2x"></i></a>
                     </div>
                     {% endif %}
             {% endif %}
+            </div>
             
         </div>
         <div class="col-12 col-sm-6 col-lg-5 mt-3 mt-sm-0">
@@ -68,7 +69,7 @@
             <form action="{% url 'add_to_cart' product.id %}" method="POST" class="row px-3 px-lg-5" id="add-to-cart-form">
                 {% csrf_token %}
                 
-                <div class="col-8 col-lg-7">
+                <div class="col-10 col-lg-7 offset-1 offset-lg-0">
                     {% if variants %}
                         <select class="form-select" name="variant-select" id="variant-select">
                             {% for variant in variants %}
@@ -81,25 +82,27 @@
                         </select>
                     {% endif %}
                 </div>
-                <div class="col-10 col-lg-5 mt-3 mb-1 mt-lg-0 form-group d-flex flex-row align-items-stretch">
+                <div class="col-10 col-lg-5 mt-3 mb-1 mt-lg-0 form-group d-flex flex-row align-items-stretch offset-1 offset-lg-0">
                     <button type="button" class="btn input-group-prepend px-3" id="decrease-qty"><i class="fas fa-minus"></i></button>
                     <input class="form-control mt-0" name="add-to-cart-quantity" id="add-to-cart-quantity" type="number" value="1" max="{% if variants %}{{ first_available_variant.quantity }}{% else %}{{ product.quantity }}{% endif %}">
                     <button type="button" class="btn input-group-append px-3" id="increase-qty"><i class="fas fa-plus"></i></button>
                 </div>
-                <div class="col-10 col-lg-12 mt-2">
+                <div class="col-10 col-lg-12 mt-2 offset-1 offset-lg-0">
                     <button type="submit" class="btn btn-bright w-100 p-2" id="add-to-cart-btn">Add to Cart <i class="fas fa-cart-plus"></i></button>
                 </div>
             </form>
 
             {% if request.user.is_superuser %}
-            <div class="px-3 px-lg-5 mt-5">
+            <div class="px-3 px-lg-5 mt-3">
                 <a href="{% url 'edit_product' product.id %}" class="text-info">Edit Product</a> | <a href="{% url 'delete_product' product.id %}" class="text-danger">Delete Product</a>
             </div>
             {% endif %}
         </div>
-        <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="col-12 col-lg-10 offset-lg-1">
             <hr>
-            <p class="px-3 px-lg-5">{{ product.description }}</p>
+            <div class="mx-auto p-3 px-sm-4 text-justify">
+                <p class="">{{ product.description }}</p>
+            </div>
         </div>
     </div>
     

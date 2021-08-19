@@ -269,7 +269,7 @@ def delete_variant(pk):
 
 @login_required
 def add_collection(request):
-     if not request.user.is_superuser:
+    if not request.user.is_superuser:
         messages.error(request,"Site admin access only!")
         return redirect(reverse('home'))
 

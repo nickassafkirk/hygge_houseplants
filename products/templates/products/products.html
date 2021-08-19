@@ -4,8 +4,8 @@
 {% block content %}
 <div class="container-fluid products-container">
     <div class="row">
-        <div class="my-3 col-12 sort-select-wrapper">
-            <select name="" id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+        <div class="my-3 col-12 sort-select-wrapper text-end">
+            <select id="sort-selector" class="custom-select custom-select rounded-1 border p-3 me-3 me-lg-5">
                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                 <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                 <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -14,6 +14,7 @@
                 <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
                 <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
             </select>
+            <hr>
         </div>
     </div>
     <div class="row">

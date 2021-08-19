@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %} 
-<div class="container my-5"></div>
+<div class="container my-5">
     <form action="{% url 'add_social_account' %}" method="POST" id="add-social-accounts" class="row">
         {% csrf_token %}
         <div class="col-12 col-sm-8 offset-sm-2">

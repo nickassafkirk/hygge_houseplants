@@ -33,7 +33,7 @@ class Order(models.Model):
 
     postcode = models.CharField(max_length=25, null=False, blank=False)
 
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = CountryField(default="IE", null=False, blank=False)
 
     delivery_cost = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, default=0)

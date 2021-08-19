@@ -74,7 +74,7 @@
                            <tr>
                                 <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
-                                        <img src="{{ item.variant.image.url }}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
+                                        <img src="{% if item.variant.image %}{{ item.variant.image.url }}{% elif item.product.image %}{{ item.product.image.url }}{% else %}{{ MEDIA_URL}}hero1.jpg{% endif %}" alt="{{ item.product.name }}{{ item.variant.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}&nbsp;-&nbsp;<span class="text-bright">{{ item.variant.color | title }}&nbsp;-&nbsp;{{ item.variant.size | upper }}</span></strong></td>
                                 <td class="text-center">€{{ item.variant.price }}</td>
@@ -87,7 +87,7 @@
                             <tr>
                                 <td class="ps-sm-3 pe-0">
                                     <div class="image-preview-container">
-                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="image-preview">
+                                        <img src="{% if item.product.image.url %}{{ item.product.image.url }}{% else %}{{ MEDIA_URL }}hero1.jpg{% endif %}" alt="{{ item.product.name }}" class="image-preview">
                                     </div>
                                     <strong class="overflow-wrap">{{ item.product.name }}</strong>
                                     <strong>{{ item_id }}</strong>
@@ -102,7 +102,7 @@
                     {% endfor %}
                     <tr>
                         <td class="adjust-colspan column-total" colspan="2"></td>
-                        <td class="text-center column-total"><h6>{{ product_count }}<h6></td>
+                        <td class="text-center column-total"><h6>{{ product_count }}</h6></td>
                         <td class="text-center column-total"><h6>€{{ total| floatformat:2 }}</h6></td>
                     </tr>
             </table>
@@ -125,12 +125,11 @@
                 <p><em>You qualify for free shipping! - <i class="fas fa-shipping-fast"></i></em></p>
                 {% endif %}
                 
-                </p>
             </div>
         </div>
         <div class="col-12 col-md-6 offset-md-3 order-4">
             <div class="button-container mt-3">
-                <a role="submit" id="btn-checkout" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></a>
+                <a id="btn-checkout" class="btn btn-bright">Checkout Securely <i class="fas fa-lock"></i></a>
                 <a class="btn btn-outline-bright" href="{% url 'view_cart' %}">Return To Cart <i class="fas fa-undo"></i></a>
             </div>
         </div> 

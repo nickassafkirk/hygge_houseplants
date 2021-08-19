@@ -93,26 +93,44 @@ The project is conmposed of the following applications. Each application is desi
 Django-allauth is used to provide standard user account functionality such as login, logout, register, confirm email, forgot password etc....
 
 **Pages**
-Index Page - This is the primary landing page
 
-Products Page - View of all products with search options to narrow donw search.
+* Index Page - This is the primary landing page
 
-Single Product Page - A detailed view of a single product with an add to cart form and Edit and delete links for super users.
+* Products Page - View of all products with search options to narrow donw search.
 
-Add Product page - This is an admin only page which contains a form where a new product can be added. There are two outcomes for this page.
+* Single Product Page - A detailed view of a single product with an add to cart form and Edit and delete links for super users.
+
+* Add Product page - This is an admin only page which contains a form where a new product can be added. There are two outcomes for this page:
     1. If the product has no variants, the product is created and the creator is directed to the detailed product page on completion.
     1. If the wproduct has variants, the user is taken to the add variants page on completion.
 
-Add Variant page - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of 
-the base product.
+* Add Variant page - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of the base product.
 
-Cart Page - This page displays the items that a user has added to their cart. There are two options, a user can then checkout using the button or go back to products using the alternate button.
+* Add collection page - This allows site admins to great a product collection. Unfortunately due to time limit it was not within the scope of this project to display product collections once created.
 
-Checkout page - This page has two sections, a order summary section and a checkout area which enables the user to enter their details, pay and complete their order.
+* Cart Page - This page displays the items that a user has added to their cart. There are two options:
+    1. A user can proceed to checkout using the checkout button.
+    1. A user can return back to products page using the alternate button.
 
-Checkout success page - On successful checkout a user is brought to a success page which displays a concise summary of their order.
+* Checkout page - This page has two sections, a order summary section and a checkout area which enables the user to enter their details, pay and complete their order.
 
-Contact Page - The contact form is a generic contact form which enables users to send a message to the business. On successful completion a success message is displayed.
+* Checkout success page - On successful checkout a user is brought to a success page which displays a concise summary of their order.
+
+* Contact Page - The contact form is a generic contact form which enables users to send a message to the business. On successful completion a success message is displayed and the email is sent to the site admin's elected email address.
+
+* Social page - This allows site admins to edit all social media ccounts displayed in the footer.
+
+* Social/add - This allows a site admin to add a new social profile from the options that have been stored in the database.
+
+* Social/add_icon - This allows a user to add a new icon and name to the available dropdowns.
+
+* Account page - This allows users to store their account details and to view their previous orders.
+
+* Login Page - This allows users with existing accounts to login and access their account.
+
+* Logout Page - This allows logged in users to logout of their account.
+
+* Signup Page - This allows new users to create an account.
 
 
 

@@ -12,7 +12,16 @@ def profile(request):
     """ Display the user's profile"""
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    form = UserProfileForm()
+    if request.method == "POST":
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account details saved successfully!")
+        else:
+            messages.error(request, 'Invalid, check form and try again!')
+    else:
+        form = UserProfileForm(instance=profile)
+
     template = 'profiles/profile.html'
     context = {
         'profile': profile,

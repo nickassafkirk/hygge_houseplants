@@ -194,7 +194,6 @@ def add_variants(request, product_id):
         'description': product.description,
         'price': product.price,
         'quantity': product.quantity,
-        'image_url': product.image_url,
         'image': product.image,
         'has_variants': True,
         'available': product.available,

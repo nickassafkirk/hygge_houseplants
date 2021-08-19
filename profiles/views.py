@@ -21,10 +21,12 @@ def profile(request):
             messages.error(request, 'Invalid, check form and try again!')
     else:
         form = UserProfileForm(instance=profile)
+    orders = profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
+        'orders': orders,
         'form': form,
     }
     return render(request, template, context)

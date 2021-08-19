@@ -55,6 +55,10 @@ h3, h4, h5 {
     color: #fff;
 }
 
+.bg-offwhite {
+    background: #ededed !important;
+}
+
 .btn {
     border: none;
 }

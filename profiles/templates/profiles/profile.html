@@ -20,9 +20,36 @@
                 <button class="btn btn-bright">Update Details</button>
             </form>
         </div>
-        <div class="col-12 col-lg-5 offset-lg-1">
+        <div class="col-12 col-lg-5">
             <h4>Order History</h4>
-
+            <div class="row">
+                <div class="col-12 bg-offwhite py-2 rounded-2">
+                    <div class="row text-center">
+                        <div class="col-3">
+                            <strong>Order #</strong>
+                        </div>
+                        <div class="col-3">
+                            <strong>Date</strong>
+                        </div>
+                        <div class="col-3">
+                            <strong>Items</strong>
+                        </div>
+                        <div class="col-3">
+                            <strong>Total</strong>
+                        </div>
+                        </div>
+                        <hr>
+                        {% for order in orders %}
+                        <div class="row px-2 text-center">
+                            <div class="col-3 bg-light p-2"><a href="{% url 'checkout_success' order.order_number %}">{{ order.order_number }}</a></div>
+                            <div class="col-3 bg-light p-2">{{ order.date }}</div>
+                            <div class="col-3 bg-light p-2">{{ order.lineitems|length|add:1}}</div>
+                            <div class="col-3 bg-light p-2">€{{ order.order_total }}</div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+                
         </div>
     </div>
 </div>

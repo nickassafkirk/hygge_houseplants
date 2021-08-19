@@ -22,6 +22,7 @@ class UserProfileForm(forms.ModelForm):
             'default_street_address1': 'Street Address 1',
             'default_street_address2': 'Street Address 2',
             'default_county_or_state': 'County/State',
+            'accept_marketing': 'Accept Marketing',
         }
 
         # set autofocus on full name field
@@ -33,4 +34,4 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     label = label[field]
                 self.fields[field].label = label
-            self.fields[field].widget.attrs['class'] = 'form-control'  # adds a css class
+            self.fields[field].widget.attrs['class'] = 'form-control'

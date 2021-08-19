@@ -546,6 +546,10 @@ button.not-allowed:disabled {
     border-bottom-left-radius: 2px;
  }
 
+ #variant-select {
+     margin-top: 0;
+ }
+
 /* Add Product Form */ 
 
 .col-12.image-drop-wrapper {

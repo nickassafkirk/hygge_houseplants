@@ -78,10 +78,21 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
     The cart total, product count, shipping amount and tax information are displayed. 
     A bright checkout button prompts me to continue to checkout. Clicking this button takes me to a page where a more concise summary of my cart is included. Here I can check that the items I want are what are in my order. Next a form allows me to fill out my personal details and shipping information. The form has a * character beside fields that are mandatory. If I forget to fill out a mandatory field the form will not submit and a message is shown. 
     A credit card input box is displayed. If I input an incorrect card a red error message is shown. If I input correct card details a loading spinner loads which shows me that my action has been received and my order is being processed.
-    After a few moments a success message appears and I'm directed to a confimration page with a summary of my order. It also notifies me that an email has been sent to my address. From this experience I am satisfied that I can order products through the site and that the user story is satisfied. 
+    After a few moments a success message appears and I'm directed to a confimration page with a summary of my order. It also notifies me that an email has been sent to my address. From this experience I am satisfied that I can order products through the site and that the user story is satisfied. A link to my account or to products then allows me to navigate to more site sections.
 
 
 1. #### I want to be able to create an account to improve my experience for future sessions.
+
+    As a new user I can see an account menu option in the header of every page. Clicking in this reveals a sign up and sign in option. If i go to the sign up link, it takes me to a page where I can enter my details and create an account. To test his I used a [temporary mail service](https://temp-mail.org/en/) and entered my details. When clicking th sign up button I receive a message informing me that an email has been sent to my email. Checking my temporary email I can see that an email has been received. clicking the enclosed link brings me to a confirmation page when I can verify my email. Once I have clicked the verify email link, I am able to sign in using the username and password I just created. When I click the account button now I can see there is a link to my account.
+    Clicking this link brings me to an account where I am greeted by my username. There's a form where I can fill out my details and area that says order history which is currently blank.
+    If I fill out the form details and submit it, I can see that my details have been saved. If I re-fill out the form and change some details I receive an updaqte message and can see that my chenges have been saved. 
+
+    By adding some items to my cart and going to the checkout page. My details are not entered into the form. This was not the expected behaviour. Once I have successfully completed my order I can see a link to my account on the confirmation page. Clicking this link brings me back to my accoutn where I can now see me order in the order history section. This is the expected behaviour. If I logout and log back in, I can see that my order history and personal details are retained. clicking an order number brings me to the order confirmation page for that order. Overall I am happy with this experience and believe that this user story is mainly satisfied although it would be preferable if my details were automatically added to the form on checkout.
+
+    **Known Issue** As outlined above, the user details do not update when the save details selection is made on check, nor are they automatically enterred into the shipping details section of the checkout page. While this was the intended behaviour it was not possible to complete this functionality within the project deadline. However the save details, allow-marketing and message for seller form field and checkboxes have been retained for demonstration purposes and to allow these functionalities to be added going forward.
+
+    
+
 
 
 

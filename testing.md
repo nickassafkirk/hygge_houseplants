@@ -24,19 +24,19 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
 
 **User Stories**
 *As a new user:*
-- I wish to immediately know the site's intention.
-- I need to be able to navigate between site pages and sections easily.
-- I wish to browse the sites product range.
-- I need to view detailed information on particular products of interest.
-- I want to purchase products directly through the site.
-- I want to be able to create an account to improve my experience for future sessions.
-- I want to access the business's social media profiles. 
-- I need to be able to contact the business easily.
-- I want to register for an account.
+- I wish to immediately know the site's intention. &check;
+- I need to be able to navigate between site pages and sections easily. &check;
+- I wish to browse the sites product range. &check;
+- I need to view detailed information on particular products of interest. &check;
+- I want to purchase products directly through the site. &check;
+- I want to be able to create an account to improve my experience for future sessions. &check;
+- I need to be able to contact the business easily. &check;
+
 *As an existing user:*+
 - I need to be able to login to my account.
 - I need to view my past orders.
 - I need to be able to logout of my account.
+
 *As a site admin:*
 - I want to be able to manage site products.
 - I want to sort products into relevant groups.
@@ -46,11 +46,11 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
 - I need to view, create, edit and delete orders.
 - I need to be able to assign additional site administrators.
 
-1. #### I wish to immediately know the site's intention.
+1. #### *As a new user:* I wish to immediately know the site's intention.
 
     Upon landing on the homepage a large logo is apparent, the presence of the work 'plant' and the use of a leaf icon suggest that the page is plant/flower related. Looking at the main navigation links on desktop the categories plants, succulents, cacti and accessories suggest that the subject matter of the site is plant related. The link for shop all, cart, in the site header suggest that products are sold on thsi site. Scrolling down a large hero image with a picture of a plant is immediately apparent. The overlaying text describes the business's purpose. As a new user I understand that this site sells plants and related products. Haveing tested this experience I am satisfied that the user story has been satisfied. 
 
-1. #### I need to be able to navigate between site pages and sections easily.
+1. #### *As a user:* I need to be able to navigate between site pages and sections easily.
 
     Upon landing on the page on desktop 5 dominant links are visible in the main menu. Clicking each link brings me to the expected page where I can find related image. At the top of the page the logo can be clicked to return to home. On mobile devices an obvious burger stack icon button is visible. Clicking this reveals the same main links, clicking each link transports me to the expected page. On the homepage clicking the "view our range button" on the hero image transports me to the products page as expected.
     Clicking each of the category tiles takes me to the expected product category.
@@ -59,7 +59,8 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
 
     **Known Issue** As outlined above, the Blog and About footer links do currently not link to any page. Unfortunately it was not in the scope of the current project to complete these pages but the decision has been made to leave the links present n order demonstrate their position for future development cycles of this project.
 
-1. #### I wish to browse the sites product range & - I need to view detailed information on particular products of interest:
+1. #### *As a user:* I wish to browse the sites product range,
+   #### *As a user:* I need to view detailed information on particular products of interest:
 
     From all pages the sites products can be accessed from the 5 links in the main navigation menu and the product links present in the footer.
     From the homepage the products can be accessed from the button overlay on the hero banner and via the category tiles on the index page. Products can also be found by using the search bar in the site header. 
@@ -71,7 +72,7 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
     Towards the top of the page links split by a "/" charachter show me the path to the product I'm viewing. To go back I can use these breadcrumb links or the main navigation buttons in the header or footer. 
     Having tested the site I am satisfied that the site fulfils the user story. 
 
-1. #### I want to purchase products directly through the site:
+1. #### *As a new user:* I want to purchase products directly through the site:
     On the detailed product page a clear add to cart form is visible. It uses bright colors and is immediately noticeable. A bold add to cart button tells me that I can add a product to the cart. Plus and minus buttons adjust the quantity showing me that I can add multiple quanities of a product to the cart. The buttons will not allow me to add more than the quantity displayed for a product to the cart. If a product has options I can select each option from the included dropdown menu.
     If the variant I have selected is a different price, the price updates as well. 
     After clicking the add to cart button, a message pops up notifying me that my item has been added to the cart. In the top right of the site a cart icon is visible. Clicking this icon brings me to a page where I can see that the item/s I added are present. Updating the quantity of a product in my basket and clicking upddate, updates the quantity accordingly. Clicking the delete button removes it from the cart. If I remove all the items from my cart a link to view more products is displayed.
@@ -81,9 +82,12 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
     After a few moments a success message appears and I'm directed to a confimration page with a summary of my order. It also notifies me that an email has been sent to my address. From this experience I am satisfied that I can order products through the site and that the user story is satisfied. A link to my account or to products then allows me to navigate to more site sections.
 
 
-1. #### I want to be able to create an account to improve my experience for future sessions.
+1. #### *As a new user:* I want to be able to create an account to improve my experience for future sessions,
+   #### *As an existing user:* I need to be able to login to my account,
+   #### *As an existing user:* I need to view my past orders:
 
-    As a new user I can see an account menu option in the header of every page. Clicking in this reveals a sign up and sign in option. If i go to the sign up link, it takes me to a page where I can enter my details and create an account. To test his I used a [temporary mail service](https://temp-mail.org/en/) and entered my details. When clicking th sign up button I receive a message informing me that an email has been sent to my email. Checking my temporary email I can see that an email has been received. clicking the enclosed link brings me to a confirmation page when I can verify my email. Once I have clicked the verify email link, I am able to sign in using the username and password I just created. When I click the account button now I can see there is a link to my account.
+
+    As a nfirst time visitor I can see an account menu option in the header of every page. Clicking in this reveals a sign up and sign in option. If i go to the sign up link, it takes me to a page where I can enter my details and create an account. To test his I used a [temporary mail service](https://temp-mail.org/en/) and entered my details. When clicking th sign up button I receive a message informing me that an email has been sent to my email. Checking my temporary email I can see that an email has been received. clicking the enclosed link brings me to a confirmation page when I can verify my email. Once I have clicked the verify email link, I am able to sign in using the username and password I just created. When I click the account button now I can see there is a link to my account.
     Clicking this link brings me to an account where I am greeted by my username. There's a form where I can fill out my details and area that says order history which is currently blank.
     If I fill out the form details and submit it, I can see that my details have been saved. If I re-fill out the form and change some details I receive an updaqte message and can see that my chenges have been saved. 
 
@@ -92,7 +96,14 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
     **Known Issue** As outlined above, the user details do not update when the save details selection is made on check, nor are they automatically enterred into the shipping details section of the checkout page. While this was the intended behaviour it was not possible to complete this functionality within the project deadline. However the save details, allow-marketing and message for seller form field and checkboxes have been retained for demonstration purposes and to allow these functionalities to be added going forward.
 
     
+1. #### I need to be able to contact the business easily.
+    In the footer of every page a "contact link exists". Clicking this link brings me to a page with a clearly displayed contact form. Mandatory fields are labelled with a '*' charachter and I am prevented from submitting the form if I have forgotten or incorrectly enterred a mandatory field. After successfully filling out the form and clicking submit, I receive a success message to say that my email has been received and to expect a response.
+    Below the contact form there are also links to the business's social media where I can make contact through their various social media accounts.
+    As a site user I am satisfied that I can easily contact the business.
+    
+    *Having tested this I can also confirm that emails sent through the contact form are received to the elected admin address for this project. Thus confirming that email handling is operated as intended*
 
+   
 
 
 

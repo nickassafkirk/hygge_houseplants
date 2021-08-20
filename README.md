@@ -172,16 +172,15 @@ These are offset with bright orange accent color used for buttons, links and oth
 #### Other 
 * Fontawesome - Used to add icons throughout the project.
 * Google Fonts - Used to enable the use of additional fonts for the project.
-* Balsamiq - Used to create Wireframes for the purpose of mocking up the project.
 * Heroku - For app hosting and deployment.
 * Stripe - To enable customer payments for the project.
 * Amazon AWS S3 - Used to host images, files and other documents.
 * Postgress - Used to store site data.
 
 ---
-### Credits
+## Credits
 ---
-#### Image Credits
+### Image Credits
 
 * [Index.html Hero Image](https://unsplash.com/photos/yb3hsmz4utg)
 credit Chris Lee from [Unsplash](https://unsplash.com/)
@@ -201,7 +200,10 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
 * [Hygge Plaque image](https://unsplash.com/photos/SDxDQXixgfU)
 credit Julian Hochgesang from [Unsplash](https://unsplash.com/)
 
-#### Code Credits
+---
+### Code Credits
+
+This section outlines any code that was sourced from an external resource, Many of the code snippets and techniques mentioned outline bug fixes. For brevity I have not included these in the bugs section of the Testing.md file to avoid repeating myself.
 
 * Contact form Tutorial - To add a contact form functionality to the project, I used a guide from this
 [learndjango.com tutorial](https://learndjango.com/tutorials/django-email-contact-form)
@@ -317,52 +319,15 @@ the default number input adjust buttons and to center the text.
 I discovered the ability to limit UUID in [this stack overflow post](https://stackoverflow.com/questions/26030811/generate-a-unique-string-in-python-django/26032898)
 
 * To prevent validation errors when submitting images with blank src values on the single product page I entered ```data:,``` as a temporary img src value. The images are dynamically changed using javascript so this is only necessary to prevent validation errors. The solution for this was found [in this post](https://stackoverflow.com/questions/5775469/whats-the-valid-way-to-include-an-image-with-no-src).
----
-### Code
----
-
-#### Bugs Fixed:
-* Variant delete functionality not operating as anticipated. When creating the delete variant functionality [djangos in built can_delete method](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/#can_delete) was used. When the form was submitted, products were not being deleted. Using print statements it was determined that while the variant was being deleted, it was then subsequently being recreated with the same id when, the save() method was called on each form in the formset. To fix this bug the variant delete functionality was called after the form was saved to ensure that the variant is not recreated. 
-
-* When trying to remove Products with variants from the cart. The variant id attribute is extracted from a unique item_id, this variant id is the key for each variant object in the cart session variable. 
-
-eg. ```
-    {product_id: {'product_variants': {variant_id: item_quantity}}}
-    ```
-
-When taking trying this initially I was experiencing an issue where the product variant was not being removed from the cart. To debug this I checked if the variant_id was a string, it returned True each time. I then checked if the variant was None with a if statement and I added a secondary print statement to check the value of the variant_id variable again. I found that it was returning as an int, which meant that when I tried to delete the variant object from the cart dictionary it was looking for an index of the dictionary that didn't exist instead of calling a dictionary key. To remedy this I explicitly converted the variant_id variable to a string so that the correct dictionary key is selected when the del keyword is used. 
-
-See code below:
-
-``` try:
-        product_id = None
-        variant_id = None
-
-        if "-" in item_id:
-            product_id = item_id.split('-')[0]
-            variant_id = request.POST.get('variant')
-
-            print(isinstance(product_id, str))
-            print(isinstance(variant_id, str))
-        else:
-            product_id = item_id
-
-        cart = request.session.get('cart', {})
-
-        if variant_id:
-            print(variant_id)
-            print(type(variant_id))
-            del cart[product_id]['product_variants'][str(variant_id)]
-```
-
-***
 
 ---
 ## Testing
+---
 The testing procedures for this project have been documented sepparately in this [testing file](https://github.com/nickassafkirk/hygge_houseplants/blob/main/testing.md)
 
-### Deployment 
-
+---
+## Deployment 
+---
 
 To replicate this project in your own local environment, the following steps should be followed:
  1. Go to the [project repository on Github](https://github.com/nickassafkirk/hygge_houseplants)
@@ -514,7 +479,14 @@ Assign your bucket name and pick your closest region. You can then scroll past a
 
 1. You can then delete the DISABLE_COLLECTSTATIC config variable from your heroku app to allow heroku to collect static files and upload them to S3
 
+---
+## Acknowledgements
+---
 
+I would like to thank my Tutor Nishant Kumar for his help and support throughout this project and throughout my previous projects over the last year. 
 
+I would also like to thank the Tutors at the code institute for the their help and support. Special thanks to Simen for his advice during our Saturday morning standup. 
+
+I'd also like to thank my friends and family who assisted with testing and feedback for this project.
 
 

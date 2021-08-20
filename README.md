@@ -7,7 +7,7 @@
 ### Introduction:
 ---
 
-Hygge Houseplants is an ecommerce website built to make this mock business's products and services available to site users. The project is a full stack web application built using the Django Framework. The key purpose of the project is to provide additional revenue and online awareness for the business and to allow site administrators to easily update and manage key site areas through the front end site and admin panel. 
+Hygge Houseplants is an ecommerce website built to sell specialist houseplants and accessories to plant enthusiasts online. The project is a full stack web application built using the Django Framework. The key purpose of the project is to provide additional revenue and online awareness for the business and to allow site administrators to easily update and manage key site areas through the front end site and admin panel. This project was built as my submission for my milestone 4 project during the code institute Diploma in Software Development.
 
 *Please note: The business depicted in this project does not exist. The business and all products have been imagined purely as a demonstration for educational purposes.*
 
@@ -71,7 +71,25 @@ The initial scope of the project was to build a fully functioning ecommerce site
 
 The second core goal for this project was to enable site administrators to have to key functionalities to view, add, edit and delete products and other site content.
 
-for future development phases of this project, the main focus will be to add additional functionality for returning users and creating an admin panel where site admins can update site infiramtion in bulk.
+For future development phases of this project, the main focus will be to add additional functionality for returning users and creating an admin panel where site admins can update site infiramtion in bulk.
+
+#### Features to be added: 
+
+1. While the project has been built to handle product quantities and inventory control, at present the application has not been set up to update the product quantity in the databse once a successful order has been placed. While great care has been taken to ensure product are not over sold up until checkout, I chose not to reduce the quantity of an item in teh database while this is still a educational project, so that people can test the site without everything becoming sold out.
+
+1. Improved frond form validation to be added. I'd like to add dynamic helper texts and error messages on all site forms to provide a better user experience when things go wrong. Unfortunately it was not possible to roll these features out due to the time limits for this project.
+
+1. Add a blog section with basic text editing functionality for the main post text area.
+
+1. Complete about page to build user trust and provide greater site context.
+
+1. Add all social media CRUD functionality to single admin panel. 
+
+1. Add all product, category, collection CRUD functionality to a dedicated products admin panel.
+
+1. Add order fulfilment updates: "Your item is on it's way" email etc...
+
+
 
 ---
 ### Structure
@@ -94,66 +112,97 @@ Django-allauth is used to provide standard user account functionality such as lo
 
 **Pages**
 
-* Index Page - This is the primary landing page
+* [Index Page](https://hygge-houseplants.herokuapp.com/) - This is the primary landing page
 
-* Products Page - View of all products with search options to narrow donw search.
+* [Products Page](https://hygge-houseplants.herokuapp.com/products/) - View of all products with search options to narrow donw search.
 
-* Single Product Page - A detailed view of a single product with an add to cart form and Edit and delete links for super users.
+* [Single Product Page](https://hygge-houseplants.herokuapp.com/products/product/4/) - A detailed view of a single product with an add to cart form and Edit and delete links for super users.
 
-* Add Product page - This is an admin only page which contains a form where a new product can be added. There are two outcomes for this page:
+* [Add Product page](https://hygge-houseplants.herokuapp.com/products/add/) - This is an admin only page which contains a form where a new product can be added. There are two outcomes for this page:
     1. If the product has no variants, the product is created and the creator is directed to the detailed product page on completion.
     1. If the wproduct has variants, the user is taken to the add variants page on completion.
 
-* Add Variant page - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of the base product.
+* [Add Variant page](https://hygge-houseplants.herokuapp.com/products/add_variants/4/) - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of the base product.
 
-* Add collection page - This allows site admins to great a product collection. Unfortunately due to time limit it was not within the scope of this project to display product collections once created.
+* [Add collection page](https://hygge-houseplants.herokuapp.com/products/collections/add/) - This allows site admins to create a product collection. This is so products can be grouped together for promotions or other reasons. (eg. Staff favourites, Sale etc...) Unfortunately due to time limit it was not within the scope of this project to display product collections once created.
 
-* Cart Page - This page displays the items that a user has added to their cart. There are two options:
+* [Cart Page](https://hygge-houseplants.herokuapp.com/cart/) - This page displays the items that a user has added to their cart. There are two options:
     1. A user can proceed to checkout using the checkout button.
     1. A user can return back to products page using the alternate button.
 
-* Checkout page - This page has two sections, a order summary section and a checkout area which enables the user to enter their details, pay and complete their order.
+* [Checkout page](https://hygge-houseplants.herokuapp.com/checkout/) - This page has two sections, a order summary section and a checkout area which enables the user to enter their details, pay and complete their order.
 
-* Checkout success page - On successful checkout a user is brought to a success page which displays a concise summary of their order.
+* [Checkout success page](https://hygge-houseplants.herokuapp.com/checkout/success/%23HHB9836C/) - On successful checkout a user is brought to a success page which displays a concise summary of their order.
 
-* Contact Page - The contact form is a generic contact form which enables users to send a message to the business. On successful completion a success message is displayed and the email is sent to the site admin's elected email address.
+* [Contact Page](https://hygge-houseplants.herokuapp.com/contact/) - The contact form is a generic contact form which enables users to send a message to the business. On successful completion a success message is displayed and the email is sent to the site admin's elected email address.
 
-* Social page - This allows site admins to edit all social media ccounts displayed in the footer.
+* [Social page](https://hygge-houseplants.herokuapp.com/social/) - This allows site admins to edit all social media ccounts displayed in the footer.
 
-* Social/add - This allows a site admin to add a new social profile from the options that have been stored in the database.
+* [Social/add](https://hygge-houseplants.herokuapp.com/social/add/) - This allows a site admin to add a new social profile from the options that have been stored in the database.
 
-* Social/add_icon - This allows a user to add a new icon and name to the available dropdowns.
+* [Social/add_icon](https://hygge-houseplants.herokuapp.com/social/add_icon/) - This allows a user to add a new icon and name to the available dropdowns.
 
-* Account page - This allows users to store their account details and to view their previous orders.
+* [Account page](https://hygge-houseplants.herokuapp.com/profiles/) - This allows users to store their account details and to view their previous orders.
 
-* Login Page - This allows users with existing accounts to login and access their account.
+* [Sign In Page](https://hygge-houseplants.herokuapp.com/accounts/login/) - This allows users with existing accounts to login and access their account.
 
-* Logout Page - This allows logged in users to logout of their account.
+* [Sign Out Page ](https://hygge-houseplants.herokuapp.com/accounts/logout/) - This allows logged in users to logout of their account.
 
-* Signup Page - This allows new users to create an account.
-
+* [Signup Page](https://hygge-houseplants.herokuapp.com/accounts/signup/) - This allows new users to create an account.
 
 
 ---
 ### Skeleton
 ---
 
+Navigation
+Main Navigation:
+The primary navigation menu for this site is located in the header of the site on all pages. Hover and touch effects are used to indicate that navigation links are clickable and bright colors are chosen to ensure navigation links stand out from the surrounding background. Links to each important site page are included in the main navigation menu. On smaller devices the main navigation menu collapses and is denoted using the standard 'burger stack' toggler icon.
+
+Login Section:
+The login section appears in the top right hand corner of the site header. The login area provides quick access to sign in, sign up and sign out site areas. When logged in a link to the user account can be found in this submenu. This is intended to encourage users to sign in to unlock additional site content and functionality and provides immediate feedback that the site is dynamic and can be interacted with by the user.
+
+Footer Navigation:
+Links to imortant site pages and sections are mirrored in the site footer. This consistent footer navigation menu is displayed on all site pages to encourage users to explore additional pages once they have scrolled ot the bottom and read all content on the current page.
+
+The footer also includes links to the businesses social media accounts to encourage further off-site interactions by users and to improve the business' credibility. As this is a fake business imagined for demonstration purposes, the social media links currently direct to the relevant social media home pages. To encourage user retention all links to external sites will open in a new tab/window.
+
+Images as links: Images are used as links to improve navigation primarily on touch devices. This is utilised on the product category tiles on the homepage as well as the image cards on the products page.
+
+Buttons as Links:
+Buttons and pseudo buttons are used throughout the site to boldly demonstrate a clickable site element. Clear labels and icons are used to indicate a buttons purpose or intended destination to improve first time learning and site useability. On the homepage buttons are used to bring users to the all products page. When used on forms, buttons are used for submission of information but redirects are also utilised upon form submission to transport the user to the page where the result of their input is displayed. This is to provide clear feedback to a user with the result of their input and to encourage ongoing interaction from users once one interaction has been completed.
+
 ---
 ### Surface
 ---
 
-**Fonts**
+#### Fonts
 1.  --hygge:  'Karla', sans-serif -> This is the Logo font.
 1.  --main: 'Source Sans Pro', sans-serif -> This font is used for the body text, larger passages of text and with heavier font weight it is also used for form labels and lesser headings.
 1.  --head: 'Staatliches', cursive; - This is used as the main Headin font. It's uppercase font style and bold font-weight is bold and striking and draws attention to key section headinds, alerts and other sections of informations that site users need to be made aware of.
 
-**Colors**
+#### Colors
 A predominently green color palette was chosen for this project to allude to the site's main content (Plants). Three shades of green (light, mid, dark) are the basis of the color palette. 
 These are offset with bright orange accent color used for buttons, links and other interactive elements. Bootstraps default green (success) and red (danger) color's are utilised in "yes"/"no", "do"/"don't" scenarios, where users are given multiple decisions or when feedback to a user input with a positive or negative connotation is provided. In such instances the traffic light (green means go, red means stop) metaphor is chosen rather than adhering to the color scheme in order to provide a better user experience and improved first-time-learning. 
 
+```
+--grn: #33775d;
+--grn-dark: #004b33;
+--grn-light: #62a68a;
+
+--orange: #ee9b00;
+--sand: #cebfa8;
+```
+
+Throughout the site different shades of grey as well as white and black are used to outline form and container backgrounds and to provide appropriate contrast for sections of text in order to ensure ease of readability.
+
 **Images**
 
+Images have been used throughout the project to provide site context and to be visually appealing. As product images are not required to be dimensioned before upload care has been taken to ensure that images are scaled evenly across the site to provide a consistent and proffesional look and feel. Ideally in a real commercial application all product images would be studio shots with a plain white background. Unfortunately due to image useasge rights this was not possible for this project.
+
 **Icons**
+
+Icons have been used throughout this project as metaphors to reinforce heading and button meaning. All icons utilised for this project were sourced from [fontawesome.com](https://fontawesome.com/)
 
 ---
 ### Technologies Used:
@@ -166,7 +215,7 @@ These are offset with bright orange accent color used for buttons, links and oth
 * Python
 
 #### Libraries & Frameworks 
-* Bootstrap
+* Bootstrap - Used for quick protoyping of front end styles.
 * Django - Used for authentication, routing, serving dynamic html templates and interacting with the database.
 
 #### Other 

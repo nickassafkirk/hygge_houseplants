@@ -1,26 +1,11 @@
-## Testing
+# Testing
+
 
 Upon completion of the product and throughout it's development, each site page was tested thoroughly to ensure that responsive design was implemented, that site functionality performed as intended and overall the site provides a good user experience.
 
-Each page was tested on desktop, mobile and then in dev tools. Tests were repeated On multiple browsers to ensure crose browser compatibility.
 
-**Devices tested:**
-- Mac Mini
-- Iphone SE
-- Macbook Pro 13"
-- Samsung S8
-
-**Browser tested:**
-- Chrome
-- Firefox
-- Safari
-- Opera
-
-Unfortunately it was not possible to test internet explorer or microsoft edge.
-
-**Additional testing:**
-- The deployed site was distibuted to select friends and family who tested the project on a range of devices. No big were recorder and overall users reported a good user experience.
 ## User story Testing
+---
 
 **User Stories**
 *As a new user:*
@@ -136,59 +121,78 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
    The user stories above are currently only achievable using the Django admin site. These operations can only be carried out in the dedicated admin site. [Link to admin site - Login required](https://hygge-houseplants.herokuapp.com/admin/)
 
    While these have been identified as important operational requirements for an ecommerce business, they were not rolled out to the consumer facing site. All of the above operations have been tested in the admin panel and can be seen to fulfil the requirements of the user stories above. However due to the detailed documentation regarding the django admin site ([see here](https://docs.djangoproject.com/en/3.2/ref/contrib/admin/)), I have not gone into extensive detail on the testing procedures for the admin site.
-
-   
-
-   
-
-
-
+  
 
 ## Manual Testing
+---
+In addition to the extensive user story testing carried out above each site page was tested thoroughly to ensure site is robust, predictable and is visually and emotionally pleasing to interact with. 
 
+Each page was tested on desktop, mobile and then in dev tools. Tests were repeated On multiple browsers to ensure cross browser compatibility. Vendor prefixes have been used to ensure reliable behaviour across as many browsers as possible.
 
+**Devices tested:**
+- Mac Mini
+- Iphone SE
+- Macbook Pro 13"
+- Samsung S8
 
-* Index Page - This is the primary landing page
+**Browser tested:**
+- Chrome
+- Firefox
+- Safari
+- Opera
 
-* Products Page - View of all products with search options to narrow donw search.
+Unfortunately it was not possible to test internet explorer or microsoft edge.
 
-* Single Product Page - A detailed view of a single product with an add to cart form and Edit and delete links for super users.
+---
+
+The below pages were throughly tested and display know major errors or behaviour which prevents use:
+To avoid being overly verbose I have briefly outlined the key testing points for each page. A detailed viewpoint into the extent of testing can be viewed in the [commit history](https://github.com/nickassafkirk/hygge_houseplants/commits/main) for this project.
+
+* Index Page - Ensure all links direct correctly, Test search, Test navbar collapse, ensure admin only features are not displayed to unauthenticated users, test social media links, test hygge pop open box, check responsive design. All passed!
+
+* Products Page - Check product tiles format evenly, check links to product work, test edit and delte links and ensure admin only visibility, test sort, test category queries, test category tag on each product tile, ensure responsive design on all screen sizes.
+
+* Single Product Page - Ensure correct formatting, test edit and delete actions and ensure admin only visibility. Test adjust quantity buttons and ensure they are disabled when quantity limits are met. Test add to cart. Test dynamic information change is applied when a variant is selected. Test the product thumnail gallery. 
 
 * Add Product page - This is an admin only page which contains a form where a new product can be added. There are two outcomes for this page:
     1. If the product has no variants, the product is created and the creator is directed to the detailed product page on completion.
-    1. If the wproduct has variants, the user is taken to the add variants page on completion.
+    1. If the product has variants, the user is taken to the add variants page on completion. 
+    All functionality has been tested thoroughly and is seen to be robust
 
-* Add Variant page - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of the base product.
+* Add Variant page - On this page a site admin can create, edit or delete product variants. On completion of this page, the user is brought to the single product view of the base product. All functionality has been tested thoroughly and is seen to functioning but improvements have been noted in user story testing.
 
-* Add collection page - This allows site admins to great a product collection. Unfortunately due to time limit it was not within the scope of this project to display product collections once created.
+* Add collection page - This allows site admins to great a product collection. Unfortunately due to time limit it was not within the scope of this project to display product collections once created but collections can be successfuly created and verified in the admin panel.
 
-* Cart Page - This page displays the items that a user has added to their cart. There are two options:
-    1. A user can proceed to checkout using the checkout button.
-    1. A user can return back to products page using the alternate button.
+* Cart Page - Test adjust quantity, test update quantity, test delete product from cart, test adjust quantity out of bounds with manual number input. Test checkout link. Test responsive design to min 320px. 
+*Known improvements:* Text could be made larger with redesign for XS devices.
 
-* Checkout page - This page has two sections, a order summary section and a checkout area which enables the user to enter their details, pay and complete their order.
+* Checkout page - Test Billing details form, Test summary displays correctly, test totals calculate correctly, test expand/hide order summary section. Test card input requring 3D secure authentication and no authentication. Test successful order creation from webhook when order is not completed but stripe payment is received. Test Loading spinner screen.
 
-* Checkout success page - On successful checkout a user is brought to a success page which displays a concise summary of their order.
+* Checkout success page - Test order details are correct, test responsive design, test link to products, test link to profile.
 
 * Contact Page - The contact form is a generic contact form which enables users to send a message to the business. On successful completion a success message is displayed and the email is sent to the site admin's elected email address.
 
-* Social page - This allows site admins to edit all social media ccounts displayed in the footer.
+* Social page - Test all social accounts are displayed. Test update form, test delete form, test that active unchecked removes social link from footer but does not delete the account completely. Test link to new social account.
 
 * Social/add - This allows a site admin to add a new social profile from the options that have been stored in the database.
+Test adding new option from dropdown, verify new account created. Test link to add new social icon.
 
-* Social/add_icon - This allows a user to add a new icon and name to the available dropdowns.
+* Social/add_icon - This allows a user to add a new icon and name to the available dropdowns. It takes a Name and the class names of a fontawesome Icon eg. Name = facebook, Icon = fab fa-facebook-square.
 
-* Account page - This allows users to store their account details and to view their previous orders.
+* Account page - Verify user orders displayed in relevant section. Test responsive design. Test from submission, Test invalid submission. Test Valid submission, Test form update. 
 
-* Login Page - This allows users with existing accounts to login and access their account.
+* Login Page - Test login with existing credentials, test icnoprrect username, test incorrect password, test link to sign up page.
 
-* Logout Page - This allows logged in users to logout of their account.
+* Logout Page - Test logout button, Test cancel.
 
-* Signup Page - This allows new users to create an account.
+* Signup Page - Test signup with existing credentials, test incorrect password match, test link to sign in page.
 
+**Additional testing:**
+- The deployed site was distibuted to select friends and family who tested the project on a range of devices. No big were recorder and overall users reported a good user experience.
 
+---
 ## Validation:
-
+---
 #### HTML:
 All site html was validated using the [W3C Markup Validation Service](https://validator.w3.org/): 
 
@@ -235,3 +239,7 @@ Vendor prefixes were added using [Autoprefixer](https://autoprefixer.github.io/)
 In order to condense the vertical distribution of information on smaller screen sizes while checking out, a script was written to show and hide the order summary by clicking the show/hide summary text. The desired behaviour on small screensizes is for the order summary section to be collapsed to encourage users to fill out the checkout form and purchase before getting cold feet. Unfortunately while I implemented the ability to collapse and show this section I did not have time to implement the desired design that the order summary section would be expandsed on large screen sizes and collapsed on small screensizes on page load.
 The desired design has been screenshotted below.
 ![checkout expanded by default bug](media/checkout_expand_bug.png)
+
+* Poor UX with social app. The social app has been developed as a custom app to display crud functionality for site admins. It enables admins to Select which social media accounts are displayed in the footer and is composed of three sections. The add account section controls the displayed content of the social links in the footer. Each account has a name, a link and an icon. The Name and link are textfields but the icon is a dropdown menu where the icons must be uploaded sepparately. 
+The second component is the social/add_icon component. It allows admins to edit the icons available in the dropdown menu when adding or editing the social accounts. The decison was made to upload these as a foreign key to prevent errors rendering the icons.
+The final aspect is a page where each social account can be edited. This allows each field to be edited for each account or for accounts to be deleted or marked inactive so as not to be displayed in teh footer. While the functionality of these three actions works they ideally should be positoned on a single page for improved clarity. Unfortunately it was not possible to produce this desired outcome within the timeframe for this project.

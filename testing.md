@@ -38,13 +38,13 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
 - I need to be able to logout of my account. &check;
 
 *As a site admin:*
-- I want to be able to manage site products.
+- I want to be able to manage site products. &check;
 - I want to sort products into relevant groups.
-- I need to view, create, edit and delete products.
-- I need to view, create, edit and delete categories.
-- I need to view, create, edit and delete users.
-- I need to view, create, edit and delete orders.
-- I need to be able to assign additional site administrators.
+- I need to view, create, edit and delete products. &check;
+- I need to view, create, edit and delete categories. - *Admin Site functionality*
+- I need to view, create, edit and delete users. - *Admin Site functionality*
+- I need to view, create, edit and delete orders. - *Admin Site functionality*
+- I need to be able to assign additional site administrators. - *Admin Site functionality*
 
 1. #### *As a new user:* I wish to immediately know the site's intention.
 
@@ -123,8 +123,23 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
 
     C. Editing variants. Editing variants is only accessible via the edit product link. Once the base product form has been completed or left unchanged, once the form is submitted with the "has variants" checkbox checked, the user will be brought to the add_variant page. This pages uses django's model formsets which facilitate edit, creation and deletion of multiple similar forms in a single request. If a product has variants each variant formset will be loaded with it's exisitng values entered. Changing any of these values will upate the variant and save it's new values. It was experienced that clicking any of the update variant buttons would submit and update all changes made to all variants not just the one who's form button was clicked. While this isn't completely expected behaviour, it is quickly learned and is acceptable for a admin task. It was also experienced that only one additonal new variant could be added in a single request which again could be improved in future development cycles by enabling functionality upload multiple new variants in a single request. Again while this could be improved it is considered acceptable behaviour and I am satisfied that the edit product functionality fulfils the user story.
 
+    D. Deleting products - When a site admin is viewing the site a delete link will be visible below each product preview card on the products page or beneath the add to cart form on the detailed product page. On the products view upon clicking the delete button, first a confirmation button will pop up giving the user the opportunity to cancel the delete. If they go ahead, the product is deleted, a deletion success message is displayed and the user is returned to the products page. If a user clicks the delete link from the detailed product page, no confimation pop up is displayed and the product is deleted on first click. The user is then returned to the all products page and a deletion success message is displayed to provide user feedback. If a product has variants, upon deletion variants will also be deleted. 
+    From this testing, I am satisfied that existing site products can be deleted and that the user story is met.
 
+    E. Variant deletion - To delete a variant without deleting the parent product it is necessary to go to the add variant page via the edit product pathway described above. When editing a products variants, each variant will have a delete checkbox. When the variant form is updated, any variants with the delete checkbox checked will be deleted and a success message will be displayed. While a dedicated delete button would be preferred, due to the use of the modelformset from django this was not possible to include within the scope of this product. However it is a known user experience issue that will be amended during future development of this project. While the mediocre user experience is not ideal functionally the ability to succesfully delete variants is achieved and therefore I am satisfied that the user story described is met albeit with the caveats described above.
 
+1. #### *As an admin:* I need to view, create, edit and delete categories. - *Admin Site functionality*,
+   #### *As an admin:*I need to view, create, edit and delete users. - *Admin Site functionality*,
+   #### *As an admin:*I need to view, create, edit and delete orders. - *Admin Site functionality*,
+   #### *As an admin:*I need to be able to assign additional site administrators. - *Admin Site functionality*:
+
+   The user stories above are currently only achievable using the Django admin site. These operations can only be carried out in the dedicated admin site. [Link to admin site - Login required](https://hygge-houseplants.herokuapp.com/admin/)
+
+   While these have been identified as important operational requirements for an ecommerce business, they were not rolled out to the consumer facing site. All of the above operations have been tested in the admin panel and can be seen to fulfil the requirements of the user stories above. However due to the detailed documentation regarding the django admin site ([see here](https://docs.djangoproject.com/en/3.2/ref/contrib/admin/)), I have not gone into extensive detail on the testing procedures for the admin site.
+
+   
+
+   
 
 
 

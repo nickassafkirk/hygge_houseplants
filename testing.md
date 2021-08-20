@@ -33,9 +33,9 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
 - I need to be able to contact the business easily. &check;
 
 *As an existing user:*+
-- I need to be able to login to my account.
-- I need to view my past orders.
-- I need to be able to logout of my account.
+- I need to be able to login to my account. &check;
+- I need to view my past orders. &check;
+- I need to be able to logout of my account. &check;
 
 *As a site admin:*
 - I want to be able to manage site products.
@@ -104,6 +104,24 @@ Unfortunately it was not possible to test internet explorer or microsoft edge.
     *Having tested this I can also confirm that emails sent through the contact form are received to the elected admin address for this project. Thus confirming that email handling is operated as intended*
 
    
+1. #### **As a site admin I want to be able to manage site products:**
+    A. Adding new products - When logged in as a site superuser by clicking the account link in the header, an add products link is available. Clicking this link brings the user to a add product form. By filling out the form, a new product can be added. Required fields are noted with an asterisks on their label. The image box has been styled to allow easy drag and drop or selection of local files from the user's machine. When an image has been uploaded, a preview of the image is displayed.
+    Clicking the X icon on the image thumnail deletes it. Uploading a new image, overides the existing image. This is expected behaviour.
+
+    If the 'Has variants" checkbox is left blank, clicking the create product button will submit the form, display a success message and bring the user to the detailed product page. This shows that new products can be created by site admins.
+    
+    If the user wants to create a product which has variants, upon clicking the "has variants" checkbox the form submit button text will change to indicate that an additional step will occur upon save. Upon submission the user will be redirected to the add_variant page where the product form that has just been filled out is displayed with it's fields disabled. Below the inactive product form a new field for a variant is available to be filled out. Each variant has a size and color, field, a quantity, price, sku and image field. Mandatory fields are noted with a * charachter. Either size or color is required for successful submission. If both size and color are left blank the form will fail validation and user will return to the page with an error message displayed. Upon successful completion a user will brought to the detailed product page where the variant is displayed.
+
+    From this testing I am satified that a user can create a new product to be displayed on the site. 
+
+    B. Editing existing products - When a site admin is viewing the site an edit and delete link will be visible below each product preview card on the products page or beneath the add to cart form on the detailed product page. Clicking the edit button brings the user to a form identical to the add product page but with the fields filled out with the current product data. Editing the field and updating will succeffully update the product details. If a mandatory field is left blank, the from will not allow submission. 
+    If the product has variants the has variants button will be selected. If the form is submitted with the has variants button selected, the user will be bought to the add variants page where the user can edit existing variants and add a new one.
+
+    If the product has variants and the "has variants" checkbox is unchecked when the form is submitted the product will be displayed without it's variants. However the variants will not be deleted they just wont be displayed. If the product is edited again and it's has variants checkbox is selected, the variants will be restored and displayed again.
+    
+    From this testing I am satisfied that a admin user can conveniently edit products.
+
+    C. Editing variants. Editing variants is only accessible via the edit product link. Once the base product form has been completed or left unchanged, once the form is submitted with the "has variants" checkbox checked, the user will be brought to the add_variant page. This pages uses django's model formsets which facilitate edit, creation and deletion of multiple similar forms in a single request. If a product has variants each variant formset will be loaded with it's exisitng values entered. Changing any of these values will upate the variant and save it's new values. It was experienced that clicking any of the update variant buttons would submit and update all changes made to all variants not just the one who's form button was clicked. While this isn't completely expected behaviour, it is quickly learned and is acceptable for a admin task. It was also experienced that only one additonal new variant could be added in a single request which again could be improved in future development cycles by enabling functionality upload multiple new variants in a single request. Again while this could be improved it is considered acceptable behaviour and I am satisfied that the edit product functionality fulfils the user story.
 
 
 
@@ -193,3 +211,12 @@ No errors were returned.
 
 Vendor prefixes were added using [Autoprefixer](https://autoprefixer.github.io/).
 
+---
+
+## Bugs
+---
+
+* checkout expanded by default On smaller screen sizes: 
+In order to condense the vertical distribution of information on smaller screen sizes while checking out, a script was written to show and hide the order summary by clicking the show/hide summary text. The desired behaviour on small screensizes is for the order summary section to be collapsed to encourage users to fill out the checkout form and purchase before getting cold feet. Unfortunately while I implemented the ability to collapse and show this section I did not have time to implement the desired design that the order summary section would be expandsed on large screen sizes and collapsed on small screensizes on page load.
+The desired design has been screenshotted below.
+![checkout expanded by default bug](media/checkout_expand_bug.png)

@@ -263,6 +263,115 @@ credit Tom Crew from [Unsplash](https://unsplash.com/)
 * [Hygge Plaque image](https://unsplash.com/photos/SDxDQXixgfU)
 credit Julian Hochgesang from [Unsplash](https://unsplash.com/)
 
+* [String of hearts product image](https://unsplash.com/photos/phQil0MqwDI)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [String of hearts product image 2](https://unsplash.com/photos/xGpYDi-0348)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Rattlesnake Plant](https://unsplash.com/photos/8nONCr6eTeg)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Aloe Tiki Zilla](https://unsplash.com/photos/eeOOH0dk3XQ)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Scindapsus picuts plant](https://unsplash.com/photos/dTLeHGu9FAw)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Ficus Lyrata ](https://unsplash.com/photos/TNTZ9XRisjQ)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Ficus Robusta ](https://unsplash.com/photos/17UXXzGF7RA)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Ficus Robusta Alt](https://unsplash.com/photos/OtO7x_yL9qM)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Yellow watering can](https://unsplash.com/photos/k3jEtUmKhJo)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [White hanging plant pot](https://unsplash.com/photos/k3jEtUmKhJo)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [Monstera deliciosa variegata](https://unsplash.com/photos/zTAcTi7D5i8)
+credit Severin Candrian from [Unsplash](https://unsplash.com/)
+
+* [echevaria parvus](https://unsplash.com/photos/WwWkgOMU8H8)
+credit Scot webb from [Unsplash](https://unsplash.com/)
+
+* [small cactus with pink flower](https://unsplash.com/photos/cNL-fTAQggM)
+credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
+
+* [small cactus with pink flowerB](https://unsplash.com/photos/slSRjvoiIpY)
+credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
+
+* [small fat cactus](https://unsplash.com/photos/N9lmtlOuaDM)
+credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
+
+* [small cactus in cup](https://unsplash.com/photos/f7PfM2NklZ4)
+credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
+
+* [small cactus in jug](https://unsplash.com/photos/BsxQ60PxRNI)
+credit Stephanie Harvey from [Unsplash](https://unsplash.com/)
+
+* [small Blue cactus](https://unsplash.com/photos/fbAnIjhrOL4)
+credit annie Spratt from [Unsplash](https://unsplash.com/)
+
+* [Mother in laws tongue](https://unsplash.com/photos/GY6ViMxtmDE)
+credit Nikita Kachanovsky from [Unsplash](https://unsplash.com/)
+
+* [small green cactus](https://unsplash.com/photos/ywRYbp-6p8c)
+credit Lina Silivanova from [Unsplash](https://unsplash.com/)
+
+* [Prickly Pear](https://unsplash.com/photos/0nMs98PjafM)
+credit Jake Goossen from [Unsplash](https://unsplash.com/)
+
+* [Panda Plant](https://unsplash.com/photos/3_cyj5YkhTs)
+credit Kari Shea from [Unsplash](https://unsplash.com/)
+
+* [Jade Plant](https://unsplash.com/photos/Q0w0LGkHokE)
+credit Susan Wilkinson from [Unsplash](https://unsplash.com/)
+
+
+* [small cactus a](https://unsplash.com/photos/nQOfU7Xjbl4)
+credit Kamil Kalkan from [Unsplash](https://unsplash.com/)
+
+* [Ultra model watering can](https://unsplash.com/photos/X8X5l0BDPk0)
+credit Kara Eads from [Unsplash](https://unsplash.com/)
+
+* []()
+credit  from [Unsplash](https://unsplash.com/)
+
+* []()
+credit  from [Unsplash](https://unsplash.com/)
+
+* []()
+credit  from [Unsplash](https://unsplash.com/)
+
+
+
+### Product Description Credits:
+The product descriptions used were inspired by descriptons of plants. These have been credited accordingly:
+
+* [Rattlsnake plant hortology.co.uk](https://hortology.co.uk/products/calathea-lancifolia-rattlesnake-house-plant)
+
+* [Ficus Lyrata](https://hortology.co.uk/products/ficus-lyrata-fiddle-leaf-fig-house-plant)
+
+* [Aloe tiki zilla Tikeplant.com](https://tikiplant.com/?lang=en)
+
+* [Ficus Robusta plantlife.ie](https://plantlife.ie/product/ficus-elastica-robusta-rubber-plant-in-21cm-pot/)
+
+* [Echevaria Parva surrealsucculents.co.uk](https://surrealsucculents.co.uk/product/echeveria-parva/)
+
+* [mother in laws tongue houseplantsexpert.com](https://www.houseplantsexpert.com/mother-in-laws-tongue.html)
+
+* [Cactus. Cleistocactus gardens4u.ie](https://www.gardens4you.ie/cactus-cleistocactus-ie-en.html)
+
+* [Prickly Pear wikipedia](https://en.wikipedia.org/wiki/Opuntia)
+
+*[Kalanchoe tomentosa wikipedia](https://en.wikipedia.org/wiki/Kalanchoe_tomentosa)
+
+
 ---
 ### Code Credits
 
@@ -382,6 +491,9 @@ the default number input adjust buttons and to center the text.
 I discovered the ability to limit UUID in [this stack overflow post](https://stackoverflow.com/questions/26030811/generate-a-unique-string-in-python-django/26032898)
 
 * To prevent validation errors when submitting images with blank src values on the single product page I entered ```data:,``` as a temporary img src value. The images are dynamically changed using javascript so this is only necessary to prevent validation errors. The solution for this was found [in this post](https://stackoverflow.com/questions/5775469/whats-the-valid-way-to-include-an-image-with-no-src).
+
+
+* I would also like to credit Anouk Smet, [who's README was a great example of the deployment procedures](https://github.com/AnoukSmet/Casa-Pedra-Nobre)
 
 ---
 ## Testing

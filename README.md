@@ -204,6 +204,12 @@ Icons have been used throughout this project as metaphors to reinforce heading a
 
 
 ---
+## Mockups
+---
+
+[![responsive project preview](media/responsive.png)](https://hygge-houseplants.herokuapp.com/)
+
+---
 ## Database Structure
 ---
 
@@ -386,8 +392,12 @@ The testing procedures for this project have been documented sepparately in this
 ## Deployment 
 ---
 
+### Cloning Project and deployiong the project locally 
+
 To replicate this project in your own local environment, the following steps should be followed:
  1. Go to the [project repository on Github](https://github.com/nickassafkirk/hygge_houseplants)
+
+ I personally used Gitpod, so the steps needed to clone this project to your own IDE may differ slightly.
 
  1. ![deployment step 1](/media/deploys1.png) Within the code section if using the Gitpod IDE, first install [Gitpod's browser extension](https://www.gitpod.io/docs/browser-extension/), then with the extension installed click the green gitpod button to create a clone of this project in your own Gitpod IDE. 
  
@@ -395,44 +405,36 @@ To replicate this project in your own local environment, the following steps sho
 
  1. With the project repositiory cloned to your machine you will then need to create and env.py file in your root directory. If it is not already there you must then create a .gitignore file and add your env.py file to it.
 
- 1. In your env.py file first ```import os``` you will create your environmental variables using the statement ```os.environ.setdefault('VARIABLE_NAME', 'variable_value')```
+ 1. In your env.py file first ```import os``` you will create your environmental variables using the statement ```os.environ['VARIABLE_NAME'] = 'variable_value'```
 
     For this project the following env variables should be created.
+    * 'DEVELOPMENT' = True
     * 'SECRET_KEY' - Your Django secret key token: To create a secret key [this secret key generator can be used](https://miniwebtool.com/django-secret-key-generator/)
     * 'DEFAULT_FROM_EMAIL' - The default from email used for emails sent from the application
-    * 'DATABASE_URL' - The postgress database URL created when Postgress was installed in your Heroku app
-    * 'HEROKU_HOSTNAME' - The URL for your deployed heroku app eg. your_project_name.herokuapp.com
-    * 'EMAIL_HOST_PASS'
-    * 'EMAIL_HOST_USER'
+    * 'EMAIL_HOST_PASS' - Your email application password
+    * 'EMAIL_HOST_USER' - your host email address.
+    * 'STRIPE_PUBLIC_KEY' - stripe public key
+    * 'STRIPE_SECRET_KEY' - stripe secret key
+    * 'STRIPE_WH_SECRET' -  stripe webhook secret
 
-    The following env variables should be added to the config vars in your Heroku app but can be added to you local env for development purposes. 
+    *more information about stripe payments can be found [here](https://stripe.com/docs/payments)*
 
-    * 'AWS_ACCESS_KEY_ID'
-    * 'AWS_S3_REGION_NAME'
-    * 'AWS_SECRET_ACCESS_KEY'
-    * 'AWS_STORAGE_BUCKET_NAME'
-    * 'STRIPE_PUBLIC_KEY'
-    * 'STRIPE_SECRET_KEY'
-    * 'STRIPE_WH_SECRET'
-    * 'USE_AWS' - Set to True
     
-1. With the Environmental variables defined we now need to install the packages needed to run the project. These can be found in the requirements.txt file in the root directory. We can install each dependency by using the ```pip3 install <package_name>``` command in the terminal.
-    * pip3 install boto3
-    * pip3 install django
-    * pip3 install django-allauth
-    * pip3 install django-crispy-forms
-    * pip3 install dj-database-url
-    * pip3 install django-storages
-    * pip3 install gunicorn
-    * pip3 install pillow
-    * pip3 install psycopg2-binary
+1. With the Environmental variables defined we now need to install the packages needed to run the project. These can be found in the requirements.txt file in the root directory. We can install each dependency individually by using the ```pip3 install <package_name>``` command in the terminal or by running: ```pip3 install -r requirements.txt```
 
-1. If the requirements.txt file does not exist in your workspace, you can create it by using the ```pip3 freeze > requirements.txt``` command in the terminal or by installing the packages outlined [here](https://github.com/nickassafkirk/hygge_houseplants/blob/main/requirements.txt)     
-*Please note: The package versions listed in the requirements.txt file above were accurate at the time this project was created. New iterations of these dependecies may have been released at the time that you wish to clone this project - You can consult each package's documentation should you require additonal information.*
+1. With everything installed you need to make migrations. 
+first run: ```python3 manage.py makemigrations```
+then: ```python3 manage.py migrate``` if no errors are returned.
 
-    *Also note: Each package installed may be composed of more than one component, please check what dependencies are installed with the command* ```pip3 freeze``` *after each package has been installed.*
+1. Create an admin superuser using the command:
+   ```python3 manage.py createsuperuser`` in the terminal and following the prompts.
 
-1. At this point you need to create a Procfile if it does not already exist. To do this you can use the command ```touch Procfile``` in the terminal. Once created you can write the following code in the Procfile: ```web: gunicorn <project_name>.wsgi:application``` with the name of the project where ```<project_name>``` has been include in the command above.
+1. With migrations made you can run the project on your local server. 
+    ```python3 manage.py runserver```
+    The project is now deployed on your local machine.
+    
+---
+### Deploying the project to heroku 
 
 1. Were now ready to create our app in Heroku. To do so go to [heroku.com](https://www.heroku.com) and create an account or login by following the prompts.
 
@@ -447,9 +449,32 @@ To replicate this project in your own local environment, the following steps sho
     ![heroku resource add ons](/media/herokusgrab2.png)
 
 1. Once we've added the Heroku Postgres Add-on we can go to the settings tab in the panel. Next click 'reveal config vars'. After adding the Heroku Postgres add-on your DATABASE_URL variable should have been automatically created in heroku. 
-You can now create the Environmental variables you have already included in your env.py file in the config vars section in heroku.
+You can now create the Environmental variables you have already included in your env.py file in the config vars section in heroku. Don't include DEVELOPMENT = True in heroku and ensure that you add USE_AWS.
+    ```
+    AWS_ACCESS_KEY_ID = "AWS_ACCESS_KEY_ID"
+    AWS_SECRET_ACCESS_KEY = "AWS_SECRET_ACCESS_KEY"
+    AWS_S3_REGION_NAME = "AWS_S3_REGION_NAME"
+    AWS_STORAGE_BUCKET_NAME = "AWS_STORAGE_BUCKET_NAME"
+    USE_AWS = True
 
-1. We then need to connect to the postgres DB in the settings.py file in our base app so we can make migrations. We can do this by commenting out the following code in the settings.py file and by temporarily adding the DATABAE_URL variable and value to the envy.py file in our root folder.
+    DATABASE_URL = "This variable is automatically created in heroku once postgress has been installed"
+
+    SECRET_KEY = "SECRET_KEY"
+
+    STRIPE_PUBLIC_KEY = "STRIPE_PUBLIC_KEY"
+    STRIPE_SECRET_KEY = "STRIPE_SECRET_KEY"
+    STRIPE_WH_SECRET = "STRIPE_WH_SECRET"
+    STRIPE_CURRENCY = EUR
+
+    DEFAULT_FROM_EMAIL = "DEFAULT_FROM_EMAIL"
+    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST_PASS = "EMAIL_HOST_PASS"
+    EMAIL_HOST_USER = "EMAIL_HOST_USER"
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    ```
+
+1. We then need to connect to the postgres DB in the settings.py file in our base app so we can make migrations. We can do this by commenting out the following code in the settings.py file and by temporarily adding the DATABASE_URL variable and value to the envy.py file in our root folder.
 
     ```
         DATABASES = {
@@ -463,7 +488,11 @@ You can now create the Environmental variables you have already included in your
 
 1. You can now create a superuser for your Postgres DB by using the command ```python3 manage.py create superuser``` in the terminal and following the prompts to add a username, email and password. Once this is created and your app is deployed this will enable you to sign into the /admin panel for your deployed project.
 
+1. Alternatively you can run these commands directly in the inbuilt console in heroku.
+
 1. You can then uncomment the code above and delete the 'DATABASE_URL' variable from the env.py file which will ensure that the postgress DB is used on the deployed herokuapp and the default SQLlite DB is used during development.
+
+1. Ensure the Procfile is present in your workspace, this will tell heroku what type of application to expect.
 
 1. Next we need to Configure AWS S3: first go to [Amazon AWS](https://aws.amazon.com/) and sign in or sign up by following the prompts. You will need to provide credit card details to successfully create an account but it is unlikely that you will incur any charges. You can read Amazon's terms and conditions for further information on Billing, Privacy and more. 
 
@@ -526,7 +555,7 @@ Assign your bucket name and pick your closest region. You can then scroll past a
         AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     ```
 
-1. In heroku under the settings section reveal your config vars and use the values from S3 Bucket and the CSV file that you downloaded at step 26 to add the config variables to your heroku app. You will also need to Add the following variables
+1. In heroku under the settings section reveal your config vars and use the values from S3 Bucket and the CSV file that you downloaded at step 26 to add the config variables to your heroku app. You will also need to Add the following variables which we previously listed.
 
     AWS_STORAGE_BUCKET_NAME -> The name of your S3 Bucket you created for this project
     AWS_S3_REGION_NAME -> The region for your S3 Bucket eg 'eu-west-1'
@@ -534,7 +563,31 @@ Assign your bucket name and pick your closest region. You can then scroll past a
     AWS_SECRET_ACCESS_KEY -> The AWS secret access key from the CSV file you downloaded
     USE_AWS -> True
 
-1. You can then delete the DISABLE_COLLECTSTATIC config variable from your heroku app to allow heroku to collect static files and upload them to S3
+1. Download the media files from the github repository and manually upload them into a folder called media in your s3 bucket. This will ensure images will work when you connect to AWS
+
+1. Finally we need to set up our email confimration forwarding. To do so in Gmail follow these steps. For othe Email services, the steps may differ.
+
+1. Go to your email account and go to your account settings
+1. In the security settings ensure two step authentication is enabled in teh sign in section. 
+1. Below this there should be an app passwords section once 2 step verification is enabled. 
+1. In app passwords create a new app password for the first drop down select "mail" and for the device type choose "other" and give it a descriptive name (such as the name of your project). 
+1. Once this is completed you can copy the password that is displayed into your config varibales in heroku for the EMAIL_HOST_PASS variable.
+
+1. In settings.py ensure the following code is present 
+    ```
+    if "DEVELOPMENT" in os.environ:
+            EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+            DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+        else:
+            EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+            EMAIL_USE_TLS = True
+            EMAIL_PORT = 587
+            EMAIL_HOST = 'smtp.gmail.com'
+            EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+            EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+            DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+    ```
+1. Your now ready to deploy your project. In heroku, go to deployment. Select deploy with github, then use the search bar to find the repository you're connection too. Be sure commit and push your changes to github before this step. with that done and your github repo connected to heroku you can go to the deploy button and deloy your main branch. Once you've completed this step you'll see an activity pane updating on the app build progress. Once your app is buit a link to your deployed app will be provided.
 
 ---
 ## Acknowledgements

@@ -14,7 +14,7 @@ Hygge Houseplants is an ecommerce website built to sell specialist houseplants a
 ## UX Design
 ---
 **This site has been built to cater to two key user groups:**
-1. Site Users - These are regular individual, potential customer and collaborators visiting the site to view and buy products and discover information about the business.
+1. Site Users - These are regular individuals, potential customers and collaborators visiting the site to view and buy products and discover information about the business.
 1. Site Administrators - These are site owners, and stakeholders, who's primary focus is to manage content on the site, view, edit, create, and delete products, product categories, orders and other data types. While a dedicated admin site exists to enable full administration behaviour for the site, some key business procedures have been made accessible for site admins through the regular consumer facing site, to improve the user experience for site administrators. 
 
 ---
@@ -71,13 +71,13 @@ The initial scope of the project was to build a fully functioning ecommerce site
 
 The second core goal for this project was to enable site administrators to have to key functionalities to view, add, edit and delete products and other site content.
 
-For future development phases of this project, the main focus will be to add additional functionality for returning users and creating an admin panel where site admins can update site infiramtion in bulk.
+For future development phases of this project, the main focus will be to add additional functionality for returning users and creating an admin panel where site admins can update site information in bulk and manage received order fulfillment.
 
 #### Features to be added: 
 
-1. While the project has been built to handle product quantities and inventory control, at present the application has not been set up to update the product quantity in the databse once a successful order has been placed. While great care has been taken to ensure product are not over sold up until checkout, I chose not to reduce the quantity of an item in teh database while this is still a educational project, so that people can test the site without everything becoming sold out.
+1. While the project has been built to handle product quantities and inventory control, at present the application has not been set up to update the product quantity in the database once a successful order has been placed. While great care has been taken to ensure products are not over sold up until checkout, I chose not to reduce the quantity of an item in the database after checkout has completed. My rational was that while this is still a educational project people can test the site without everything becoming sold out.
 
-1. Improved frond form validation to be added. I'd like to add dynamic helper texts and error messages on all site forms to provide a better user experience when things go wrong. Unfortunately it was not possible to roll these features out due to the time limits for this project.
+1. Improved frontend form validation to be added. I'd like to add dynamic helper texts and error messages on all site forms to provide a better user experience when things go wrong. Unfortunately it was not possible to roll these features out due to the time limits for this project.
 
 1. Add a blog section with basic text editing functionality for the main post text area.
 
@@ -90,23 +90,22 @@ For future development phases of this project, the main focus will be to add add
 1. Add order fulfilment updates: "Your item is on it's way" email etc...
 
 
-
 ---
 ### Structure
 ---
 
 The structure of the current project is as follows. 
 
-The project is conmposed of the following applications. Each application is designed to sepparate concerns of specific functionality.
+The project is cnmposed of the following applications. Each application is designed to sepparate concerns of specific functionality.
 
 **Apps:**
-- Index
-- Products
-- Cart
-- Checkout
-- Contact
-- Profile
-- Social
+- Index - Handles rendering of homepage.
+- Products - Handles products and associated models.
+- Cart - Handles aggregation of products prior to order completion.
+- Checkout - Handles taking payment and creation of order models.
+- Contact - Handles user email contact to store owner.
+- Profile - Handles storage of individual user's order history and site preferences.
+- Social - Handles add, edit, read and delete of store's social media accounts.
 
 Django-allauth is used to provide standard user account functionality such as login, logout, register, confirm email, forgot password etc....
 

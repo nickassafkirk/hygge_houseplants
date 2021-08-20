@@ -4,6 +4,13 @@
 
 {% block content %}
 <div class="container my-5">
+    <h3>Add a Social Media Icon</h3>
+    <p>Enter the class name of the <a href="https://fontawesome.com/v5.15/icons/facebook-square?style=brands" target="_blank">fontawesome icon</a> you wish to use and the name you want to reference it by.</p>
+    <small>
+        eg: Name: Facebook, Icon: fab fa-facebook-square
+
+    </small>
+    <hr>
     <form action="{% url 'add_icon' %}" method="POST" id="add-icon">
         {% csrf_token %}
         {{ form | crispy }}

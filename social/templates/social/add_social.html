@@ -4,11 +4,12 @@
 
 {% block content %} 
 <div class="container my-5">
+    <h3>Add Social Media Account</h3>
+    <hr>
     <form action="{% url 'add_social_account' %}" method="POST" id="add-social-accounts" class="row">
         {% csrf_token %}
         <div class="col-12 col-sm-8 offset-sm-2">
             <div class="add-variant-area p-3">
-                <h4 class="text-success">Add Account</h4>
                 {{ form2 | crispy }}
             </div>
         </div>
@@ -18,8 +19,8 @@
     </form>
 
     <div class="text-center my-3">
-        <p>Can't find the social media platform you're looking for?</p>
-        <a href="{% url 'add_icon' %}">Add a new social media platform!</a>
+        <p>Can't find the Brand Icon you're looking for?</p>
+        <a href="{% url 'add_icon' %}">Add a new icon to the options here!</a>
     </div>
 </div>
 

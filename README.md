@@ -106,8 +106,7 @@ The project is cnmposed of the following applications. Each application is desig
 - Contact - Handles user email contact to store owner.
 - Profile - Handles storage of individual user's order history and site preferences.
 - Social - Handles add, edit, read and delete of store's social media accounts.
-
-Django-allauth is used to provide standard user account functionality such as login, logout, register, confirm email, forgot password etc....
+- In addition: Django-allauth is used to provide standard user account functionality such as login, logout, register, confirm email, forgot password etc....
 
 **Pages**
 
@@ -154,21 +153,21 @@ Django-allauth is used to provide standard user account functionality such as lo
 ### Skeleton
 ---
 
-Navigation
+**Navigation**
 Main Navigation:
 The primary navigation menu for this site is located in the header of the site on all pages. Hover and touch effects are used to indicate that navigation links are clickable and bright colors are chosen to ensure navigation links stand out from the surrounding background. Links to each important site page are included in the main navigation menu. On smaller devices the main navigation menu collapses and is denoted using the standard 'burger stack' toggler icon.
 
-Login Section:
+**Login Section:**
 The login section appears in the top right hand corner of the site header. The login area provides quick access to sign in, sign up and sign out site areas. When logged in a link to the user account can be found in this submenu. This is intended to encourage users to sign in to unlock additional site content and functionality and provides immediate feedback that the site is dynamic and can be interacted with by the user.
 
-Footer Navigation:
+**Footer Navigation:**
 Links to imortant site pages and sections are mirrored in the site footer. This consistent footer navigation menu is displayed on all site pages to encourage users to explore additional pages once they have scrolled ot the bottom and read all content on the current page.
 
 The footer also includes links to the businesses social media accounts to encourage further off-site interactions by users and to improve the business' credibility. As this is a fake business imagined for demonstration purposes, the social media links currently direct to the relevant social media home pages. To encourage user retention all links to external sites will open in a new tab/window.
 
-Images as links: Images are used as links to improve navigation primarily on touch devices. This is utilised on the product category tiles on the homepage as well as the image cards on the products page.
+**Images as links:** Images are used as links to improve navigation primarily on touch devices. This is utilised on the product category tiles on the homepage as well as the image cards on the products page.
 
-Buttons as Links:
+**Buttons as Links:**
 Buttons and pseudo buttons are used throughout the site to boldly demonstrate a clickable site element. Clear labels and icons are used to indicate a buttons purpose or intended destination to improve first time learning and site useability. On the homepage buttons are used to bring users to the all products page. When used on forms, buttons are used for submission of information but redirects are also utilised upon form submission to transport the user to the page where the result of their input is displayed. This is to provide clear feedback to a user with the result of their input and to encourage ongoing interaction from users once one interaction has been completed.
 
 ---
@@ -176,9 +175,9 @@ Buttons and pseudo buttons are used throughout the site to boldly demonstrate a 
 ---
 
 #### Fonts
-1.  --hygge:  'Karla', sans-serif -> This is the Logo font.
-1.  --main: 'Source Sans Pro', sans-serif -> This font is used for the body text, larger passages of text and with heavier font weight it is also used for form labels and lesser headings.
-1.  --head: 'Staatliches', cursive; - This is used as the main Headin font. It's uppercase font style and bold font-weight is bold and striking and draws attention to key section headinds, alerts and other sections of informations that site users need to be made aware of.
+1.  --hygge:  ['Karla', sans-serif](https://fonts.google.com/specimen/Karla?query=karla) -> This is the Logo font.
+1.  --main: ['Source Sans Pro', sans-serif](https://fonts.google.com/specimen/Source+Sans+Pro?query=source+sa) -> This font is used for the body text, larger passages of text and with heavier font weight it is also used for form labels and lesser headings.
+1.  --head: ['Staatliches', cursive;](https://fonts.google.com/specimen/Staatliches?query=staa) - This is used as the main Headin font. It's uppercase font style and bold font-weight is bold and striking and draws attention to key section headinds, alerts and other sections of informations that site users need to be made aware of.
 
 #### Colors
 A predominently green color palette was chosen for this project to allude to the site's main content (Plants). Three shades of green (light, mid, dark) are the basis of the color palette. 
@@ -203,27 +202,37 @@ Images have been used throughout the project to provide site context and to be v
 
 Icons have been used throughout this project as metaphors to reinforce heading and button meaning. All icons utilised for this project were sourced from [fontawesome.com](https://fontawesome.com/)
 
+
+---
+## Database Structure
+---
+
+For the project I have created 9 individual models. These models are demonstrated in the image below. Going forward there is scope to split these models down further. For instance the Product and Variant models could reference an Image model or the Variant model could be linked to a Size model and a Color model etc... Such refinements will be considered for future development of this project.
+
+![schema diagram](media/database_schema.png)
+[link to graph here](https://drawsql.app/pedaltherapy/diagrams/hygge-houseplants)
+
 ---
 ### Technologies Used:
 ---
 #### Languages 
-* Html5
-* CSS3
-* Javascript
-* jQuery
-* Python
+* [Html5](https://en.wikipedia.org/wiki/HTML)
+* [CSS3](https://en.wikipedia.org/wiki/CSS#CSS_3)
+* [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+* [jQuery](https://en.wikipedia.org/wiki/JQuery)
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
 #### Libraries & Frameworks 
-* Bootstrap - Used for quick protoyping of front end styles.
-* Django - Used for authentication, routing, serving dynamic html templates and interacting with the database.
+* [Bootstrap](https://getbootstrap.com/) - Used for quick protoyping of front end styles.
+* [Django](https://www.djangoproject.com/) - Used for authentication, routing, serving dynamic html templates and interacting with the database.
 
 #### Other 
-* Fontawesome - Used to add icons throughout the project.
-* Google Fonts - Used to enable the use of additional fonts for the project.
-* Heroku - For app hosting and deployment.
-* Stripe - To enable customer payments for the project.
-* Amazon AWS S3 - Used to host images, files and other documents.
-* Postgress - Used to store site data.
+* [Fontawesome](https://fontawesome.com/) - Used to add icons throughout the project.
+* [Google Fonts](https://fonts.google.com/) - Used to enable the use of additional fonts for the project.
+* [Heroku](https://www.heroku.com) - For app hosting and deployment.
+* [Stripe](https://stripe.com/ie) - To enable customer payments for the project.
+* [Amazon AWS S3](https://aws.amazon.com/s3/?nc2=h_ql_prod_st_s3) - Used to host images, files and other documents.
+* [Postgress](https://www.postgresql.org/) - Used to store site data.
 
 ---
 ## Credits

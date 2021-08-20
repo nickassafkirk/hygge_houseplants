@@ -698,6 +698,21 @@ label[for="id_image"] {
 
 /* Add Variants Form */
 
+.product-form-disabled input, .product-form-disabled select {
+    cursor: not-allowed;
+}
+
+.product-form-disabled .image-drop-wrapper {
+    background: rgba(239, 239, 239, 0.3);
+    border: transparent;
+}
+
+.product-form-disabled .image-drop-wrapper:hover,
+.product-form-disabled .image-drop-wrapper:active,
+.product-form-disabled .image-drop-wrapper:focus {
+    border: transparent;
+}
+
 #add-variants-form {
     background: transparent;
 }

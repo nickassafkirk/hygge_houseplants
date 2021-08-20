@@ -339,16 +339,6 @@ credit Kamil Kalkan from [Unsplash](https://unsplash.com/)
 * [Ultra model watering can](https://unsplash.com/photos/X8X5l0BDPk0)
 credit Kara Eads from [Unsplash](https://unsplash.com/)
 
-* []()
-credit  from [Unsplash](https://unsplash.com/)
-
-* []()
-credit  from [Unsplash](https://unsplash.com/)
-
-* []()
-credit  from [Unsplash](https://unsplash.com/)
-
-
 
 ### Product Description Credits:
 The product descriptions used were inspired by descriptons of plants. These have been credited accordingly:

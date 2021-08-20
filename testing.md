@@ -1,5 +1,7 @@
 # Testing
 
+Other documentation for this project can me found in the accompanying [README.md file](https://github.com/nickassafkirk/hygge_houseplants/blob/main/README.md)
+
 
 Upon completion of the product and throughout it's development, each site page was tested thoroughly to ensure that responsive design was implemented, that site functionality performed as intended and overall the site provides a good user experience.
 
@@ -232,8 +234,11 @@ Vendor prefixes were added using [Autoprefixer](https://autoprefixer.github.io/)
 
 ---
 
+---
 ## Bugs
 ---
+
+### Outstanding Bugs/Poor UX Issues:
 
 * checkout expanded by default On smaller screen sizes: 
 In order to condense the vertical distribution of information on smaller screen sizes while checking out, a script was written to show and hide the order summary by clicking the show/hide summary text. The desired behaviour on small screensizes is for the order summary section to be collapsed to encourage users to fill out the checkout form and purchase before getting cold feet. Unfortunately while I implemented the ability to collapse and show this section I did not have time to implement the desired design that the order summary section would be expandsed on large screen sizes and collapsed on small screensizes on page load.
@@ -243,3 +248,41 @@ The desired design has been screenshotted below.
 * Poor UX with social app. The social app has been developed as a custom app to display crud functionality for site admins. It enables admins to Select which social media accounts are displayed in the footer and is composed of three sections. The add account section controls the displayed content of the social links in the footer. Each account has a name, a link and an icon. The Name and link are textfields but the icon is a dropdown menu where the icons must be uploaded sepparately. 
 The second component is the social/add_icon component. It allows admins to edit the icons available in the dropdown menu when adding or editing the social accounts. The decison was made to upload these as a foreign key to prevent errors rendering the icons.
 The final aspect is a page where each social account can be edited. This allows each field to be edited for each account or for accounts to be deleted or marked inactive so as not to be displayed in teh footer. While the functionality of these three actions works they ideally should be positoned on a single page for improved clarity. Unfortunately it was not possible to produce this desired outcome within the timeframe for this project.
+
+---
+### Bugs Fixed:
+* Variant delete functionality not operating as anticipated. When creating the delete variant functionality [djangos in built can_delete method](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/#can_delete) was used. When the form was submitted, products were not being deleted. Using print statements it was determined that while the variant was being deleted, it was then subsequently being recreated with the same id when, the save() method was called on each form in the formset. To fix this bug the variant delete functionality was called after the form was saved to ensure that the variant is not recreated. 
+
+* When trying to remove Products with variants from the cart. The variant id attribute is extracted from a unique item_id, this variant id is the key for each variant object in the cart session variable. 
+
+eg. ```
+    {product_id: {'product_variants': {variant_id: item_quantity}}}
+    ```
+
+When taking trying this initially I was experiencing an issue where the product variant was not being removed from the cart. To debug this I checked if the variant_id was a string, it returned True each time. I then checked if the variant was None with a if statement and I added a secondary print statement to check the value of the variant_id variable again. I found that it was returning as an int, which meant that when I tried to delete the variant object from the cart dictionary it was looking for an index of the dictionary that didn't exist instead of calling a dictionary key. To remedy this I explicitly converted the variant_id variable to a string so that the correct dictionary key is selected when the del keyword is used. 
+
+See code below:
+
+``` try:
+        product_id = None
+        variant_id = None
+
+        if "-" in item_id:
+            product_id = item_id.split('-')[0]
+            variant_id = request.POST.get('variant')
+
+            print(isinstance(product_id, str))
+            print(isinstance(variant_id, str))
+        else:
+            product_id = item_id
+
+        cart = request.session.get('cart', {})
+
+        if variant_id:
+            print(variant_id)
+            print(type(variant_id))
+            del cart[product_id]['product_variants'][str(variant_id)]
+```
+---
+### End of testing
+[Return to README.md file](https://github.com/nickassafkirk/hygge_houseplants/blob/main/README.md)

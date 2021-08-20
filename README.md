@@ -357,6 +357,10 @@ See code below:
 
 ***
 
+---
+## Testing
+The testing procedures for this project have been documented sepparately in this [testing file](https://github.com/nickassafkirk/hygge_houseplants/blob/main/testing.md)
+
 ### Deployment 
 
 
